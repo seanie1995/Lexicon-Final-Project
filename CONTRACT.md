@@ -65,7 +65,7 @@ Vi lovar att vara professionella och schyssta mot varandra:
 Genom att skriva under/bekräfta godkänner vi att arbeta enligt detta kontrakt.
 
 * **Medlem 1:** [Jim Nelin](https://github.com/jine)
-* **Medlem 2:** 
+* **Medlem 2:** [Sean Schelin](https://github.com/seanie1995)
 * **Medlem 3:** 
 * **Medlem 4:** 
 * **Medlem 5:**  

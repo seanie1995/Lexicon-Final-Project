@@ -8,6 +8,7 @@ Grupp 3 plan
 * Next.js GET/POST API routes för webshops API mm, "som vanligt"
 * 
 
+```
 Lexicon-Final-Project/ (monorepo)
 ├── apps/
 │   ├── webshop/                      ← din kund-facing Next.js app
@@ -69,3 +70,5 @@ Lexicon-Final-Project/ (monorepo)
 │
 ├── package.json
 └── .gitignore
+
+```

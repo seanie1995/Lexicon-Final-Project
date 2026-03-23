@@ -11,7 +11,10 @@
 
 - 🔐 Autentisering: Implementera inloggning för kunder via Supabase.
 - ☁️ Database: Supabase + ORM som Prisma
+- 
 - 📦 Varukorg: Hantera varukorgen med persistens via cookies/databas eller globala state via Zustand (alt useContext).
+- 💳 Betallösning: Integrera ett testläge för Stripe för att simulera ett riktigt köp.
+- 
 - 🎨 UI-Library: Bygg ett enhetligt och professionellt UI med Tailwind. Wireframe / Skiss via Stitch eller Lovable/v0/liknande.
 - 🌍 Deployment: Driftsätt applikationen på Vercel el. Netlify
 

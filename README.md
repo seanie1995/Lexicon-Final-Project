@@ -58,6 +58,9 @@ Lexicon-Final-Project/ (monorepo)
 │   │   │   │   ├── favicon.ico
 │   │   │   │   └── robots.txt
 │   │   │   │
+│   │   │   ├── lib/                          ← libs for like actions.ts and stuff.
+│   │   │   │   ├── db.ts
+│   │   │   │   └── actions.ts
 │   │   │   ├── components/                   ← återanvändbara UI-komponenter
 │   │   │   │   ├── ui/                       ← shadcn/ui, Radix, eller egna primitiver
 │   │   │   │   │   ├── button.tsx

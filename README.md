@@ -18,6 +18,11 @@
 ### Jättefrivilligt (Jim tycker detta låter skoj)
 - 〽️ Optimering: Lägg in suspense på strömmande delar och se till att cachning fungerar optimalt (ev använd cache components). Implementera useTransition/startTransition och useOptimistic för UI-uppdateringar.
 - ⚙️ Testning: Implementera E2E-testning via Playwright/Cypress och/eller unit testning med Jest/Vitest
+- 
+
+### Jim frivillig att
+- Refaktorering: Eftersom vi bygger vidare på gammal kod – fixa till så admin-gränssnittet fungerar med nya kodbas/databas om ca 1-2v efter projektstart så det blir bra!
+
 
 ```
 Lexicon-Final-Project/ (monorepo)

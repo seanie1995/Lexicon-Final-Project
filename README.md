@@ -1,12 +1,23 @@
 # Lexicon-Final-Project
 
-Grupp 3 plan
+## Grupp 3 plan
 
 * Supabase för datalager / produkter / mm
 * Supabase för authentisering?
 * Prisma som ORM för att enkelt kunna hantera data (prisma.get...)
 * Next.js GET/POST API routes för webshops API mm, "som vanligt"
-* 
+
+## Planering av funktioner
+
+🔐 Autentisering: Implementera inloggning för kunder via Supabase.
+☁️ Database: Supabase + ORM som Prisma
+📦 Varukorg: Hantera varukorgen med persistens via cookies/databas eller globala state via Zustand (alt useContext).
+🎨 UI-Library: Bygg ett enhetligt och professionellt UI med Tailwind. Wireframe / Skiss via Stitch eller Lovable/v0/liknande.
+🌍 Deployment: Driftsätt applikationen på Vercel el. Netlify
+
+Jättefrivilligt (Jim tycker detta låter skoj)
+〽️ Optimering: Lägg in suspense på strömmande delar och se till att cachning fungerar optimalt (ev använd cache components). Implementera useTransition/startTransition och useOptimistic för UI-uppdateringar.
+⚙️ Testning: Implementera E2E-testning via Playwright/Cypress och/eller unit testning med Jest/Vitest
 
 ```
 Lexicon-Final-Project/ (monorepo)

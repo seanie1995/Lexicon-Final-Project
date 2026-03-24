@@ -1,1 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Public+Sans:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
+
+@theme {
+	--color-primary-fixed: #ffdad8;
+	--color-on-surface: #1d1c13;
+	--color-on-tertiary-fixed-variant: #474746;
+	--color-on-primary-fixed-variant: #733333;
+	--color-surface-tint: #904a49;
+	--color-error: #ba1a1a;
+	--color-secondary: #725a42;
+	--color-surface-container-highest: #e8e2d4;
+	--color-surface-container-lowest: #ffffff;
+	--color-on-background: #1d1c13;
+	--color-outline: #867372;
+	--color-secondary-fixed: #fedcbe;
+	--color-primary-container: #6b2d2d;
+	--color-surface-container-low: #f9f3e5;
+	--color-primary-fixed-dim: #ffb3b0;
+	--color-on-error: #ffffff;
+	--color-on-tertiary-container: #aeacab;
+	--color-on-error-container: #93000a;
+	--color-error-container: #ffdad6;
+	--color-inverse-surface: #333027;
+	--color-surface-container-high: #eee8da;
+	--color-on-secondary-container: #796048;
+	--color-tertiary-container: #414040;
+	--color-surface: #fff9eb;
+	--color-on-surface-variant: #534342;
+	--color-on-primary: #ffffff;
+	--color-on-secondary-fixed-variant: #59422c;
+	--color-tertiary-fixed-dim: #c8c6c5;
+	--color-surface-container: #f3eddf;
+	--color-surface-dim: #dfdacc;
+	--color-background: #fff9eb;
+	--color-on-primary-container: #eb9593;
+	--color-on-tertiary: #ffffff;
+	--color-on-tertiary-fixed: #1c1b1b;
+	--color-surface-bright: #fff9eb;
+	--color-primary: #4f1819;
+	--color-outline-variant: #d8c1c0;
+	--color-inverse-on-surface: #f6f0e2;
+	--color-tertiary-fixed: #e5e2e1;
+	--color-surface-variant: #e8e2d4;
+	--color-tertiary: #2a2a2a;
+	--color-inverse-primary: #ffb3b0;
+	--color-on-primary-fixed: #3b080b;
+	--color-secondary-container: #fedcbe;
+	--color-secondary-fixed-dim: #e1c1a4;
+	--color-on-secondary-fixed: #291806;
+	--color-on-secondary: #ffffff;
+
+	--font-headline: "Newsreader", serif;
+	--font-body: "Noto Serif", serif;
+	--font-label: "Public Sans", sans-serif;
+	--font-sans: var(--font-label);
+	--font-serif: var(--font-headline);
+
+	--text-display-sm: 2.75rem;
+	--text-display-sm--line-height: 1;
+	--text-display-md: 3.5rem;
+	--text-display-md--line-height: 1;
+	--text-display-lg: 4.5rem;
+	--text-display-lg--line-height: 1;
+	--text-body-lg: 1.125rem;
+	--text-body-lg--line-height: 1.75;
+	--text-label-sm: 0.75rem;
+	--text-label-sm--line-height: 1;
+	--text-label-sm--letter-spacing: 0.2em;
+
+	--radius-none: 0;
+	--radius-sm: 0;
+	--radius-md: 0;
+	--radius-lg: 0;
+	--radius-xl: 0;
+	--radius-full: 9999px;
+
+	--spacing: 0.25rem;
+}
+
+@layer base {
+	html {
+		background-color: var(--color-background);
+		color: var(--color-on-surface);
+	}
+
+	body {
+		min-height: 100vh;
+		background-color: var(--color-background);
+		color: var(--color-on-surface);
+		font-family: var(--font-body);
+	}
+}

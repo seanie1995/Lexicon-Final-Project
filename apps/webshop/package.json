@@ -9,16 +9,16 @@
 		"lint": "npx biome check src/"
 	},
 	"dependencies": {
-		"next": "^15.3.0",
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0"
+		"next": "^16.2.1",
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4"
 	},
 	"devDependencies": {
-		"@types/node": "^22.15.0",
-		"@types/react": "^19.1.0",
-		"@types/react-dom": "^19.1.0",
-		"tailwindcss": "^4.1.0",
-		"@tailwindcss/postcss": "^4.1.0",
-		"typescript": "^5.8.0"
+		"@types/node": "^24.12.0",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"tailwindcss": "^4.2.2",
+		"@tailwindcss/postcss": "^4.2.2",
+		"typescript": "^5.9.3"
 	}
 }

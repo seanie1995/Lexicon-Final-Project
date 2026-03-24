@@ -6,7 +6,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "npx biome check src/"
+		"lint": "npx biome check src/",
+		"seed": "npx tsx prisma/seed.ts"
 	},
 	"dependencies": {
 		"@prisma/client": "^7.5.0",
@@ -22,6 +23,7 @@
 		"@types/react-dom": "^19.2.3",
 		"prisma": "^7.5.0",
 		"tailwindcss": "^4.2.2",
+		"tsx": "^4.21.0",
 		"typescript": "^5.9.3"
 	}
 }

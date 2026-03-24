@@ -3,75 +3,74 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary-fixed": "#ffdad8",
-              "on-surface": "#1d1c13",
-              "on-tertiary-fixed-variant": "#474746",
-              "on-primary-fixed-variant": "#733333",
-              "surface-tint": "#904a49",
-              "error": "#ba1a1a",
-              "secondary": "#725a42",
-              "surface-container-highest": "#e8e2d4",
-              "surface-container-lowest": "#ffffff",
-              "on-background": "#1d1c13",
-              "outline": "#867372",
-              "secondary-fixed": "#fedcbe",
-              "primary-container": "#6b2d2d",
-              "surface-container-low": "#f9f3e5",
-              "primary-fixed-dim": "#ffb3b0",
-              "on-error": "#ffffff",
-              "on-tertiary-container": "#aeacab",
-              "on-error-container": "#93000a",
-              "error-container": "#ffdad6",
-              "inverse-surface": "#333027",
-              "surface-container-high": "#eee8da",
-              "on-secondary-container": "#796048",
-              "tertiary-container": "#414040",
-              "surface": "#fff9eb",
-              "on-surface-variant": "#534342",
-              "on-primary": "#ffffff",
-              "on-secondary-fixed-variant": "#59422c",
-              "tertiary-fixed-dim": "#c8c6c5",
-              "surface-container": "#f3eddf",
-              "surface-dim": "#dfdacc",
-              "background": "#fff9eb",
-              "on-primary-container": "#eb9593",
-              "on-tertiary": "#ffffff",
-              "on-tertiary-fixed": "#1c1b1b",
-              "surface-bright": "#fff9eb",
-              "primary": "#4f1819",
-              "outline-variant": "#d8c1c0",
-              "inverse-on-surface": "#f6f0e2",
-              "tertiary-fixed": "#e5e2e1",
-              "surface-variant": "#e8e2d4",
-              "tertiary": "#2a2a2a",
-              "inverse-primary": "#ffb3b0",
-              "on-primary-fixed": "#3b080b",
-              "secondary-container": "#fedcbe",
-              "secondary-fixed-dim": "#e1c1a4",
-              "on-secondary-fixed": "#291806",
-              "on-secondary": "#ffffff"
-            },
-            fontFamily: {
-              "headline": ["Newsreader"],
-              "body": ["Noto Serif"],
-              "label": ["Public Sans"]
-            },
-            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
-          },
-        },
-      }
-    </script>
 <style>
+      :root {
+          --color-primary-fixed: #ffdad8;
+          --color-on-surface: #1d1c13;
+          --color-on-tertiary-fixed-variant: #474746;
+          --color-on-primary-fixed-variant: #733333;
+          --color-surface-tint: #904a49;
+          --color-error: #ba1a1a;
+          --color-secondary: #725a42;
+          --color-surface-container-highest: #e8e2d4;
+          --color-surface-container-lowest: #ffffff;
+          --color-on-background: #1d1c13;
+          --color-outline: #867372;
+          --color-secondary-fixed: #fedcbe;
+          --color-primary-container: #6b2d2d;
+          --color-surface-container-low: #f9f3e5;
+          --color-primary-fixed-dim: #ffb3b0;
+          --color-on-error: #ffffff;
+          --color-on-tertiary-container: #aeacab;
+          --color-on-error-container: #93000a;
+          --color-error-container: #ffdad6;
+          --color-inverse-surface: #333027;
+          --color-surface-container-high: #eee8da;
+          --color-on-secondary-container: #796048;
+          --color-tertiary-container: #414040;
+          --color-surface: #fff9eb;
+          --color-on-surface-variant: #534342;
+          --color-on-primary: #ffffff;
+          --color-on-secondary-fixed-variant: #59422c;
+          --color-tertiary-fixed-dim: #c8c6c5;
+          --color-surface-container: #f3eddf;
+          --color-surface-dim: #dfdacc;
+          --color-background: #fff9eb;
+          --color-on-primary-container: #eb9593;
+          --color-on-tertiary: #ffffff;
+          --color-on-tertiary-fixed: #1c1b1b;
+          --color-surface-bright: #fff9eb;
+          --color-primary: #4f1819;
+          --color-outline-variant: #d8c1c0;
+          --color-inverse-on-surface: #f6f0e2;
+          --color-tertiary-fixed: #e5e2e1;
+          --color-surface-variant: #e8e2d4;
+          --color-tertiary: #2a2a2a;
+          --color-inverse-primary: #ffb3b0;
+          --color-on-primary-fixed: #3b080b;
+          --color-secondary-container: #fedcbe;
+          --color-secondary-fixed-dim: #e1c1a4;
+          --color-on-secondary-fixed: #291806;
+          --color-on-secondary: #ffffff;
+          --font-headline: "Newsreader", serif;
+          --font-body: "Noto Serif", serif;
+          --font-label: "Public Sans", sans-serif;
+          --radius: 0px;
+          --radius-lg: 0px;
+          --radius-xl: 0px;
+          --radius-full: 9999px;
+      }
+      html.dark .dark\:bg-\[\#1d1c13\]\/85 { background-color: color-mix(in srgb, #1d1c13 85%, transparent); }
+      html.dark .dark\:bg-\[\#1d1c13\] { background-color: #1d1c13; }
+      html.dark .dark\:text-\[\#f9f3e5\] { color: #f9f3e5; }
+      html.dark .dark\:text-\[\#e8e2d4\] { color: #e8e2d4; }
+      html.dark .dark\:text-\[\#d8c1c0\] { color: #d8c1c0; }
+      html.dark .dark\:text-\[\#e8e2d4\]\/70 { color: color-mix(in srgb, #e8e2d4 70%, transparent); }
+      html.dark .dark\:border-\[\#f9f3e5\] { border-color: #f9f3e5; }
+      html.dark .dark\:hover\:text-\[\#ffffff\]:hover { color: #ffffff; }
       .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
       }
@@ -88,13 +87,13 @@
 <div class="text-2xl font-headline italic text-[#4f1819] dark:text-[#f9f3e5] tracking-tight">
                 The Digital Archivist
             </div>
-<div class="hidden md:flex items-center space-x-10 font-headline tracking-tight">
+<div class="hidden md:flex items-center gap-x-10 font-headline tracking-tight">
 <a class="text-[#4f1819] dark:text-[#f9f3e5] font-bold border-b border-[#4f1819] dark:border-[#f9f3e5] pb-1 transition-colors duration-300" href="#">Catalog</a>
 <a class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300" href="#">Rarities</a>
 <a class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300" href="#">Chronology</a>
 <a class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300" href="#">Curations</a>
 </div>
-<div class="flex items-center space-x-6">
+<div class="flex items-center gap-x-6">
 <button class="text-[#4f1819] dark:text-[#d8c1c0] hover:opacity-80 transition-opacity">
 <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
 </button>
@@ -157,7 +156,7 @@
                             INQUIRE FOR PRIVATE VIEWING
                         </button>
 </div>
-<div class="flex items-center space-x-6 pt-4 text-secondary">
+<div class="flex items-center gap-x-6 pt-4 text-secondary">
 <div class="flex items-center text-xs font-label uppercase tracking-widest">
 <span class="material-symbols-outlined text-sm mr-2" data-icon="verified_user">verified_user</span>
                             Certified Authentic
@@ -211,7 +210,7 @@
 <div class="lg:col-span-8 space-y-24">
 <!-- Condition Report -->
 <section>
-<div class="flex items-center space-x-4 mb-8">
+<div class="flex items-center gap-x-4 mb-8">
 <h2 class="font-headline text-3xl">Condition Report</h2>
 <span class="px-3 py-1 bg-surface-container-highest text-secondary font-label text-[10px] uppercase tracking-widest">Grade: Near Fine</span>
 </div>

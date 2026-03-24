@@ -4,75 +4,66 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Catalog | The Digital Archivist</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Public+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary-fixed": "#ffdad8",
-              "on-surface": "#1d1c13",
-              "on-tertiary-fixed-variant": "#474746",
-              "on-primary-fixed-variant": "#733333",
-              "surface-tint": "#904a49",
-              "error": "#ba1a1a",
-              "secondary": "#725a42",
-              "surface-container-highest": "#e8e2d4",
-              "surface-container-lowest": "#ffffff",
-              "on-background": "#1d1c13",
-              "outline": "#867372",
-              "secondary-fixed": "#fedcbe",
-              "primary-container": "#6b2d2d",
-              "surface-container-low": "#f9f3e5",
-              "primary-fixed-dim": "#ffb3b0",
-              "on-error": "#ffffff",
-              "on-tertiary-container": "#aeacab",
-              "on-error-container": "#93000a",
-              "error-container": "#ffdad6",
-              "inverse-surface": "#333027",
-              "surface-container-high": "#eee8da",
-              "on-secondary-container": "#796048",
-              "tertiary-container": "#414040",
-              "surface": "#fff9eb",
-              "on-surface-variant": "#534342",
-              "on-primary": "#ffffff",
-              "on-secondary-fixed-variant": "#59422c",
-              "tertiary-fixed-dim": "#c8c6c5",
-              "surface-container": "#f3eddf",
-              "surface-dim": "#dfdacc",
-              "background": "#fff9eb",
-              "on-primary-container": "#eb9593",
-              "on-tertiary": "#ffffff",
-              "on-tertiary-fixed": "#1c1b1b",
-              "surface-bright": "#fff9eb",
-              "primary": "#4f1819",
-              "outline-variant": "#d8c1c0",
-              "inverse-on-surface": "#f6f0e2",
-              "tertiary-fixed": "#e5e2e1",
-              "surface-variant": "#e8e2d4",
-              "tertiary": "#2a2a2a",
-              "inverse-primary": "#ffb3b0",
-              "on-primary-fixed": "#3b080b",
-              "secondary-container": "#fedcbe",
-              "secondary-fixed-dim": "#e1c1a4",
-              "on-secondary-fixed": "#291806",
-              "on-secondary": "#ffffff"
-            },
-            fontFamily: {
-              "headline": ["Newsreader", "serif"],
-              "body": ["Noto Serif", "serif"],
-              "label": ["Public Sans", "sans-serif"]
-            },
-            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
-          },
-        },
-      }
-    </script>
 <style>
+        :root {
+            --color-primary-fixed: #ffdad8;
+            --color-on-surface: #1d1c13;
+            --color-on-tertiary-fixed-variant: #474746;
+            --color-on-primary-fixed-variant: #733333;
+            --color-surface-tint: #904a49;
+            --color-error: #ba1a1a;
+            --color-secondary: #725a42;
+            --color-surface-container-highest: #e8e2d4;
+            --color-surface-container-lowest: #ffffff;
+            --color-on-background: #1d1c13;
+            --color-outline: #867372;
+            --color-secondary-fixed: #fedcbe;
+            --color-primary-container: #6b2d2d;
+            --color-surface-container-low: #f9f3e5;
+            --color-primary-fixed-dim: #ffb3b0;
+            --color-on-error: #ffffff;
+            --color-on-tertiary-container: #aeacab;
+            --color-on-error-container: #93000a;
+            --color-error-container: #ffdad6;
+            --color-inverse-surface: #333027;
+            --color-surface-container-high: #eee8da;
+            --color-on-secondary-container: #796048;
+            --color-tertiary-container: #414040;
+            --color-surface: #fff9eb;
+            --color-on-surface-variant: #534342;
+            --color-on-primary: #ffffff;
+            --color-on-secondary-fixed-variant: #59422c;
+            --color-tertiary-fixed-dim: #c8c6c5;
+            --color-surface-container: #f3eddf;
+            --color-surface-dim: #dfdacc;
+            --color-background: #fff9eb;
+            --color-on-primary-container: #eb9593;
+            --color-on-tertiary: #ffffff;
+            --color-on-tertiary-fixed: #1c1b1b;
+            --color-surface-bright: #fff9eb;
+            --color-primary: #4f1819;
+            --color-outline-variant: #d8c1c0;
+            --color-inverse-on-surface: #f6f0e2;
+            --color-tertiary-fixed: #e5e2e1;
+            --color-surface-variant: #e8e2d4;
+            --color-tertiary: #2a2a2a;
+            --color-inverse-primary: #ffb3b0;
+            --color-on-primary-fixed: #3b080b;
+            --color-secondary-container: #fedcbe;
+            --color-secondary-fixed-dim: #e1c1a4;
+            --color-on-secondary-fixed: #291806;
+            --color-on-secondary: #ffffff;
+            --font-headline: "Newsreader", serif;
+            --font-body: "Noto Serif", serif;
+            --font-label: "Public Sans", sans-serif;
+            --radius: 0px;
+            --radius-lg: 0px;
+            --radius-xl: 0px;
+            --radius-full: 9999px;
+        }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -86,7 +77,7 @@
 <nav class="fixed top-0 w-full z-50 rounded-none bg-[#fff9eb]/85 backdrop-blur-md">
 <div class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
 <div class="text-2xl font-serif italic text-[#4f1819]">The Digital Archivist</div>
-<div class="hidden md:flex gap-10 font-['Newsreader'] serif tracking-tight">
+<div class="hidden md:flex gap-10 font-headline serif tracking-tight">
 <a class="text-[#4f1819] font-bold border-b border-[#4f1819] pb-1 hover:text-[#4f1819] transition-colors duration-300" href="#">Catalog</a>
 <a class="text-[#725a42] font-medium hover:text-[#4f1819] transition-colors duration-300" href="#">Rarities</a>
 <a class="text-[#725a42] font-medium hover:text-[#4f1819] transition-colors duration-300" href="#">Chronology</a>
@@ -293,7 +284,7 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-12 py-20 w-full max-w-screen-2xl mx-auto">
 <div class="space-y-6">
 <div class="text-xl font-serif text-[#4f1819] dark:text-[#f9f3e5]">The Digital Archivist</div>
-<p class="font-['Noto_Serif'] leading-relaxed text-[#725a42] dark:text-[#e8e2d4]/70 max-w-sm">
+<p class="font-body leading-relaxed text-[#725a42] dark:text-[#e8e2d4]/70 max-w-sm">
                     Preserving the tactile heritage of rare literature for the modern scholar. Every volume in our archive is hand-authenticated and cataloged with historical precision.
                 </p>
 <p class="text-xs font-label uppercase tracking-widest text-[#4f1819]/60">© 2024 The Digital Archivist. Preserving the tactile heritage of rare literature.</p>
@@ -301,7 +292,7 @@
 <div class="grid grid-cols-2 gap-8">
 <div>
 <h4 class="font-label text-xs uppercase tracking-[0.2em] text-[#4f1819] mb-6">Navigation</h4>
-<ul class="space-y-4 font-['Noto_Serif'] leading-relaxed">
+<ul class="space-y-4 font-body leading-relaxed">
 <li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all" href="#">Provenance</a></li>
 <li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all" href="#">Shipping &amp; Handling</a></li>
 <li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all" href="#">Acquisitions</a></li>
@@ -310,7 +301,7 @@
 </div>
 <div>
 <h4 class="font-label text-xs uppercase tracking-[0.2em] text-[#4f1819] mb-6">Social</h4>
-<ul class="space-y-4 font-['Noto_Serif'] leading-relaxed">
+<ul class="space-y-4 font-body leading-relaxed">
 <li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all" href="#">Instagram</a></li>
 <li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all" href="#">Letterboxd</a></li>
 <li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all" href="#">RSS Feed</a></li>

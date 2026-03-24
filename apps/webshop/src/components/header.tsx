@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search, User, ShoppingBag } from "lucide-react";
@@ -18,7 +17,7 @@ const Header = () => {
   return (
     <nav className="fixed top-0 w-full z-50 rounded-none bg-[#fff9eb]/85 backdrop-blur-md">
       <div className="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
-        <Link href="/" className="text-2xl font-serif italic text-[#4f1819]">
+        <Link href="/" className="text-2xl font-serif italic text-primary">
           The Digital Archivist
         </Link>
 
@@ -31,9 +30,9 @@ const Header = () => {
                 href={link.href}
                 className={`${
                   isActive
-                    ? "text-[#4f1819] font-bold border-b border-[#4f1819] pb-1"
-                    : "text-[#725a42] font-medium"
-                } hover:text-[#4f1819] transition-colors duration-300`}
+                    ? "text-primary font-bold border-b border-primary pb-1"
+                    : "text-secondary font-medium"
+                } hover:text-primary transition-colors duration-300`}
               >
                 {link.label}
               </Link>
@@ -41,7 +40,7 @@ const Header = () => {
           })}
         </div>
 
-        <div className="flex items-center gap-6 text-[#4f1819]">
+        <div className="flex items-center gap-6 text-primary">
           <div className="hidden lg:flex items-center bg-surface-container-low px-4 py-2">
             <Search className="w-4 h-4 mr-2" />
             <input

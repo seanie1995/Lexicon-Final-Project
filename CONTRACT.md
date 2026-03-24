@@ -67,7 +67,7 @@ Genom att skriva under/bekräfta godkänner vi att arbeta enligt detta kontrakt.
 * **Medlem 1:** [Jim Nelin](https://github.com/jine)
 * **Medlem 2:** [Sean Schelin](https://github.com/seanie1995)
 * **Medlem 3:** [Paulin Petra](https://github.com/paulinpetra)
-* **Medlem 4:** 
+* **Medlem 4:** [Emelie Nyberg](https://github.com/emelienyberg)
 * **Medlem 5:**  
 
 ---

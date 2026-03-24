@@ -68,7 +68,7 @@ Genom att skriva under/bekräfta godkänner vi att arbeta enligt detta kontrakt.
 * **Medlem 2:** [Sean Schelin](https://github.com/seanie1995)
 * **Medlem 3:** [Paulin Petra](https://github.com/paulinpetra)
 * **Medlem 4:** [Emelie Nyberg](https://github.com/emelienyberg)
-* **Medlem 5:**  
+* **Medlem 5:** [Titus OKara](https://github.com/tokara)
 
 ---
 *Detta kontrakt kan revideras vid varje sprint-retrospective om gruppen anser att det behövs.*

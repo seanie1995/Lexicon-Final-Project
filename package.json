@@ -1,14 +1,19 @@
 {
 	"name": "lexicon-final-project",
 	"private": true,
-	"workspaces": ["apps/*", "packages/*"],
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
 	"scripts": {
 		"webshop": "npm run dev -w apps/webshop",
 		"admin": "npm run dev -w apps/admin",
 		"lint": "npx biome check .",
-		"format": "npx biome format --write ."
+		"format": "npx biome format --write .",
+		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.8"
+		"@biomejs/biome": "^2.4.8",
+		"husky": "^9.1.7"
 	}
 }

@@ -1,321 +1,740 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Catalog | The Digital Archivist</title>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Public+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
-        :root {
-            --color-primary-fixed: #ffdad8;
-            --color-on-surface: #1d1c13;
-            --color-on-tertiary-fixed-variant: #474746;
-            --color-on-primary-fixed-variant: #733333;
-            --color-surface-tint: #904a49;
-            --color-error: #ba1a1a;
-            --color-secondary: #725a42;
-            --color-surface-container-highest: #e8e2d4;
-            --color-surface-container-lowest: #ffffff;
-            --color-on-background: #1d1c13;
-            --color-outline: #867372;
-            --color-secondary-fixed: #fedcbe;
-            --color-primary-container: #6b2d2d;
-            --color-surface-container-low: #f9f3e5;
-            --color-primary-fixed-dim: #ffb3b0;
-            --color-on-error: #ffffff;
-            --color-on-tertiary-container: #aeacab;
-            --color-on-error-container: #93000a;
-            --color-error-container: #ffdad6;
-            --color-inverse-surface: #333027;
-            --color-surface-container-high: #eee8da;
-            --color-on-secondary-container: #796048;
-            --color-tertiary-container: #414040;
-            --color-surface: #fff9eb;
-            --color-on-surface-variant: #534342;
-            --color-on-primary: #ffffff;
-            --color-on-secondary-fixed-variant: #59422c;
-            --color-tertiary-fixed-dim: #c8c6c5;
-            --color-surface-container: #f3eddf;
-            --color-surface-dim: #dfdacc;
-            --color-background: #fff9eb;
-            --color-on-primary-container: #eb9593;
-            --color-on-tertiary: #ffffff;
-            --color-on-tertiary-fixed: #1c1b1b;
-            --color-surface-bright: #fff9eb;
-            --color-primary: #4f1819;
-            --color-outline-variant: #d8c1c0;
-            --color-inverse-on-surface: #f6f0e2;
-            --color-tertiary-fixed: #e5e2e1;
-            --color-surface-variant: #e8e2d4;
-            --color-tertiary: #2a2a2a;
-            --color-inverse-primary: #ffb3b0;
-            --color-on-primary-fixed: #3b080b;
-            --color-secondary-container: #fedcbe;
-            --color-secondary-fixed-dim: #e1c1a4;
-            --color-on-secondary-fixed: #291806;
-            --color-on-secondary: #ffffff;
-            --font-headline: "Newsreader", serif;
-            --font-body: "Noto Serif", serif;
-            --font-label: "Public Sans", sans-serif;
-            --radius: 0px;
-            --radius-lg: 0px;
-            --radius-xl: 0px;
-            --radius-full: 9999px;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            background-color: #fff9eb;
-        }
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Catalog | The Digital Archivist</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Public+Sans:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-primary-fixed: #ffdad8;
+        --color-on-surface: #1d1c13;
+        --color-on-tertiary-fixed-variant: #474746;
+        --color-on-primary-fixed-variant: #733333;
+        --color-surface-tint: #904a49;
+        --color-error: #ba1a1a;
+        --color-secondary: #725a42;
+        --color-surface-container-highest: #e8e2d4;
+        --color-surface-container-lowest: #ffffff;
+        --color-on-background: #1d1c13;
+        --color-outline: #867372;
+        --color-secondary-fixed: #fedcbe;
+        --color-primary-container: #6b2d2d;
+        --color-surface-container-low: #f9f3e5;
+        --color-primary-fixed-dim: #ffb3b0;
+        --color-on-error: #ffffff;
+        --color-on-tertiary-container: #aeacab;
+        --color-on-error-container: #93000a;
+        --color-error-container: #ffdad6;
+        --color-inverse-surface: #333027;
+        --color-surface-container-high: #eee8da;
+        --color-on-secondary-container: #796048;
+        --color-tertiary-container: #414040;
+        --color-surface: #fff9eb;
+        --color-on-surface-variant: #534342;
+        --color-on-primary: #ffffff;
+        --color-on-secondary-fixed-variant: #59422c;
+        --color-tertiary-fixed-dim: #c8c6c5;
+        --color-surface-container: #f3eddf;
+        --color-surface-dim: #dfdacc;
+        --color-background: #fff9eb;
+        --color-on-primary-container: #eb9593;
+        --color-on-tertiary: #ffffff;
+        --color-on-tertiary-fixed: #1c1b1b;
+        --color-surface-bright: #fff9eb;
+        --color-primary: #4f1819;
+        --color-outline-variant: #d8c1c0;
+        --color-inverse-on-surface: #f6f0e2;
+        --color-tertiary-fixed: #e5e2e1;
+        --color-surface-variant: #e8e2d4;
+        --color-tertiary: #2a2a2a;
+        --color-inverse-primary: #ffb3b0;
+        --color-on-primary-fixed: #3b080b;
+        --color-secondary-container: #fedcbe;
+        --color-secondary-fixed-dim: #e1c1a4;
+        --color-on-secondary-fixed: #291806;
+        --color-on-secondary: #ffffff;
+        --font-headline: "Newsreader", serif;
+        --font-body: "Noto Serif", serif;
+        --font-label: "Public Sans", sans-serif;
+        --radius: 0px;
+        --radius-lg: 0px;
+        --radius-xl: 0px;
+        --radius-full: 9999px;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        background-color: #fff9eb;
+      }
     </style>
-</head>
-<body class="font-body text-on-surface">
-<!-- Top Navigation Bar (Shared Component) -->
-<nav class="fixed top-0 w-full z-50 rounded-none bg-[#fff9eb]/85 backdrop-blur-md">
-<div class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
-<div class="text-2xl font-serif italic text-[#4f1819]">The Digital Archivist</div>
-<div class="hidden md:flex gap-10 font-headline serif tracking-tight">
-<a class="text-[#4f1819] font-bold border-b border-[#4f1819] pb-1 hover:text-[#4f1819] transition-colors duration-300" href="#">Catalog</a>
-<a class="text-[#725a42] font-medium hover:text-[#4f1819] transition-colors duration-300" href="#">Rarities</a>
-<a class="text-[#725a42] font-medium hover:text-[#4f1819] transition-colors duration-300" href="#">Chronology</a>
-<a class="text-[#725a42] font-medium hover:text-[#4f1819] transition-colors duration-300" href="#">Curations</a>
-</div>
-<div class="flex items-center gap-6 text-[#4f1819]">
-<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2">
-<span class="material-symbols-outlined text-sm mr-2" data-icon="search">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48" placeholder="Search the archives..." type="text"/>
-</div>
-<span class="material-symbols-outlined cursor-pointer" data-icon="account_circle">account_circle</span>
-<span class="material-symbols-outlined cursor-pointer" data-icon="shopping_bag">shopping_bag</span>
-</div>
-</div>
-</nav>
-<main class="pt-32 pb-24 max-w-screen-2xl mx-auto px-8">
-<!-- Header Section -->
-<header class="mb-16">
-<h1 class="font-headline text-5xl md:text-7xl text-primary mb-4 italic tracking-tight">The General Catalog</h1>
-<p class="font-body text-lg text-secondary max-w-2xl leading-relaxed">
-                Explore our curated collection of rare first editions, illuminated manuscripts, and leather-bound treasures across the centuries.
-            </p>
-</header>
-<div class="flex flex-col md:flex-row gap-16">
-<!-- Sidebar Filters -->
-<aside class="w-full md:w-64 flex-shrink-0">
-<div class="sticky top-40 space-y-12">
-<!-- Genre Filter -->
-<section>
-<h3 class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-6">Genre</h3>
-<ul class="space-y-3">
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" type="checkbox"/><span class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">Fiction</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-primary font-bold"><input checked="" class="hidden" type="checkbox"/><span class="w-4 h-4 border border-primary bg-primary mr-3 flex items-center justify-center"><span class="material-symbols-outlined text-[10px] text-white">check</span></span><span class="font-body">Poetry</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" type="checkbox"/><span class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">Philosophical Treatises</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" type="checkbox"/><span class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">Scientific Journals</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" type="checkbox"/><span class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">Travelogues</span></label></li>
-</ul>
-</section>
-<!-- Era Filter -->
-<section>
-<h3 class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-6">Era</h3>
-<ul class="space-y-3">
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" name="era" type="radio"/><span class="w-4 h-4 rounded-full border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">Incunabula (Pre-1501)</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" name="era" type="radio"/><span class="w-4 h-4 rounded-full border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">17th Century</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" name="era" type="radio"/><span class="w-4 h-4 rounded-full border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">18th Century</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-primary font-bold"><input checked="" class="hidden" name="era" type="radio"/><span class="w-4 h-4 rounded-full border border-primary mr-3 flex items-center justify-center"><span class="w-2 h-2 rounded-full bg-primary"></span></span><span class="font-body">Victorian Era</span></label></li>
-</ul>
-</section>
-<!-- Condition Filter -->
-<section>
-<h3 class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-6">Condition</h3>
-<ul class="space-y-3">
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" type="checkbox"/><span class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">Fine (As New)</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" type="checkbox"/><span class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">Near Fine</span></label></li>
-<li><label class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"><input class="hidden" type="checkbox"/><span class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"></span><span class="font-body">Very Good</span></label></li>
-</ul>
-</section>
-</div>
-</aside>
-<!-- Product Grid -->
-<div class="flex-1">
-<div class="flex justify-between items-baseline mb-12 border-b border-outline-variant/15 pb-6">
-<span class="font-label text-sm text-secondary italic">Showing 18 volumes found in 'Poetry'</span>
-<div class="flex items-center gap-4">
-<span class="font-label text-xs uppercase tracking-widest text-outline">Sort by:</span>
-<select class="bg-transparent border-none text-sm font-body text-primary focus:ring-0 cursor-pointer">
-<option>Chronological (Oldest First)</option>
-<option>Price (Descending)</option>
-<option>Condition (Prime)</option>
-</select>
-</div>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
-<!-- Book Card 1 -->
-<div class="group">
-<div class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close-up of an antique leather-bound book with gold embossed lettering on the spine resting on a dark wood surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8mRudzwP8VJTa54At4LifVArmm9J3Ba845BC4YJci9Qw8---fEp06oSJ0ouN0HybnvCE0t-kOjsXp3S6crVAGijizxfKxmw6Q8s8v8v2A4nVK0rMeqT2BZqOjpS1-0AmJwI8c-m1ud7L9ROQaxueZCckSW-LKCCEU8wa7oaOf_sCpvJdJ-OQoyT4YVxTCiRnYLe4j9FMA_1xwSGZLZyHLuEcd-DFOSHoUi4bqhpD2XiqvpnIRmA2t9ymv5mM8liIPgZ63aukS35x_"/>
-<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h3 class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">Leaves of Grass</h3>
-<span class="font-label text-sm text-primary font-semibold">$4,250</span>
-</div>
-<p class="font-body italic text-secondary">Walt Whitman</p>
-<div class="flex items-center gap-3 pt-2">
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">1855</span>
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">Fine Condition</span>
-</div>
-</div>
-</div>
-<!-- Book Card 2 -->
-<div class="group">
-<div class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="aged parchment book cover with intricate blind-stamped floral patterns and weathered edges in soft library light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRvidkCeDcRtkaOnGddKPh_2ZmYv8u5xMPRnFtYZUViZDVNGWXpib5MqeeSzrhVbwvBbLnR-otZvRyv5mmU7MbI3Q_4H52ljOYb-pHZuqUC2rnVUKFXotTrTI6mJ5S6qPYmB4RhLkGLXcJJ8mnFt5jiBW1Fq_Szv_XmhfAYXkmRmY6tVudifDZxXWPPfzYS4Ni0oGRt6ba6zSVpk8Bh4hdrRJgRI35tHvEVUqaMKxYpQUg59Rd7znA0y9lfY7dBpTHV2f6E1AkFoFZ"/>
-<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h3 class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">The Waste Land</h3>
-<span class="font-label text-sm text-primary font-semibold">$2,800</span>
-</div>
-<p class="font-body italic text-secondary">T.S. Eliot</p>
-<div class="flex items-center gap-3 pt-2">
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">1922</span>
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">Near Fine</span>
-</div>
-</div>
-</div>
-<!-- Book Card 3 -->
-<div class="group">
-<div class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="macro shot of a vintage book spine with cracked leather and silver gilt title text reflecting soft warm light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwALz47pR9MYKn4mAsvQPjzlgDRKVF5AYpo8Q_hRtzDD_V9_DcDYmoMvKXpSBKtD-J1gwaWgk2pHqgS6ltPFoglb7duqJbMrxBbU0hTRjrRBrFTUfmkuOZ6cZGAc1NmyaLbiJwkSHvimQhsNKv-EOjwamcoD6kd-pW4MBjeh70PjOkjJL2kYK-JtQTKZHSiqQyoLLgGDYcx60nEy6j32T5BYKNdFpk7AKjYp94-rQr_AcxPJK-yYF45l1f9naugTpJ1NQ-O-9a9Yuu"/>
-<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h3 class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">Odes &amp; Ballads</h3>
-<span class="font-label text-sm text-primary font-semibold">$1,150</span>
-</div>
-<p class="font-body italic text-secondary">John Keats</p>
-<div class="flex items-center gap-3 pt-2">
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">1820</span>
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">Very Good</span>
-</div>
-</div>
-</div>
-<!-- Book Card 4 -->
-<div class="group">
-<div class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="an old hand-stitched book with vellum cover and antique brass clasps lying on a stack of faded manuscripts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8eEmiZTWhFiEGRWgdDrUy2Kyxc-QL-x_JPNZ_WBA1zecDVLU8X6gnyzE04THDXpns260SAQPR3__1kIQFP57JXgXIOplWXX8JGBMnFAZhC7bPEyTwEC5N1-4il2Ac8UApGpPh9W4BeuhGuKvc4umo-1ZG7hRQ-5FggYHXDGqV_Eusj7vH-QZ4gmEwH047u2H8ffUKxwdAsHYTA1gWYRQOoBE564MtVlGeVEYtnQL-xUrQGbkMsEXpf8tqJ6XyKBxDmpkjuLIkUfhh"/>
-<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h3 class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">Paradise Lost</h3>
-<span class="font-label text-sm text-primary font-semibold">$12,000</span>
-</div>
-<p class="font-body italic text-secondary">John Milton</p>
-<div class="flex items-center gap-3 pt-2">
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">1667</span>
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">Fine (Rebound)</span>
-</div>
-</div>
-</div>
-<!-- Book Card 5 -->
-<div class="group">
-<div class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="front cover of a victorian era novel with ornate gold foil border and a small central illustration in sepia tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJav9RqloMlxLYjiI9f9mV3PwvsgnuhXus7KuqrmRnVSUB2HW6aU5FXfEF-ey-aQQ5ohWTLBl-UcRwgj2DfmiPsp7wVLCHZcis1TxY0XfPIN4cyyccQipmqusnlUKi32wRkPoLv9SEB8qcIozpAqU5s99kF73512QxmDnx1WMoMyn5cYlvI0NiSHJ8OL0EoI6wwMvIU0fzCDBkI7aIiQIMcNvyNdB-dMGfzxP45jJBoFAo5ChbsFCJ0nk9Fl3pkqVfrg8QlbgWGZP9"/>
-<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h3 class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">Sonnets from the Portuguese</h3>
-<span class="font-label text-sm text-primary font-semibold">$950</span>
-</div>
-<p class="font-body italic text-secondary">Elizabeth Barrett Browning</p>
-<div class="flex items-center gap-3 pt-2">
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">1850</span>
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">Good</span>
-</div>
-</div>
-</div>
-<!-- Book Card 6 -->
-<div class="group">
-<div class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="minimalist cream colored book with elegant black serif typography and substantial tactile paper texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNN-76kD7PsNFHGd6wsWO2RFR9OiBBVUWRHgrC0gQEMtH5K8A-yohdtms0Ihxo-W_oCSLXRyPIxmWRHrOZ5EmXxZanS7p9wcyqjUQfq8JvPf0-D79VWzfOPMHe1fqxabevCp8pMvYdDBNLC6T-ABmtOchklscfSU527kqQIzcAURebcAPlP9tWA1N1xsvmWDpq3und4DTVX8jfjyII83v_RCJJPx8zkOqpCHlyFvFMBingVcRNXWY2LdK3yEUS2VhQqbMVkKHeUgw8"/>
-<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h3 class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">Lyrical Ballads</h3>
-<span class="font-label text-sm text-primary font-semibold">$3,400</span>
-</div>
-<p class="font-body italic text-secondary">Wordsworth &amp; Coleridge</p>
-<div class="flex items-center gap-3 pt-2">
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">1798</span>
-<span class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">Near Fine</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Pagination -->
-<nav class="mt-20 flex justify-center">
-<div class="flex gap-4">
-<a class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-sm">chevron_left</span>
-</a>
-<a class="w-10 h-10 flex items-center justify-center bg-primary text-white font-label" href="#">1</a>
-<a class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors font-label" href="#">2</a>
-<a class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors font-label" href="#">3</a>
-<span class="w-10 h-10 flex items-center justify-center text-outline">...</span>
-<a class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors font-label" href="#">12</a>
-<a class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-sm">chevron_right</span>
-</a>
-</div>
-</nav>
-</div>
-</div>
-</main>
-<!-- Footer (Shared Component) -->
-<footer class="w-full rounded-none border-t border-[#d8c1c0]/15 bg-[#f9f3e5] dark:bg-[#1d1c13] mt-24">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-12 py-20 w-full max-w-screen-2xl mx-auto">
-<div class="space-y-6">
-<div class="text-xl font-serif text-[#4f1819] dark:text-[#f9f3e5]">The Digital Archivist</div>
-<p class="font-body leading-relaxed text-[#725a42] dark:text-[#e8e2d4]/70 max-w-sm">
-                    Preserving the tactile heritage of rare literature for the modern scholar. Every volume in our archive is hand-authenticated and cataloged with historical precision.
+  </head>
+  <body class="font-body text-on-surface">
+    <!-- Top Navigation Bar (Shared Component) -->
+    <nav
+      class="fixed top-0 w-full z-50 rounded-none bg-[#fff9eb]/85 backdrop-blur-md"
+    >
+      <div
+        class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto"
+      >
+        <div class="text-2xl font-serif italic text-[#4f1819]">
+          The Digital Archivist
+        </div>
+        <div class="hidden md:flex gap-10 font-headline serif tracking-tight">
+          <a
+            class="text-[#4f1819] font-bold border-b border-[#4f1819] pb-1 hover:text-[#4f1819] transition-colors duration-300"
+            href="#"
+            >Catalog</a
+          >
+          <a
+            class="text-[#725a42] font-medium hover:text-[#4f1819] transition-colors duration-300"
+            href="#"
+            >Rarities</a
+          >
+          <a
+            class="text-[#725a42] font-medium hover:text-[#4f1819] transition-colors duration-300"
+            href="#"
+            >Chronology</a
+          >
+          <a
+            class="text-[#725a42] font-medium hover:text-[#4f1819] transition-colors duration-300"
+            href="#"
+            >Curations</a
+          >
+        </div>
+        <div class="flex items-center gap-6 text-[#4f1819]">
+          <div
+            class="hidden lg:flex items-center bg-surface-container-low px-4 py-2"
+          >
+            <span
+              class="material-symbols-outlined text-sm mr-2"
+              data-icon="search"
+              >search</span
+            >
+            <input
+              class="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48"
+              placeholder="Search the archives..."
+              type="text"
+            />
+          </div>
+          <span
+            class="material-symbols-outlined cursor-pointer"
+            data-icon="account_circle"
+            >account_circle</span
+          >
+          <span
+            class="material-symbols-outlined cursor-pointer"
+            data-icon="shopping_bag"
+            >shopping_bag</span
+          >
+        </div>
+      </div>
+    </nav>
+    <main class="pt-32 pb-24 max-w-screen-2xl mx-auto px-8">
+      <!-- Header Section -->
+      <header class="mb-16">
+        <h1
+          class="font-headline text-5xl md:text-7xl text-primary mb-4 italic tracking-tight"
+        >
+          The General Catalog
+        </h1>
+        <p class="font-body text-lg text-secondary max-w-2xl leading-relaxed">
+          Explore our curated collection of rare first editions, illuminated
+          manuscripts, and leather-bound treasures across the centuries.
+        </p>
+      </header>
+      <div class="flex flex-col md:flex-row gap-16">
+        <!-- Sidebar Filters -->
+        <aside class="w-full md:w-64 flex-shrink-0">
+          <div class="sticky top-40 space-y-12">
+            <!-- Genre Filter -->
+            <section>
+              <h3
+                class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-6"
+              >
+                Genre
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" type="checkbox" /><span
+                      class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">Fiction</span></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-primary font-bold"
+                    ><input checked="" class="hidden" type="checkbox" /><span
+                      class="w-4 h-4 border border-primary bg-primary mr-3 flex items-center justify-center"
+                      ><span
+                        class="material-symbols-outlined text-[10px] text-white"
+                        >check</span
+                      ></span
+                    ><span class="font-body">Poetry</span></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" type="checkbox" /><span
+                      class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body"
+                      >Philosophical Treatises</span
+                    ></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" type="checkbox" /><span
+                      class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">Scientific Journals</span></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" type="checkbox" /><span
+                      class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">Travelogues</span></label
+                  >
+                </li>
+              </ul>
+            </section>
+            <!-- Era Filter -->
+            <section>
+              <h3
+                class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-6"
+              >
+                Era
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" name="era" type="radio" /><span
+                      class="w-4 h-4 rounded-full border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">Incunabula (Pre-1501)</span></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" name="era" type="radio" /><span
+                      class="w-4 h-4 rounded-full border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">17th Century</span></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" name="era" type="radio" /><span
+                      class="w-4 h-4 rounded-full border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">18th Century</span></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-primary font-bold"
+                    ><input
+                      checked=""
+                      class="hidden"
+                      name="era"
+                      type="radio"
+                    /><span
+                      class="w-4 h-4 rounded-full border border-primary mr-3 flex items-center justify-center"
+                      ><span
+                        class="w-2 h-2 rounded-full bg-primary"
+                      ></span></span
+                    ><span class="font-body">Victorian Era</span></label
+                  >
+                </li>
+              </ul>
+            </section>
+            <!-- Condition Filter -->
+            <section>
+              <h3
+                class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-6"
+              >
+                Condition
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" type="checkbox" /><span
+                      class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">Fine (As New)</span></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" type="checkbox" /><span
+                      class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">Near Fine</span></label
+                  >
+                </li>
+                <li>
+                  <label
+                    class="flex items-center group cursor-pointer text-secondary hover:text-primary transition-colors"
+                    ><input class="hidden" type="checkbox" /><span
+                      class="w-4 h-4 border border-outline-variant mr-3 group-hover:border-primary"
+                    ></span
+                    ><span class="font-body">Very Good</span></label
+                  >
+                </li>
+              </ul>
+            </section>
+          </div>
+        </aside>
+        <!-- Product Grid -->
+        <div class="flex-1">
+          <div
+            class="flex justify-between items-baseline mb-12 border-b border-outline-variant/15 pb-6"
+          >
+            <span class="font-label text-sm text-secondary italic"
+              >Showing 18 volumes found in 'Poetry'</span
+            >
+            <div class="flex items-center gap-4">
+              <span
+                class="font-label text-xs uppercase tracking-widest text-outline"
+                >Sort by:</span
+              >
+              <select
+                class="bg-transparent border-none text-sm font-body text-primary focus:ring-0 cursor-pointer"
+              >
+                <option>Chronological (Oldest First)</option>
+                <option>Price (Descending)</option>
+                <option>Condition (Prime)</option>
+              </select>
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16"
+          >
+            <!-- Book Card 1 -->
+            <div class="group">
+              <div
+                class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  data-alt="close-up of an antique leather-bound book with gold embossed lettering on the spine resting on a dark wood surface"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8mRudzwP8VJTa54At4LifVArmm9J3Ba845BC4YJci9Qw8---fEp06oSJ0ouN0HybnvCE0t-kOjsXp3S6crVAGijizxfKxmw6Q8s8v8v2A4nVK0rMeqT2BZqOjpS1-0AmJwI8c-m1ud7L9ROQaxueZCckSW-LKCCEU8wa7oaOf_sCpvJdJ-OQoyT4YVxTCiRnYLe4j9FMA_1xwSGZLZyHLuEcd-DFOSHoUi4bqhpD2XiqvpnIRmA2t9ymv5mM8liIPgZ63aukS35x_"
+                />
+                <div
+                  class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h3
+                    class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors"
+                  >
+                    Leaves of Grass
+                  </h3>
+                  <span class="font-label text-sm text-primary font-semibold"
+                    >$4,250</span
+                  >
+                </div>
+                <p class="font-body italic text-secondary">Walt Whitman</p>
+                <div class="flex items-center gap-3 pt-2">
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >1855</span
+                  >
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >Fine Condition</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Book Card 2 -->
+            <div class="group">
+              <div
+                class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  data-alt="aged parchment book cover with intricate blind-stamped floral patterns and weathered edges in soft library light"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRvidkCeDcRtkaOnGddKPh_2ZmYv8u5xMPRnFtYZUViZDVNGWXpib5MqeeSzrhVbwvBbLnR-otZvRyv5mmU7MbI3Q_4H52ljOYb-pHZuqUC2rnVUKFXotTrTI6mJ5S6qPYmB4RhLkGLXcJJ8mnFt5jiBW1Fq_Szv_XmhfAYXkmRmY6tVudifDZxXWPPfzYS4Ni0oGRt6ba6zSVpk8Bh4hdrRJgRI35tHvEVUqaMKxYpQUg59Rd7znA0y9lfY7dBpTHV2f6E1AkFoFZ"
+                />
+                <div
+                  class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h3
+                    class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors"
+                  >
+                    The Waste Land
+                  </h3>
+                  <span class="font-label text-sm text-primary font-semibold"
+                    >$2,800</span
+                  >
+                </div>
+                <p class="font-body italic text-secondary">T.S. Eliot</p>
+                <div class="flex items-center gap-3 pt-2">
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >1922</span
+                  >
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >Near Fine</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Book Card 3 -->
+            <div class="group">
+              <div
+                class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  data-alt="macro shot of a vintage book spine with cracked leather and silver gilt title text reflecting soft warm light"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwALz47pR9MYKn4mAsvQPjzlgDRKVF5AYpo8Q_hRtzDD_V9_DcDYmoMvKXpSBKtD-J1gwaWgk2pHqgS6ltPFoglb7duqJbMrxBbU0hTRjrRBrFTUfmkuOZ6cZGAc1NmyaLbiJwkSHvimQhsNKv-EOjwamcoD6kd-pW4MBjeh70PjOkjJL2kYK-JtQTKZHSiqQyoLLgGDYcx60nEy6j32T5BYKNdFpk7AKjYp94-rQr_AcxPJK-yYF45l1f9naugTpJ1NQ-O-9a9Yuu"
+                />
+                <div
+                  class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h3
+                    class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors"
+                  >
+                    Odes &amp; Ballads
+                  </h3>
+                  <span class="font-label text-sm text-primary font-semibold"
+                    >$1,150</span
+                  >
+                </div>
+                <p class="font-body italic text-secondary">John Keats</p>
+                <div class="flex items-center gap-3 pt-2">
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >1820</span
+                  >
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >Very Good</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Book Card 4 -->
+            <div class="group">
+              <div
+                class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  data-alt="an old hand-stitched book with vellum cover and antique brass clasps lying on a stack of faded manuscripts"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8eEmiZTWhFiEGRWgdDrUy2Kyxc-QL-x_JPNZ_WBA1zecDVLU8X6gnyzE04THDXpns260SAQPR3__1kIQFP57JXgXIOplWXX8JGBMnFAZhC7bPEyTwEC5N1-4il2Ac8UApGpPh9W4BeuhGuKvc4umo-1ZG7hRQ-5FggYHXDGqV_Eusj7vH-QZ4gmEwH047u2H8ffUKxwdAsHYTA1gWYRQOoBE564MtVlGeVEYtnQL-xUrQGbkMsEXpf8tqJ6XyKBxDmpkjuLIkUfhh"
+                />
+                <div
+                  class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h3
+                    class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors"
+                  >
+                    Paradise Lost
+                  </h3>
+                  <span class="font-label text-sm text-primary font-semibold"
+                    >$12,000</span
+                  >
+                </div>
+                <p class="font-body italic text-secondary">John Milton</p>
+                <div class="flex items-center gap-3 pt-2">
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >1667</span
+                  >
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >Fine (Rebound)</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Book Card 5 -->
+            <div class="group">
+              <div
+                class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  data-alt="front cover of a victorian era novel with ornate gold foil border and a small central illustration in sepia tones"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJav9RqloMlxLYjiI9f9mV3PwvsgnuhXus7KuqrmRnVSUB2HW6aU5FXfEF-ey-aQQ5ohWTLBl-UcRwgj2DfmiPsp7wVLCHZcis1TxY0XfPIN4cyyccQipmqusnlUKi32wRkPoLv9SEB8qcIozpAqU5s99kF73512QxmDnx1WMoMyn5cYlvI0NiSHJ8OL0EoI6wwMvIU0fzCDBkI7aIiQIMcNvyNdB-dMGfzxP45jJBoFAo5ChbsFCJ0nk9Fl3pkqVfrg8QlbgWGZP9"
+                />
+                <div
+                  class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h3
+                    class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors"
+                  >
+                    Sonnets from the Portuguese
+                  </h3>
+                  <span class="font-label text-sm text-primary font-semibold"
+                    >$950</span
+                  >
+                </div>
+                <p class="font-body italic text-secondary">
+                  Elizabeth Barrett Browning
                 </p>
-<p class="text-xs font-label uppercase tracking-widest text-[#4f1819]/60">© 2024 The Digital Archivist. Preserving the tactile heritage of rare literature.</p>
-</div>
-<div class="grid grid-cols-2 gap-8">
-<div>
-<h4 class="font-label text-xs uppercase tracking-[0.2em] text-[#4f1819] mb-6">Navigation</h4>
-<ul class="space-y-4 font-body leading-relaxed">
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all" href="#">Provenance</a></li>
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all" href="#">Shipping &amp; Handling</a></li>
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all" href="#">Acquisitions</a></li>
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all" href="#">Privacy Ledger</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label text-xs uppercase tracking-[0.2em] text-[#4f1819] mb-6">Social</h4>
-<ul class="space-y-4 font-body leading-relaxed">
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all" href="#">Instagram</a></li>
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all" href="#">Letterboxd</a></li>
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all" href="#">RSS Feed</a></li>
-</ul>
-</div>
-</div>
-<div class="bg-surface-container-low p-8">
-<h4 class="font-headline text-lg italic text-[#4f1819] mb-4">Join the Inner Circle</h4>
-<p class="font-body text-sm text-secondary mb-6 leading-relaxed">Receive occasional updates on newly acquired rarities and private auctions.</p>
-<div class="flex">
-<input class="flex-1 bg-surface border-none focus:ring-0 text-sm font-label italic px-4 py-3" placeholder="Your parchment address..." type="email"/>
-<button class="bg-primary text-on-primary px-6 font-label text-xs uppercase tracking-widest">Subscribe</button>
-</div>
-</div>
-</div>
-</footer>
-</body></html>
+                <div class="flex items-center gap-3 pt-2">
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >1850</span
+                  >
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >Good</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Book Card 6 -->
+            <div class="group">
+              <div
+                class="aspect-[3/4] overflow-hidden bg-surface-container-low mb-6 relative"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  data-alt="minimalist cream colored book with elegant black serif typography and substantial tactile paper texture"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNN-76kD7PsNFHGd6wsWO2RFR9OiBBVUWRHgrC0gQEMtH5K8A-yohdtms0Ihxo-W_oCSLXRyPIxmWRHrOZ5EmXxZanS7p9wcyqjUQfq8JvPf0-D79VWzfOPMHe1fqxabevCp8pMvYdDBNLC6T-ABmtOchklscfSU527kqQIzcAURebcAPlP9tWA1N1xsvmWDpq3und4DTVX8jfjyII83v_RCJJPx8zkOqpCHlyFvFMBingVcRNXWY2LdK3yEUS2VhQqbMVkKHeUgw8"
+                />
+                <div
+                  class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h3
+                    class="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors"
+                  >
+                    Lyrical Ballads
+                  </h3>
+                  <span class="font-label text-sm text-primary font-semibold"
+                    >$3,400</span
+                  >
+                </div>
+                <p class="font-body italic text-secondary">
+                  Wordsworth &amp; Coleridge
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >1798</span
+                  >
+                  <span
+                    class="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary"
+                    >Near Fine</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Pagination -->
+          <nav class="mt-20 flex justify-center">
+            <div class="flex gap-4">
+              <a
+                class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors"
+                href="#"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >chevron_left</span
+                >
+              </a>
+              <a
+                class="w-10 h-10 flex items-center justify-center bg-primary text-white font-label"
+                href="#"
+                >1</a
+              >
+              <a
+                class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors font-label"
+                href="#"
+                >2</a
+              >
+              <a
+                class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors font-label"
+                href="#"
+                >3</a
+              >
+              <span
+                class="w-10 h-10 flex items-center justify-center text-outline"
+                >...</span
+              >
+              <a
+                class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors font-label"
+                href="#"
+                >12</a
+              >
+              <a
+                class="w-10 h-10 flex items-center justify-center border border-outline-variant text-secondary hover:border-primary hover:text-primary transition-colors"
+                href="#"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >chevron_right</span
+                >
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <!-- Footer (Shared Component) -->
+    <footer
+      class="w-full rounded-none border-t border-[#d8c1c0]/15 bg-[#f9f3e5] dark:bg-[#1d1c13] mt-24"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-12 px-12 py-20 w-full max-w-screen-2xl mx-auto"
+      >
+        <div class="space-y-6">
+          <div class="text-xl font-serif text-[#4f1819] dark:text-[#f9f3e5]">
+            The Digital Archivist
+          </div>
+          <p
+            class="font-body leading-relaxed text-[#725a42] dark:text-[#e8e2d4]/70 max-w-sm"
+          >
+            Preserving the tactile heritage of rare literature for the modern
+            scholar. Every volume in our archive is hand-authenticated and
+            cataloged with historical precision.
+          </p>
+          <p
+            class="text-xs font-label uppercase tracking-widest text-[#4f1819]/60"
+          >
+            © 2024 The Digital Archivist. Preserving the tactile heritage of
+            rare literature.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <h4
+              class="font-label text-xs uppercase tracking-[0.2em] text-[#4f1819] mb-6"
+            >
+              Navigation
+            </h4>
+            <ul class="space-y-4 font-body leading-relaxed">
+              <li>
+                <a
+                  class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all"
+                  href="#"
+                  >Provenance</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all"
+                  href="#"
+                  >Shipping &amp; Handling</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all"
+                  href="#"
+                  >Acquisitions</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] underline decoration-transparent hover:decoration-[#4f1819] transition-all"
+                  href="#"
+                  >Privacy Ledger</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-label text-xs uppercase tracking-[0.2em] text-[#4f1819] mb-6"
+            >
+              Social
+            </h4>
+            <ul class="space-y-4 font-body leading-relaxed">
+              <li>
+                <a
+                  class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all"
+                  href="#"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all"
+                  href="#"
+                  >Letterboxd</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] transition-all"
+                  href="#"
+                  >RSS Feed</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-surface-container-low p-8">
+          <h4 class="font-headline text-lg italic text-[#4f1819] mb-4">
+            Join the Inner Circle
+          </h4>
+          <p class="font-body text-sm text-secondary mb-6 leading-relaxed">
+            Receive occasional updates on newly acquired rarities and private
+            auctions.
+          </p>
+          <div class="flex">
+            <input
+              class="flex-1 bg-surface border-none focus:ring-0 text-sm font-label italic px-4 py-3"
+              placeholder="Your parchment address..."
+              type="email"
+            />
+            <button
+              class="bg-primary text-on-primary px-6 font-label text-xs uppercase tracking-widest"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

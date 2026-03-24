@@ -1,320 +1,606 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
       :root {
-          --color-primary-fixed: #ffdad8;
-          --color-on-surface: #1d1c13;
-          --color-on-tertiary-fixed-variant: #474746;
-          --color-on-primary-fixed-variant: #733333;
-          --color-surface-tint: #904a49;
-          --color-error: #ba1a1a;
-          --color-secondary: #725a42;
-          --color-surface-container-highest: #e8e2d4;
-          --color-surface-container-lowest: #ffffff;
-          --color-on-background: #1d1c13;
-          --color-outline: #867372;
-          --color-secondary-fixed: #fedcbe;
-          --color-primary-container: #6b2d2d;
-          --color-surface-container-low: #f9f3e5;
-          --color-primary-fixed-dim: #ffb3b0;
-          --color-on-error: #ffffff;
-          --color-on-tertiary-container: #aeacab;
-          --color-on-error-container: #93000a;
-          --color-error-container: #ffdad6;
-          --color-inverse-surface: #333027;
-          --color-surface-container-high: #eee8da;
-          --color-on-secondary-container: #796048;
-          --color-tertiary-container: #414040;
-          --color-surface: #fff9eb;
-          --color-on-surface-variant: #534342;
-          --color-on-primary: #ffffff;
-          --color-on-secondary-fixed-variant: #59422c;
-          --color-tertiary-fixed-dim: #c8c6c5;
-          --color-surface-container: #f3eddf;
-          --color-surface-dim: #dfdacc;
-          --color-background: #fff9eb;
-          --color-on-primary-container: #eb9593;
-          --color-on-tertiary: #ffffff;
-          --color-on-tertiary-fixed: #1c1b1b;
-          --color-surface-bright: #fff9eb;
-          --color-primary: #4f1819;
-          --color-outline-variant: #d8c1c0;
-          --color-inverse-on-surface: #f6f0e2;
-          --color-tertiary-fixed: #e5e2e1;
-          --color-surface-variant: #e8e2d4;
-          --color-tertiary: #2a2a2a;
-          --color-inverse-primary: #ffb3b0;
-          --color-on-primary-fixed: #3b080b;
-          --color-secondary-container: #fedcbe;
-          --color-secondary-fixed-dim: #e1c1a4;
-          --color-on-secondary-fixed: #291806;
-          --color-on-secondary: #ffffff;
-          --font-headline: "Newsreader", serif;
-          --font-body: "Noto Serif", serif;
-          --font-label: "Public Sans", sans-serif;
-          --radius: 0px;
-          --radius-lg: 0px;
-          --radius-xl: 0px;
-          --radius-full: 9999px;
+        --color-primary-fixed: #ffdad8;
+        --color-on-surface: #1d1c13;
+        --color-on-tertiary-fixed-variant: #474746;
+        --color-on-primary-fixed-variant: #733333;
+        --color-surface-tint: #904a49;
+        --color-error: #ba1a1a;
+        --color-secondary: #725a42;
+        --color-surface-container-highest: #e8e2d4;
+        --color-surface-container-lowest: #ffffff;
+        --color-on-background: #1d1c13;
+        --color-outline: #867372;
+        --color-secondary-fixed: #fedcbe;
+        --color-primary-container: #6b2d2d;
+        --color-surface-container-low: #f9f3e5;
+        --color-primary-fixed-dim: #ffb3b0;
+        --color-on-error: #ffffff;
+        --color-on-tertiary-container: #aeacab;
+        --color-on-error-container: #93000a;
+        --color-error-container: #ffdad6;
+        --color-inverse-surface: #333027;
+        --color-surface-container-high: #eee8da;
+        --color-on-secondary-container: #796048;
+        --color-tertiary-container: #414040;
+        --color-surface: #fff9eb;
+        --color-on-surface-variant: #534342;
+        --color-on-primary: #ffffff;
+        --color-on-secondary-fixed-variant: #59422c;
+        --color-tertiary-fixed-dim: #c8c6c5;
+        --color-surface-container: #f3eddf;
+        --color-surface-dim: #dfdacc;
+        --color-background: #fff9eb;
+        --color-on-primary-container: #eb9593;
+        --color-on-tertiary: #ffffff;
+        --color-on-tertiary-fixed: #1c1b1b;
+        --color-surface-bright: #fff9eb;
+        --color-primary: #4f1819;
+        --color-outline-variant: #d8c1c0;
+        --color-inverse-on-surface: #f6f0e2;
+        --color-tertiary-fixed: #e5e2e1;
+        --color-surface-variant: #e8e2d4;
+        --color-tertiary: #2a2a2a;
+        --color-inverse-primary: #ffb3b0;
+        --color-on-primary-fixed: #3b080b;
+        --color-secondary-container: #fedcbe;
+        --color-secondary-fixed-dim: #e1c1a4;
+        --color-on-secondary-fixed: #291806;
+        --color-on-secondary: #ffffff;
+        --font-headline: "Newsreader", serif;
+        --font-body: "Noto Serif", serif;
+        --font-label: "Public Sans", sans-serif;
+        --radius: 0px;
+        --radius-lg: 0px;
+        --radius-xl: 0px;
+        --radius-full: 9999px;
       }
-      html.dark .dark\:bg-\[\#1d1c13\]\/85 { background-color: color-mix(in srgb, #1d1c13 85%, transparent); }
-      html.dark .dark\:bg-\[\#1d1c13\] { background-color: #1d1c13; }
-      html.dark .dark\:text-\[\#f9f3e5\] { color: #f9f3e5; }
-      html.dark .dark\:text-\[\#e8e2d4\] { color: #e8e2d4; }
-      html.dark .dark\:text-\[\#d8c1c0\] { color: #d8c1c0; }
-      html.dark .dark\:text-\[\#e8e2d4\]\/70 { color: color-mix(in srgb, #e8e2d4 70%, transparent); }
-      html.dark .dark\:border-\[\#f9f3e5\] { border-color: #f9f3e5; }
-      html.dark .dark\:hover\:text-\[\#ffffff\]:hover { color: #ffffff; }
+      html.dark .dark\:bg-\[\#1d1c13\]\/85 {
+        background-color: color-mix(in srgb, #1d1c13 85%, transparent);
+      }
+      html.dark .dark\:bg-\[\#1d1c13\] {
+        background-color: #1d1c13;
+      }
+      html.dark .dark\:text-\[\#f9f3e5\] {
+        color: #f9f3e5;
+      }
+      html.dark .dark\:text-\[\#e8e2d4\] {
+        color: #e8e2d4;
+      }
+      html.dark .dark\:text-\[\#d8c1c0\] {
+        color: #d8c1c0;
+      }
+      html.dark .dark\:text-\[\#e8e2d4\]\/70 {
+        color: color-mix(in srgb, #e8e2d4 70%, transparent);
+      }
+      html.dark .dark\:border-\[\#f9f3e5\] {
+        border-color: #f9f3e5;
+      }
+      html.dark .dark\:hover\:text-\[\#ffffff\]:hover {
+        color: #ffffff;
+      }
       .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
       }
       body {
         background-color: #fff9eb;
         color: #1d1c13;
       }
     </style>
-</head>
-<body class="font-body selection:bg-primary-fixed selection:text-on-primary-fixed-variant">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 rounded-none bg-[#fff9eb]/85 dark:bg-[#1d1c13]/85 backdrop-blur-md">
-<div class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
-<div class="text-2xl font-headline italic text-[#4f1819] dark:text-[#f9f3e5] tracking-tight">
-                The Digital Archivist
+  </head>
+  <body
+    class="font-body selection:bg-primary-fixed selection:text-on-primary-fixed-variant"
+  >
+    <!-- TopNavBar -->
+    <nav
+      class="fixed top-0 w-full z-50 rounded-none bg-[#fff9eb]/85 dark:bg-[#1d1c13]/85 backdrop-blur-md"
+    >
+      <div
+        class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto"
+      >
+        <div
+          class="text-2xl font-headline italic text-[#4f1819] dark:text-[#f9f3e5] tracking-tight"
+        >
+          The Digital Archivist
+        </div>
+        <div
+          class="hidden md:flex items-center gap-x-10 font-headline tracking-tight"
+        >
+          <a
+            class="text-[#4f1819] dark:text-[#f9f3e5] font-bold border-b border-[#4f1819] dark:border-[#f9f3e5] pb-1 transition-colors duration-300"
+            href="#"
+            >Catalog</a
+          >
+          <a
+            class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300"
+            href="#"
+            >Rarities</a
+          >
+          <a
+            class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300"
+            href="#"
+            >Chronology</a
+          >
+          <a
+            class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300"
+            href="#"
+            >Curations</a
+          >
+        </div>
+        <div class="flex items-center gap-x-6">
+          <button
+            class="text-[#4f1819] dark:text-[#d8c1c0] hover:opacity-80 transition-opacity"
+          >
+            <span class="material-symbols-outlined" data-icon="account_circle"
+              >account_circle</span
+            >
+          </button>
+          <button
+            class="text-[#4f1819] dark:text-[#d8c1c0] hover:opacity-80 transition-opacity"
+          >
+            <span class="material-symbols-outlined" data-icon="shopping_bag"
+              >shopping_bag</span
+            >
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main class="pt-32 pb-24 max-w-screen-2xl mx-auto px-8">
+      <!-- Breadcrumb & Navigation Back -->
+      <div class="mb-12">
+        <a
+          class="inline-flex items-center text-secondary font-label text-sm hover:text-primary transition-colors"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-sm mr-2"
+            data-icon="arrow_back"
+            >arrow_back</span
+          >
+          Return to Victorian First Editions
+        </a>
+      </div>
+      <!-- Product Hero Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-32">
+        <!-- Gallery: Asymmetric Layout -->
+        <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="md:col-span-2 aspect-[4/5] bg-surface-container-low overflow-hidden"
+          >
+            <img
+              alt="Rare Book Cover Detail"
+              class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              data-alt="Macro close-up of a weathered 19th-century leather book cover with intricate gold leaf embossing and worn corners on a neutral surface"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn5V1Uo4lrnDMuX14ZGbiAeeCyM3dvL0ApaQdptMhql5WZH8CTCtmphLPPNacUsFWcGZB5_rpED9zb2D2viJ2MzzvXz5X5LKZ4HKBY5vgTlTf-3eVQSOWEfdXriyvRGmmpUTbJA7QaoQVmo8YDNbjMbRUB0ruMhi_nryjzxnWhXpBRYVCyp4x8EsGC25r-p0-9arSNXwt_u8-Xr8lZm97TtqdqPUuRAlFg72Enmw1ysEOfTi0--NexD12t9Y0xF7xmp_uUGbMpxgIT"
+            />
+          </div>
+          <div class="aspect-square bg-surface-container-low overflow-hidden">
+            <img
+              alt="Book Spine Detail"
+              class="w-full h-full object-cover"
+              data-alt="Side profile view of a thick antique book spine showing ribbed bands and hand-stamped gold title lettering in a dark library"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy3jsCZfVdJ2s72qR11vrcBndU-eXFmfS_EZ-8cp2Nt5uFgdpS4grASxDdveJ98b21EtfVaUOMu1icBBOWqNfofbe8KOdIlgc2dNYEGEMO_FyJ-sEszlfzPxonG7qmjqnTTojp4G9f4issdOukm_rRfk0O3HS9KelBrMGdahppVFJccdEPyZUKsYsfSWeq83Xrr7UQPYDLBI5qYno-Aw3k8vXV3LCfintTzUYwFxwyuBpf4zs6UnDFEVcsC7cVwzSqcwht_KQpOCB4"
+            />
+          </div>
+          <div class="aspect-square bg-surface-container-low overflow-hidden">
+            <img
+              alt="Title Page Detail"
+              class="w-full h-full object-cover"
+              data-alt="Close up view of the inner title page of a rare book with elegant vintage typography and slightly yellowed parchment texture"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfCm7s83SzcxDH4OXo9gmrhL76_KoDygNHBgdQzZuuSXBao6PDrOvA78qnYXzlr5wz64l0bRPNBZCCGV0zZ4sS9LZKrbLvmBQi2Z5GWng5f4dfwUoX7GUB_f-99mSTPkM6hjiVwnyBu0D1Q-O-Bq6Vysi5Yhod12ZKOg9BZ6nzm9EEF9kZwTn8lhs_Du7afDNBL8siWQgkVJ5qXoxSRdUdbDzJN3ENjQFd3F9t2Hs1q7v4pBVWEKQPtoA8i3ayEbLv6a3FiProZZEu"
+            />
+          </div>
+        </div>
+        <!-- Product Info: Editorial Layout -->
+        <div class="lg:col-span-5 flex flex-col justify-center">
+          <div class="space-y-8">
+            <div>
+              <p
+                class="font-label text-sm uppercase tracking-[0.2em] text-secondary mb-4"
+              >
+                Ref. No: DA-1884-V1
+              </p>
+              <h1
+                class="font-headline text-5xl md:text-6xl text-on-surface leading-tight mb-4"
+              >
+                Wuthering Heights
+              </h1>
+              <p class="font-headline italic text-2xl text-secondary">
+                By Ellis Bell (Emily Brontë)
+              </p>
             </div>
-<div class="hidden md:flex items-center gap-x-10 font-headline tracking-tight">
-<a class="text-[#4f1819] dark:text-[#f9f3e5] font-bold border-b border-[#4f1819] dark:border-[#f9f3e5] pb-1 transition-colors duration-300" href="#">Catalog</a>
-<a class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300" href="#">Rarities</a>
-<a class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300" href="#">Chronology</a>
-<a class="text-[#725a42] dark:text-[#e8e2d4] font-medium hover:text-[#4f1819] dark:hover:text-[#ffffff] transition-colors duration-300" href="#">Curations</a>
-</div>
-<div class="flex items-center gap-x-6">
-<button class="text-[#4f1819] dark:text-[#d8c1c0] hover:opacity-80 transition-opacity">
-<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-</button>
-<button class="text-[#4f1819] dark:text-[#d8c1c0] hover:opacity-80 transition-opacity">
-<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
-</button>
-</div>
-</div>
-</nav>
-<main class="pt-32 pb-24 max-w-screen-2xl mx-auto px-8">
-<!-- Breadcrumb & Navigation Back -->
-<div class="mb-12">
-<a class="inline-flex items-center text-secondary font-label text-sm hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-sm mr-2" data-icon="arrow_back">arrow_back</span>
-                Return to Victorian First Editions
-            </a>
-</div>
-<!-- Product Hero Section -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-32">
-<!-- Gallery: Asymmetric Layout -->
-<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="md:col-span-2 aspect-[4/5] bg-surface-container-low overflow-hidden">
-<img alt="Rare Book Cover Detail" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="Macro close-up of a weathered 19th-century leather book cover with intricate gold leaf embossing and worn corners on a neutral surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn5V1Uo4lrnDMuX14ZGbiAeeCyM3dvL0ApaQdptMhql5WZH8CTCtmphLPPNacUsFWcGZB5_rpED9zb2D2viJ2MzzvXz5X5LKZ4HKBY5vgTlTf-3eVQSOWEfdXriyvRGmmpUTbJA7QaoQVmo8YDNbjMbRUB0ruMhi_nryjzxnWhXpBRYVCyp4x8EsGC25r-p0-9arSNXwt_u8-Xr8lZm97TtqdqPUuRAlFg72Enmw1ysEOfTi0--NexD12t9Y0xF7xmp_uUGbMpxgIT"/>
-</div>
-<div class="aspect-square bg-surface-container-low overflow-hidden">
-<img alt="Book Spine Detail" class="w-full h-full object-cover" data-alt="Side profile view of a thick antique book spine showing ribbed bands and hand-stamped gold title lettering in a dark library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy3jsCZfVdJ2s72qR11vrcBndU-eXFmfS_EZ-8cp2Nt5uFgdpS4grASxDdveJ98b21EtfVaUOMu1icBBOWqNfofbe8KOdIlgc2dNYEGEMO_FyJ-sEszlfzPxonG7qmjqnTTojp4G9f4issdOukm_rRfk0O3HS9KelBrMGdahppVFJccdEPyZUKsYsfSWeq83Xrr7UQPYDLBI5qYno-Aw3k8vXV3LCfintTzUYwFxwyuBpf4zs6UnDFEVcsC7cVwzSqcwht_KQpOCB4"/>
-</div>
-<div class="aspect-square bg-surface-container-low overflow-hidden">
-<img alt="Title Page Detail" class="w-full h-full object-cover" data-alt="Close up view of the inner title page of a rare book with elegant vintage typography and slightly yellowed parchment texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfCm7s83SzcxDH4OXo9gmrhL76_KoDygNHBgdQzZuuSXBao6PDrOvA78qnYXzlr5wz64l0bRPNBZCCGV0zZ4sS9LZKrbLvmBQi2Z5GWng5f4dfwUoX7GUB_f-99mSTPkM6hjiVwnyBu0D1Q-O-Bq6Vysi5Yhod12ZKOg9BZ6nzm9EEF9kZwTn8lhs_Du7afDNBL8siWQgkVJ5qXoxSRdUdbDzJN3ENjQFd3F9t2Hs1q7v4pBVWEKQPtoA8i3ayEbLv6a3FiProZZEu"/>
-</div>
-</div>
-<!-- Product Info: Editorial Layout -->
-<div class="lg:col-span-5 flex flex-col justify-center">
-<div class="space-y-8">
-<div>
-<p class="font-label text-sm uppercase tracking-[0.2em] text-secondary mb-4">Ref. No: DA-1884-V1</p>
-<h1 class="font-headline text-5xl md:text-6xl text-on-surface leading-tight mb-4">
-                            Wuthering Heights
-                        </h1>
-<p class="font-headline italic text-2xl text-secondary">By Ellis Bell (Emily Brontë)</p>
-</div>
-<div class="h-px w-24 bg-outline-variant/30"></div>
-<div class="space-y-6">
-<p class="font-body text-lg text-on-surface-variant leading-relaxed">
-                            A remarkable specimen of the 1884 reissue, bound in original publisher's dark burgundy cloth with gold gilt to the spine. This edition captures the brooding atmosphere of the Yorkshire moors through its heavy-set typography and period-correct paper stock.
-                        </p>
-<div class="bg-surface-container-low p-8 space-y-4">
-<div class="flex justify-between items-baseline">
-<span class="font-label text-sm text-secondary">Market Value</span>
-<span class="font-headline text-3xl text-primary">£4,850.00</span>
-</div>
-<p class="font-label text-xs text-on-surface-variant italic">Inclusive of certified archival assessment and provenance ledger.</p>
-</div>
-</div>
-<div class="pt-6 space-y-4">
-<button class="w-full py-5 bg-primary text-on-primary font-label font-bold tracking-widest hover:bg-primary-container transition-all duration-300">
-                            ADD TO ARCHIVE
-                        </button>
-<button class="w-full py-5 bg-surface-container-high text-on-secondary-container font-label font-bold tracking-widest hover:bg-surface-bright transition-all duration-300">
-                            INQUIRE FOR PRIVATE VIEWING
-                        </button>
-</div>
-<div class="flex items-center gap-x-6 pt-4 text-secondary">
-<div class="flex items-center text-xs font-label uppercase tracking-widest">
-<span class="material-symbols-outlined text-sm mr-2" data-icon="verified_user">verified_user</span>
-                            Certified Authentic
-                        </div>
-<div class="flex items-center text-xs font-label uppercase tracking-widest">
-<span class="material-symbols-outlined text-sm mr-2" data-icon="public">public</span>
-                            Global Courier
-                        </div>
-</div>
-</div>
-</div>
-</div>
-<!-- Detailed Content Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 border-t border-outline-variant/15 pt-24">
-<!-- Left Column: Specs & Condition -->
-<div class="lg:col-span-4 space-y-16">
-<!-- Specifications -->
-<section>
-<h2 class="font-headline text-2xl mb-8">Specifications</h2>
-<ul class="space-y-6">
-<li class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
-<span class="font-label text-xs uppercase tracking-widest text-secondary">Publisher</span>
-<span class="font-body text-on-surface">Cassell &amp; Company, Ltd.</span>
-</li>
-<li class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
-<span class="font-label text-xs uppercase tracking-widest text-secondary">Year</span>
-<span class="font-body text-on-surface">1884</span>
-</li>
-<li class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
-<span class="font-label text-xs uppercase tracking-widest text-secondary">Format</span>
-<span class="font-body text-on-surface">Octavo (8vo)</span>
-</li>
-<li class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
-<span class="font-label text-xs uppercase tracking-widest text-secondary">Pagination</span>
-<span class="font-body text-on-surface">pp. viii, 364 + 16 (ads)</span>
-</li>
-<li class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
-<span class="font-label text-xs uppercase tracking-widest text-secondary">Binding</span>
-<span class="font-body text-on-surface">Original Cloth</span>
-</li>
-</ul>
-</section>
-<!-- Margin Note Component -->
-<aside class="p-8 border-l-2 border-primary bg-surface-container-lowest">
-<p class="font-body italic text-on-surface-variant leading-relaxed">
-                        "The Digital Archivist's seal on this volume confirms that the binding remains untouched since its last documented restoration in 1924 by the Zaehnsdorf firm."
-                    </p>
-</aside>
-</div>
-<!-- Right Column: Narrative Sections -->
-<div class="lg:col-span-8 space-y-24">
-<!-- Condition Report -->
-<section>
-<div class="flex items-center gap-x-4 mb-8">
-<h2 class="font-headline text-3xl">Condition Report</h2>
-<span class="px-3 py-1 bg-surface-container-highest text-secondary font-label text-[10px] uppercase tracking-widest">Grade: Near Fine</span>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-<div class="space-y-4">
-<h3 class="font-label text-sm font-bold text-on-surface uppercase tracking-widest">Exterior</h3>
-<p class="font-body text-on-surface-variant leading-relaxed">
-                                The original burgundy cloth shows minor rubbing to the head and tail of the spine. Corners are remarkably sharp with only negligible softening. The gilt lettering remains bright and untarnished, retaining 95% of its original luster.
-                            </p>
-</div>
-<div class="space-y-4">
-<h3 class="font-label text-sm font-bold text-on-surface uppercase tracking-widest">Interior</h3>
-<p class="font-body text-on-surface-variant leading-relaxed">
-                                Endpapers are original and show characteristic but light foxing. The text block is remarkably clean, free from marginalia or previous owner signatures. Hinges are firm and have not been reinforced.
-                            </p>
-</div>
-</div>
-</section>
-<!-- History & Provenance -->
-<section class="bg-surface-container-low p-12 relative overflow-hidden">
-<div class="relative z-10">
-<h2 class="font-headline text-3xl mb-8">History &amp; Provenance</h2>
-<div class="max-w-2xl space-y-6">
-<p class="font-body text-on-surface-variant leading-relaxed">
-                                This specific volume was once part of the renowned <span class="text-primary italic">Throckmorton Estate Library</span> in Oxfordshire. It was acquired by the current owner in 1982 via Sotheby’s London. 
-                            </p>
-<p class="font-body text-on-surface-variant leading-relaxed">
-                                Curatorial research suggests this printing was among the first batch of the 1884 reissue, noted for the slightly thicker paper weight used before the publisher shifted to a more economical stock later that year.
-                            </p>
-<div class="pt-4">
-<a class="inline-flex items-center text-primary font-label text-sm font-bold uppercase tracking-widest hover:opacity-70 transition-opacity" href="#">
-                                    Download Provenance Ledger (PDF)
-                                    <span class="material-symbols-outlined text-sm ml-2" data-icon="description">description</span>
-</a>
-</div>
-</div>
-</div>
-<!-- Aesthetic watermark-style background element -->
-<div class="absolute -right-20 -bottom-20 opacity-[0.03] pointer-events-none">
-<span class="material-symbols-outlined text-[300px]" data-icon="auto_stories">auto_stories</span>
-</div>
-</section>
-</div>
-</div>
-<!-- Curated Recommendations -->
-<div class="mt-48">
-<h2 class="font-headline text-3xl mb-12 text-center italic">Curated Pairings</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-<!-- Book Card 1 -->
-<div class="group cursor-pointer">
-<div class="aspect-[3/4] bg-surface-container-low mb-6 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An old leather bound book with gold leaf lettering on its spine sitting upright against a dark wooden shelf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA86H6fOaC_cCBbp26ex4W1EVFlHpM0fPk6PoRThF6uPCMPz8uKVwqSIuECnbnbT-QmvuzjLtyPB2WEhy4A_JNqQZ8Nu6NkoHO2IMFJY9rTvippB6uNr6IFOXCwBvfULSNXEyXMS22CLrcF4sMJQyCNGUGl0FpW3Whasp5ToZ-OWLmL3C22V7LhXEpR3lmqJ3NZzrdn4nguUfo38Buz8n0sr4w-hDv9NeJvS0PeMY-PGTUJy8zevTYcHd--_PRb7ntaaMRfjmBq0SA1"/>
-</div>
-<p class="font-label text-[10px] uppercase tracking-widest text-secondary mb-2">1847 First Edition</p>
-<h3 class="font-headline text-xl mb-2">Jane Eyre</h3>
-<p class="font-label text-sm text-primary">£12,000.00</p>
-</div>
-<!-- Book Card 2 -->
-<div class="group cursor-pointer">
-<div class="aspect-[3/4] bg-surface-container-low mb-6 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Two antique books with ornate embossed cloth covers stacked on top of each other on a worn desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtKtnxNPQ9rXwlRR8MwCKzH2AAuc8UJouX9V1P-acRRt8wr-FVKnzewy2LtDDACR0p2-KDu5HUQh1dLNMDhtwHObhUOHHcq6PDOZpL5IP40fX7O4tS_MNQnvz_oGYSx1wzYfYMZRbSfLfpFayYu_WunT_VPMIewSTGLkExRmPeb-6F4hAKY_sZp0yv0eZmrKf5HbsZVEK_7bfrOJOpp7Jd4klFNB4QFvnzQuH5zvPmoZYTfg6P-_ybx2xMvViq0gEd6L4uv0g96MoD"/>
-</div>
-<p class="font-label text-[10px] uppercase tracking-widest text-secondary mb-2">1891 Illustrated</p>
-<h3 class="font-headline text-xl mb-2">The Picture of Dorian Gray</h3>
-<p class="font-label text-sm text-primary">£6,400.00</p>
-</div>
-<!-- Book Card 3 -->
-<div class="group cursor-pointer">
-<div class="aspect-[3/4] bg-surface-container-low mb-6 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close up of a rare classic book showing the tactile weave of the cloth cover and fine dust on the top edge" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQWFY5r6y6XVeNp1Vdb6wCnH566mjr_-MGKOy7MfFwFieTaQZ2cQqjKBKbcPsFyxpCUFHmfO1L6GzDY3dFAUbrjMBgb91ueJqZY6O9WKTz52R7hooJayI45eSpzTQXGw6t1hWCGofH9cr4z66Fqr220mSg37f_bnaNUepQsKam5cnuoiQJcVQdQF8zYAi7MgU4_FAEmxyCjENEA499xsfTDUV_8jrVfkRZZAMCYc9gwuUUS_Krr3-2oYno2CKYSlAi6bqZDUSiFhSw"/>
-</div>
-<p class="font-label text-[10px] uppercase tracking-widest text-secondary mb-2">1860 Rebound</p>
-<h3 class="font-headline text-xl mb-2">The Mill on the Floss</h3>
-<p class="font-label text-sm text-primary">£3,200.00</p>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<footer class="bg-[#f9f3e5] dark:bg-[#1d1c13] w-full rounded-none border-t border-[#d8c1c0]/15">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-12 py-20 w-full max-w-screen-2xl mx-auto">
-<div class="space-y-6">
-<div class="text-xl font-headline text-[#4f1819] dark:text-[#f9f3e5]">The Digital Archivist</div>
-<p class="font-body text-[#725a42] dark:text-[#e8e2d4]/70 leading-relaxed max-w-xs">
-                    © 2024 The Digital Archivist. Preserving the tactile heritage of rare literature.
+            <div class="h-px w-24 bg-outline-variant/30"></div>
+            <div class="space-y-6">
+              <p
+                class="font-body text-lg text-on-surface-variant leading-relaxed"
+              >
+                A remarkable specimen of the 1884 reissue, bound in original
+                publisher's dark burgundy cloth with gold gilt to the spine.
+                This edition captures the brooding atmosphere of the Yorkshire
+                moors through its heavy-set typography and period-correct paper
+                stock.
+              </p>
+              <div class="bg-surface-container-low p-8 space-y-4">
+                <div class="flex justify-between items-baseline">
+                  <span class="font-label text-sm text-secondary"
+                    >Market Value</span
+                  >
+                  <span class="font-headline text-3xl text-primary"
+                    >£4,850.00</span
+                  >
+                </div>
+                <p class="font-label text-xs text-on-surface-variant italic">
+                  Inclusive of certified archival assessment and provenance
+                  ledger.
                 </p>
-</div>
-<div class="space-y-4">
-<h4 class="font-label text-xs uppercase tracking-widest font-bold text-[#4f1819] dark:text-[#f9f3e5]">Resources</h4>
-<ul class="space-y-3">
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] dark:hover:text-[#ffffff] underline transition-colors" href="#">Provenance</a></li>
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] dark:hover:text-[#ffffff] underline transition-colors" href="#">Shipping &amp; Handling</a></li>
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] dark:hover:text-[#ffffff] underline transition-colors" href="#">Acquisitions</a></li>
-<li><a class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] dark:hover:text-[#ffffff] underline transition-colors" href="#">Privacy Ledger</a></li>
-</ul>
-</div>
-<div class="space-y-6">
-<h4 class="font-label text-xs uppercase tracking-widest font-bold text-[#4f1819] dark:text-[#f9f3e5]">Newsletter</h4>
-<p class="font-body text-sm text-[#725a42] dark:text-[#e8e2d4]/70">Subscribe to receive notifications of new scholarly acquisitions.</p>
-<form class="flex border-b border-[#4f1819]/30 py-2">
-<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-body italic" placeholder="Your electronic mail..." type="email"/>
-<button class="text-[#4f1819] font-label text-xs uppercase font-bold tracking-widest" type="submit">Enroll</button>
-</form>
-</div>
-</div>
-</footer>
-</body></html>
+              </div>
+            </div>
+            <div class="pt-6 space-y-4">
+              <button
+                class="w-full py-5 bg-primary text-on-primary font-label font-bold tracking-widest hover:bg-primary-container transition-all duration-300"
+              >
+                ADD TO ARCHIVE
+              </button>
+              <button
+                class="w-full py-5 bg-surface-container-high text-on-secondary-container font-label font-bold tracking-widest hover:bg-surface-bright transition-all duration-300"
+              >
+                INQUIRE FOR PRIVATE VIEWING
+              </button>
+            </div>
+            <div class="flex items-center gap-x-6 pt-4 text-secondary">
+              <div
+                class="flex items-center text-xs font-label uppercase tracking-widest"
+              >
+                <span
+                  class="material-symbols-outlined text-sm mr-2"
+                  data-icon="verified_user"
+                  >verified_user</span
+                >
+                Certified Authentic
+              </div>
+              <div
+                class="flex items-center text-xs font-label uppercase tracking-widest"
+              >
+                <span
+                  class="material-symbols-outlined text-sm mr-2"
+                  data-icon="public"
+                  >public</span
+                >
+                Global Courier
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Detailed Content Grid -->
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-16 border-t border-outline-variant/15 pt-24"
+      >
+        <!-- Left Column: Specs & Condition -->
+        <div class="lg:col-span-4 space-y-16">
+          <!-- Specifications -->
+          <section>
+            <h2 class="font-headline text-2xl mb-8">Specifications</h2>
+            <ul class="space-y-6">
+              <li
+                class="flex justify-between items-end border-b border-outline-variant/10 pb-2"
+              >
+                <span
+                  class="font-label text-xs uppercase tracking-widest text-secondary"
+                  >Publisher</span
+                >
+                <span class="font-body text-on-surface"
+                  >Cassell &amp; Company, Ltd.</span
+                >
+              </li>
+              <li
+                class="flex justify-between items-end border-b border-outline-variant/10 pb-2"
+              >
+                <span
+                  class="font-label text-xs uppercase tracking-widest text-secondary"
+                  >Year</span
+                >
+                <span class="font-body text-on-surface">1884</span>
+              </li>
+              <li
+                class="flex justify-between items-end border-b border-outline-variant/10 pb-2"
+              >
+                <span
+                  class="font-label text-xs uppercase tracking-widest text-secondary"
+                  >Format</span
+                >
+                <span class="font-body text-on-surface">Octavo (8vo)</span>
+              </li>
+              <li
+                class="flex justify-between items-end border-b border-outline-variant/10 pb-2"
+              >
+                <span
+                  class="font-label text-xs uppercase tracking-widest text-secondary"
+                  >Pagination</span
+                >
+                <span class="font-body text-on-surface"
+                  >pp. viii, 364 + 16 (ads)</span
+                >
+              </li>
+              <li
+                class="flex justify-between items-end border-b border-outline-variant/10 pb-2"
+              >
+                <span
+                  class="font-label text-xs uppercase tracking-widest text-secondary"
+                  >Binding</span
+                >
+                <span class="font-body text-on-surface">Original Cloth</span>
+              </li>
+            </ul>
+          </section>
+          <!-- Margin Note Component -->
+          <aside
+            class="p-8 border-l-2 border-primary bg-surface-container-lowest"
+          >
+            <p class="font-body italic text-on-surface-variant leading-relaxed">
+              "The Digital Archivist's seal on this volume confirms that the
+              binding remains untouched since its last documented restoration in
+              1924 by the Zaehnsdorf firm."
+            </p>
+          </aside>
+        </div>
+        <!-- Right Column: Narrative Sections -->
+        <div class="lg:col-span-8 space-y-24">
+          <!-- Condition Report -->
+          <section>
+            <div class="flex items-center gap-x-4 mb-8">
+              <h2 class="font-headline text-3xl">Condition Report</h2>
+              <span
+                class="px-3 py-1 bg-surface-container-highest text-secondary font-label text-[10px] uppercase tracking-widest"
+                >Grade: Near Fine</span
+              >
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div class="space-y-4">
+                <h3
+                  class="font-label text-sm font-bold text-on-surface uppercase tracking-widest"
+                >
+                  Exterior
+                </h3>
+                <p class="font-body text-on-surface-variant leading-relaxed">
+                  The original burgundy cloth shows minor rubbing to the head
+                  and tail of the spine. Corners are remarkably sharp with only
+                  negligible softening. The gilt lettering remains bright and
+                  untarnished, retaining 95% of its original luster.
+                </p>
+              </div>
+              <div class="space-y-4">
+                <h3
+                  class="font-label text-sm font-bold text-on-surface uppercase tracking-widest"
+                >
+                  Interior
+                </h3>
+                <p class="font-body text-on-surface-variant leading-relaxed">
+                  Endpapers are original and show characteristic but light
+                  foxing. The text block is remarkably clean, free from
+                  marginalia or previous owner signatures. Hinges are firm and
+                  have not been reinforced.
+                </p>
+              </div>
+            </div>
+          </section>
+          <!-- History & Provenance -->
+          <section
+            class="bg-surface-container-low p-12 relative overflow-hidden"
+          >
+            <div class="relative z-10">
+              <h2 class="font-headline text-3xl mb-8">
+                History &amp; Provenance
+              </h2>
+              <div class="max-w-2xl space-y-6">
+                <p class="font-body text-on-surface-variant leading-relaxed">
+                  This specific volume was once part of the renowned
+                  <span class="text-primary italic"
+                    >Throckmorton Estate Library</span
+                  >
+                  in Oxfordshire. It was acquired by the current owner in 1982
+                  via Sotheby’s London.
+                </p>
+                <p class="font-body text-on-surface-variant leading-relaxed">
+                  Curatorial research suggests this printing was among the first
+                  batch of the 1884 reissue, noted for the slightly thicker
+                  paper weight used before the publisher shifted to a more
+                  economical stock later that year.
+                </p>
+                <div class="pt-4">
+                  <a
+                    class="inline-flex items-center text-primary font-label text-sm font-bold uppercase tracking-widest hover:opacity-70 transition-opacity"
+                    href="#"
+                  >
+                    Download Provenance Ledger (PDF)
+                    <span
+                      class="material-symbols-outlined text-sm ml-2"
+                      data-icon="description"
+                      >description</span
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Aesthetic watermark-style background element -->
+            <div
+              class="absolute -right-20 -bottom-20 opacity-[0.03] pointer-events-none"
+            >
+              <span
+                class="material-symbols-outlined text-[300px]"
+                data-icon="auto_stories"
+                >auto_stories</span
+              >
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- Curated Recommendations -->
+      <div class="mt-48">
+        <h2 class="font-headline text-3xl mb-12 text-center italic">
+          Curated Pairings
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <!-- Book Card 1 -->
+          <div class="group cursor-pointer">
+            <div
+              class="aspect-[3/4] bg-surface-container-low mb-6 overflow-hidden"
+            >
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="An old leather bound book with gold leaf lettering on its spine sitting upright against a dark wooden shelf"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA86H6fOaC_cCBbp26ex4W1EVFlHpM0fPk6PoRThF6uPCMPz8uKVwqSIuECnbnbT-QmvuzjLtyPB2WEhy4A_JNqQZ8Nu6NkoHO2IMFJY9rTvippB6uNr6IFOXCwBvfULSNXEyXMS22CLrcF4sMJQyCNGUGl0FpW3Whasp5ToZ-OWLmL3C22V7LhXEpR3lmqJ3NZzrdn4nguUfo38Buz8n0sr4w-hDv9NeJvS0PeMY-PGTUJy8zevTYcHd--_PRb7ntaaMRfjmBq0SA1"
+              />
+            </div>
+            <p
+              class="font-label text-[10px] uppercase tracking-widest text-secondary mb-2"
+            >
+              1847 First Edition
+            </p>
+            <h3 class="font-headline text-xl mb-2">Jane Eyre</h3>
+            <p class="font-label text-sm text-primary">£12,000.00</p>
+          </div>
+          <!-- Book Card 2 -->
+          <div class="group cursor-pointer">
+            <div
+              class="aspect-[3/4] bg-surface-container-low mb-6 overflow-hidden"
+            >
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="Two antique books with ornate embossed cloth covers stacked on top of each other on a worn desk"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtKtnxNPQ9rXwlRR8MwCKzH2AAuc8UJouX9V1P-acRRt8wr-FVKnzewy2LtDDACR0p2-KDu5HUQh1dLNMDhtwHObhUOHHcq6PDOZpL5IP40fX7O4tS_MNQnvz_oGYSx1wzYfYMZRbSfLfpFayYu_WunT_VPMIewSTGLkExRmPeb-6F4hAKY_sZp0yv0eZmrKf5HbsZVEK_7bfrOJOpp7Jd4klFNB4QFvnzQuH5zvPmoZYTfg6P-_ybx2xMvViq0gEd6L4uv0g96MoD"
+              />
+            </div>
+            <p
+              class="font-label text-[10px] uppercase tracking-widest text-secondary mb-2"
+            >
+              1891 Illustrated
+            </p>
+            <h3 class="font-headline text-xl mb-2">
+              The Picture of Dorian Gray
+            </h3>
+            <p class="font-label text-sm text-primary">£6,400.00</p>
+          </div>
+          <!-- Book Card 3 -->
+          <div class="group cursor-pointer">
+            <div
+              class="aspect-[3/4] bg-surface-container-low mb-6 overflow-hidden"
+            >
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="Close up of a rare classic book showing the tactile weave of the cloth cover and fine dust on the top edge"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQWFY5r6y6XVeNp1Vdb6wCnH566mjr_-MGKOy7MfFwFieTaQZ2cQqjKBKbcPsFyxpCUFHmfO1L6GzDY3dFAUbrjMBgb91ueJqZY6O9WKTz52R7hooJayI45eSpzTQXGw6t1hWCGofH9cr4z66Fqr220mSg37f_bnaNUepQsKam5cnuoiQJcVQdQF8zYAi7MgU4_FAEmxyCjENEA499xsfTDUV_8jrVfkRZZAMCYc9gwuUUS_Krr3-2oYno2CKYSlAi6bqZDUSiFhSw"
+              />
+            </div>
+            <p
+              class="font-label text-[10px] uppercase tracking-widest text-secondary mb-2"
+            >
+              1860 Rebound
+            </p>
+            <h3 class="font-headline text-xl mb-2">The Mill on the Floss</h3>
+            <p class="font-label text-sm text-primary">£3,200.00</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-[#f9f3e5] dark:bg-[#1d1c13] w-full rounded-none border-t border-[#d8c1c0]/15"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-12 px-12 py-20 w-full max-w-screen-2xl mx-auto"
+      >
+        <div class="space-y-6">
+          <div class="text-xl font-headline text-[#4f1819] dark:text-[#f9f3e5]">
+            The Digital Archivist
+          </div>
+          <p
+            class="font-body text-[#725a42] dark:text-[#e8e2d4]/70 leading-relaxed max-w-xs"
+          >
+            © 2024 The Digital Archivist. Preserving the tactile heritage of
+            rare literature.
+          </p>
+        </div>
+        <div class="space-y-4">
+          <h4
+            class="font-label text-xs uppercase tracking-widest font-bold text-[#4f1819] dark:text-[#f9f3e5]"
+          >
+            Resources
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a
+                class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] dark:hover:text-[#ffffff] underline transition-colors"
+                href="#"
+                >Provenance</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] dark:hover:text-[#ffffff] underline transition-colors"
+                href="#"
+                >Shipping &amp; Handling</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] dark:hover:text-[#ffffff] underline transition-colors"
+                href="#"
+                >Acquisitions</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-[#725a42] dark:text-[#e8e2d4]/70 hover:text-[#4f1819] dark:hover:text-[#ffffff] underline transition-colors"
+                href="#"
+                >Privacy Ledger</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="space-y-6">
+          <h4
+            class="font-label text-xs uppercase tracking-widest font-bold text-[#4f1819] dark:text-[#f9f3e5]"
+          >
+            Newsletter
+          </h4>
+          <p class="font-body text-sm text-[#725a42] dark:text-[#e8e2d4]/70">
+            Subscribe to receive notifications of new scholarly acquisitions.
+          </p>
+          <form class="flex border-b border-[#4f1819]/30 py-2">
+            <input
+              class="bg-transparent border-none focus:ring-0 text-sm w-full font-body italic"
+              placeholder="Your electronic mail..."
+              type="email"
+            />
+            <button
+              class="text-[#4f1819] font-label text-xs uppercase font-bold tracking-widest"
+              type="submit"
+            >
+              Enroll
+            </button>
+          </form>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

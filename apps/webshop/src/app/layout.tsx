@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
+import Header from "@/components/header";
 export const metadata: Metadata = {
-	title: "Webshop",
-	description: "Literature webshop",
+  title: "Webshop",
+  description: "Literature webshop",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<html lang="en">
-			<body>{children}</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body>
+        <Header />
+        {children}
+      </body>
+    </html>
+  );
 }

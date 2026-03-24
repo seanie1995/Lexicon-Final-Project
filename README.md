@@ -6,11 +6,9 @@
 * Supabase för authentisering?
 * Prisma som ORM för att enkelt kunna hantera data (prisma.get...)
 * Next.js GET/POST API routes för webshops API mm, "som vanligt"
-
 * Webshop om litteratur
 * https://stitch.withgoogle.com/projects/18254047099019191933
 
-* 
 ## Planering av funktioner
 
 - 🔐 Autentisering: Implementera inloggning för kunder via Supabase.

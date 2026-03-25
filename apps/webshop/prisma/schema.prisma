@@ -44,7 +44,6 @@ model Product {
   description         String
   price               Float
   discountPercentage  Float
-  stock               Int
   weight              Float
   warrantyInformation String
   shippingInformation String

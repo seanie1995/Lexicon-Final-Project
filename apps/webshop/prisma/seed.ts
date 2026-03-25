@@ -2,6 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+// This is just a sample seed file to populate the database with initial data for testing and development purposes. 
+// You can modify the data as needed to fit your specific requirements.
+
 async function main() {
 	// Clean existing data
 	await prisma.product.deleteMany();

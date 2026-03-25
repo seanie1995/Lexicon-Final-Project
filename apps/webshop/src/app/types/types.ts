@@ -4,7 +4,6 @@ interface Product {
 	description: string;
 	price: number;
 	discountPercentage: number;
-	stock: number;
 	weight: number;
 	warrantyInformation: string;
 	shippingInformation: string;

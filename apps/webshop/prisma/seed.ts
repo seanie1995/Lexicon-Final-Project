@@ -1,6 +1,8 @@
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 // This is just a sample seed file to populate the database with initial data for testing and development purposes.
 // You can modify the data as needed to fit your specific requirements.

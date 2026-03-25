@@ -6,10 +6,6 @@ datasource db {
   provider = "postgresql"
 }
 
-seed {
-  command = "npx tsx prisma/seed.ts"
-}
-
 model Category {
   id       Int       @id @default(autoincrement())
   name     String?

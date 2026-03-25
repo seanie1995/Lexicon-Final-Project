@@ -44,7 +44,7 @@ model Product {
   warrantyInformation String
   shippingInformation String
   availabilityStatus  String
-  images              String
+  images              Json
   thumbnail           String
   tags                Json
   era                 String

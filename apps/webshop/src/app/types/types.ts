@@ -24,7 +24,7 @@ export interface Product {
 
 interface Category {
 	id: number;
-	name?: string;
+	name: string;
 }
 
 interface Condition {

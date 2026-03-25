@@ -108,7 +108,6 @@ async function main() {
 				"A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.",
 			price: 12.99,
 			discountPercentage: 10,
-
 			weight: 0.3,
 			warrantyInformation: "N/A",
 			shippingInformation: "Ships in 2-3 business days",
@@ -232,7 +231,8 @@ async function main() {
 			warrantyInformation: "N/A",
 			shippingInformation: "Ships in 2-3 business days",
 			availabilityStatus: "In Stock",
-			images: "https://example.com/hobbit-1.jpg",
+			images: JSON.stringify([
+				"https://example.com/hobbit-1.jpg",
 				"https://example.com/hobbit-2.jpg",
 			]),
 			thumbnail: "https://example.com/hobbit-thumb.jpg",

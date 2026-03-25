@@ -1,25 +1,33 @@
 {
-	"name": "webshop",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "npx biome check src/"
-	},
-	"dependencies": {
-		"lucide-react": "^1.1.0",
-		"next": "^16.2.1",
-		"react": "^19.2.4",
-		"react-dom": "^19.2.4"
-	},
-	"devDependencies": {
-		"@tailwindcss/postcss": "^4.2.2",
-		"@types/node": "^24.12.0",
-		"@types/react": "^19.2.14",
-		"@types/react-dom": "^19.2.3",
-		"tailwindcss": "^4.2.2",
-		"typescript": "^5.9.3"
-	}
+  "name": "webshop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "npx biome check src/",
+    "seed": "npx tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^7.5.0",
+    "dotenv": "^16.6.1",
+    "lucide-react": "^1.1.0",
+    "next": "^16.2.1",
+    "pg": "^8.20.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "@types/node": "^24.12.0",
+    "@types/pg": "^8.11.11",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "prisma": "^7.5.0",
+    "tailwindcss": "^4.2.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
 }

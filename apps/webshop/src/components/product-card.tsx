@@ -19,7 +19,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 						{product.title}
 					</h3>
 					<span className="font-label text-sm text-primary font-semibold">
-						${product.price.toLocaleString()}
+						{product.price.toLocaleString()} SEK
 					</span>
 				</div>
 				<p className="font-body italic text-secondary">{product.author.name}</p>

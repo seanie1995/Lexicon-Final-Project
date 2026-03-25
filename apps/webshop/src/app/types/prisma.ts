@@ -1,0 +1,30 @@
+import type { Prisma } from "@prisma/client";
+
+export interface PaginationParams {
+	page?: number;
+	pageSize?: number;
+}
+
+export interface ProductFilters extends PaginationParams {
+	categoryId?: number;
+	search?: string;
+	sortBy?: "title" | "price" | "year";
+	sortOrder?: "asc" | "desc";
+}
+
+export interface PaginatedResult<T> {
+	data: T[];
+	total: number;
+	page: number;
+	pageSize: number;
+	totalPages: number;
+}
+
+export type ProductWithRelations = Prisma.ProductGetPayload<{
+	include: {
+		category: true;
+		condition: true;
+		author: true;
+		publisher: true;
+	};
+}>;

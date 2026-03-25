@@ -8,7 +8,6 @@ const mockProduct: Product = {
     "A first edition of Walt Whitman's landmark poetry collection, featuring his revolutionary free verse celebrating nature, humanity, and the American spirit.",
   price: 4250,
   discountPercentage: 0,
-  stock: 1,
   weight: 1.2,
   warrantyInformation: "Certificate of authenticity included",
   shippingInformation: "Insured shipping, 5-7 business days",

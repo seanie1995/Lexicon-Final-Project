@@ -110,7 +110,7 @@ const CartDrawer = () => {
             {cartItems.length > 0 && (
               <div className="border-t border-primary/10 px-6 py-10 bg-surface-container-low">
                 <div className="flex justify-between items-baseline mb-8">
-                  <p className="font-label text-sm uppercase tracking-widest text-secondary">Total Archive Value</p>
+                  <p className="font-label text-sm uppercase tracking-widest text-secondary">Total Cart Value</p>
                   <p className="text-2xl font-headline text-primary font-bold">{total.toLocaleString()} SEK</p>
                 </div>
                 <div className="space-y-4">

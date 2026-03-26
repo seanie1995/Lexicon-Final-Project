@@ -8,7 +8,7 @@ import { useCart } from "@/lib/contexts/cart-context";
 import CartDrawer from "./cart-drawer";
 
 const navLinks = [
-  { label: "Catalog", href: "/" },
+  { label: "Catalog", href: "/catalog" },
   { label: "Rarities", href: "/" },
   { label: "Chronology", href: "/" },
   { label: "Curations", href: "/" },
@@ -47,11 +47,10 @@ const Header = () => {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`${
-                    isActive
+                  className={`${isActive
                       ? "text-primary font-bold border-b border-primary pb-1"
                       : "text-secondary font-medium"
-                  } hover:text-primary transition-colors duration-300`}
+                    } hover:text-primary transition-colors duration-300`}
                 >
                   {link.label}
                 </Link>

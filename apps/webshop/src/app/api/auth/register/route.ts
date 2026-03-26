@@ -2,7 +2,7 @@ import { createClient } from "@supabase-lib/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const { email, password } = await request.json();
+  const { email, password, fullName } = await request.json();
 
   if (!email || !password) {
     return NextResponse.json(
@@ -16,6 +16,11 @@ export async function POST(request: Request) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
+    options: {
+      data: {
+        display_name: fullName,
+      },
+    },
   });
 
   if (error) {

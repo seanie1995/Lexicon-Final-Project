@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import { X, Trash2, ShoppingBag } from "lucide-react";
+import { X, Trash2, ShoppingBag, Truck } from "lucide-react";
 import { useCart } from "@/lib/contexts/cart-context";
 import Image from "next/image";
+import Link from "next/link";
+import { formatPrice } from "@/lib/formatters";
 
 const CartDrawer = () => {
   const { cartItems, removeFromCart, isCartOpen, setIsCartOpen, clearCart } = useCart();
@@ -76,12 +78,18 @@ const CartDrawer = () => {
                                 {item.title}
                               </h3>
                               <p className="font-label text-sm font-semibold text-primary whitespace-nowrap">
-                                {item.price.toLocaleString()} SEK
+                                {formatPrice(item.price)} SEK
                               </p>
                             </div>
                             <p className="font-body text-sm italic text-secondary mt-1">
                               {item.author.name}
                             </p>
+                            <div className="flex items-center gap-1.5 mt-1">
+                              <Truck className="w-3 h-3 text-secondary/40" />
+                              <p className="font-label text-[9px] uppercase tracking-wider text-secondary/60">
+                                {item.shippingInformation}
+                              </p>
+                            </div>
                             <div className="flex gap-2 mt-2">
                               <span className="font-label text-[10px] uppercase tracking-widest px-2 py-0.5 bg-surface-container-highest text-secondary">
                                 {item.condition.grade}
@@ -109,16 +117,22 @@ const CartDrawer = () => {
             {/* Footer */}
             {cartItems.length > 0 && (
               <div className="border-t border-primary/10 px-6 py-10 bg-surface-container-low">
+                <div className="flex justify-between items-baseline mb-4 text-secondary/60 border-b border-primary/5 pb-4">
+                  <p className="font-label text-[10px] uppercase tracking-[0.15em]">Premium Tracked Shipping</p>
+                  <p className="font-label text-[10px] uppercase tracking-[0.15em] font-bold text-[#2d5a27]">Complimentary</p>
+                </div>
                 <div className="flex justify-between items-baseline mb-8">
                   <p className="font-label text-sm uppercase tracking-widest text-secondary">Total Cart Value</p>
-                  <p className="text-2xl font-headline text-primary font-bold">{total.toLocaleString()} SEK</p>
+                  <p className="text-2xl font-headline text-primary font-bold">{formatPrice(total)} SEK</p>
                 </div>
                 <div className="space-y-4">
-                  <button
-                    className="w-full bg-primary text-on-primary py-4 font-label uppercase tracking-widest hover:bg-primary/90 transition-all font-bold shadow-lg"
+                  <Link
+                    href="/checkout"
+                    onClick={() => setIsCartOpen(false)}
+                    className="block w-full bg-primary text-on-primary py-4 font-label uppercase tracking-widest hover:bg-primary/90 transition-all font-bold shadow-lg text-center"
                   >
                     Proceed to Checkout
-                  </button>
+                  </Link>
                   <button
                     onClick={() => clearCart()}
                     className="w-full text-secondary py-2 font-label text-[10px] uppercase tracking-[0.2em] hover:text-primary transition-colors"

@@ -12,10 +12,12 @@ export default async function ProductPage({ params }: PageProps) {
 	const { id } = await params;
 	const product = await getProductById(Number(id));
 
+	// 404 if no product is found
 	if (!product) {
 		notFound();
 	}
 
+	// I hate that we have the images as an array/jsonvalue in the db, but well, this works
 	const images = Array.isArray(product.images)
 		? (product.images as string[])
 		: [];
@@ -41,7 +43,7 @@ export default async function ProductPage({ params }: PageProps) {
 						<Image
 							src={mainImage}
 							alt={product.title}
-							className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+							className="w-full h-full object-cover"
 							fill
 							priority
 							sizes="(max-width: 1024px) 100vw, 60vw"

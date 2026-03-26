@@ -1,6 +1,7 @@
 import type { ProductWithRelations } from "@/app/types/prisma";
 import Link from "next/link";
 import Image from "next/image";
+import { formatPrice } from "@/lib/formatters";
 
 const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 	const images = (product.images as string[]) || [];
@@ -24,7 +25,7 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 						{product.title}
 					</h3>
 					<span className="font-label text-sm text-primary font-semibold">
-						{product.price.toLocaleString()} SEK
+						{formatPrice(product.price)} SEK
 					</span>
 				</div>
 				<p className="font-body italic text-secondary">{product.author.name}</p>

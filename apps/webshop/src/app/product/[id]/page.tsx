@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Verified, Globe, FileText } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { formatPrice } from "@/lib/formatters";
 
 interface PageProps {
 	params: Promise<{ id: string }>;
@@ -81,7 +82,7 @@ export default async function ProductPage({ params }: PageProps) {
 										Market Value
 									</span>
 									<span className="font-headline text-3xl text-primary">
-										{product.price.toLocaleString()} SEK
+										{formatPrice(product.price)} SEK
 									</span>
 								</div>
 								<p className="font-label text-xs text-on-surface-variant italic">
@@ -115,6 +116,16 @@ export default async function ProductPage({ params }: PageProps) {
 							<SpecItem label="Format" value={product.format} />
 							<SpecItem label="Genre" value={product.genre} />
 							<SpecItem label="Binding" value={product.binding} />
+						</ul>
+					</section>
+					
+					{/* Shipping & Delivery */}
+					<section>
+						<h2 className="font-headline text-2xl mb-8">Shipping & Delivery</h2>
+						<ul className="space-y-6">
+							<SpecItem label="Method" value="Premium Insured Courier" />
+							<SpecItem label="Delivery" value={product.shippingInformation} />
+							<SpecItem label="Cost" value="Complimentary" />
 						</ul>
 					</section>
 

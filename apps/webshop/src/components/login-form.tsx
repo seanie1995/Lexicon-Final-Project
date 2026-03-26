@@ -1,73 +1,64 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Eye, EyeOff, Loader2, CheckCircle } from "lucide-react";
 
-const RegisterForm = () => {
+const LoginFormContent = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const justRegistered = searchParams.get("registered") === "true";
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showRegisteredMessage, setShowRegisteredMessage] = useState(justRegistered);
   const [formData, setFormData] = useState({
-    fullName: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
+
+  useEffect(() => {
+    if (justRegistered) {
+      setShowRegisteredMessage(true);
+    }
+  }, [justRegistered]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setError("");
+    setShowRegisteredMessage(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (
-      !formData.fullName ||
-      !formData.email ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
-      setError("All fields are required");
-      return;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters");
+    if (!formData.email || !formData.password) {
+      setError("Email and password are required");
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
-          fullName: formData.fullName,
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || "Registration failed");
+        setError(data.error || "Login failed");
         return;
       }
 
-      router.push("/register/success");
+      router.push("/");
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -82,13 +73,18 @@ const RegisterForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="bg-surface-container-lowest p-8 md:p-12 border border-outline/20">
-        <h1 className="text-2xl font-serif text-primary mb-2">
-          Create Account
-        </h1>
+      <div className="bg-surface-container-lowest p-8 md:p-12 border border-outline-variant">
+        <h1 className="text-2xl font-serif text-primary mb-2">Welcome Back</h1>
         <p className="text-on-surface-variant font-body text-sm mb-8">
-          Join The Digital Archivist to unlock exclusive rarities and curations.
+          Sign in to your account to continue.
         </p>
+
+        {showRegisteredMessage && (
+          <div className="mb-6 p-3 bg-primary-fixed text-on-primary-fixed-variant text-sm font-label flex items-center gap-2">
+            <CheckCircle className="h-4 w-4 flex-shrink-0" />
+            Your account has been created. Please verify your email before signing in.
+          </div>
+        )}
 
         {error && (
           <div className="mb-6 p-3 bg-error-container text-on-error-container text-sm font-label">
@@ -97,22 +93,6 @@ const RegisterForm = () => {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="fullName" className={labelClasses}>
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              disabled={isLoading}
-              className={inputClasses}
-            />
-          </div>
-
           <div>
             <label htmlFor="email" className={labelClasses}>
               Email Address
@@ -140,7 +120,7 @@ const RegisterForm = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Create a password"
+                placeholder="Enter your password"
                 disabled={isLoading}
                 className={inputClasses}
               />
@@ -159,36 +139,6 @@ const RegisterForm = () => {
             </div>
           </div>
 
-          <div>
-            <label htmlFor="confirmPassword" className={labelClasses}>
-              Confirm Password
-            </label>
-            <div className="relative">
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                placeholder="Confirm your password"
-                disabled={isLoading}
-                className={inputClasses}
-              />
-              <button
-                type="button"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors"
-                tabIndex={-1}
-              >
-                {showConfirmPassword ? (
-                  <EyeOff className="h-5 w-5" />
-                ) : (
-                  <Eye className="h-5 w-5" />
-                )}
-              </button>
-            </div>
-          </div>
-
           <button
             type="submit"
             disabled={isLoading}
@@ -197,21 +147,21 @@ const RegisterForm = () => {
             {isLoading ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Creating Account...
+                Signing in...
               </>
             ) : (
-              "Create Account"
+              "Sign In"
             )}
           </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-on-surface-variant font-body">
-          Already have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
-            href="/login"
+            href="/register"
             className="text-primary font-semibold hover:underline underline-offset-4"
           >
-            Sign in
+            Create one
           </Link>
         </p>
       </div>
@@ -219,4 +169,12 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+const LoginForm = () => {
+  return (
+    <Suspense fallback={<div className="w-full max-w-md mx-auto p-8 bg-surface-container-lowest border border-outline-variant">Loading...</div>}>
+      <LoginFormContent />
+    </Suspense>
+  );
+};
+
+export default LoginForm;

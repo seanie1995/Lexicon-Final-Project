@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Search, User, ShoppingBag } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Search, User, ShoppingBag, LogOut, Loader2 } from "lucide-react";
 
 const navLinks = [
   { label: "Catalog", href: "/" },
@@ -13,6 +14,20 @@ const navLinks = [
 
 const Header = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      router.push("/login");
+    } catch {
+      console.error("Logout failed");
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   return (
     <nav className="fixed top-0 w-full z-50 rounded-none bg-[#fff9eb]/85 backdrop-blur-md">
@@ -52,6 +67,21 @@ const Header = () => {
 
           <User className="w-5 h-5 cursor-pointer" />
           <ShoppingBag className="w-5 h-5 cursor-pointer" />
+
+          <button
+            type="button"
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+            className="flex items-center gap-1 text-primary hover:text-on-primary hover:bg-primary px-3 py-1.5 transition-colors duration-300 disabled:opacity-50"
+            title="Logout"
+          >
+            {isLoggingOut ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <LogOut className="w-5 h-5" />
+            )}
+            <span className="hidden xl:inline text-sm font-label">Logout</span>
+          </button>
         </div>
       </div>
     </nav>

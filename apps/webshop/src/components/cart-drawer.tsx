@@ -45,7 +45,7 @@ const CartDrawer = () => {
                   <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center">
                     <ShoppingBag className="w-8 h-8 text-secondary/30" />
                   </div>
-                  <p className="font-body text-secondary italic">Your archive is currently empty.</p>
+                  <p className="font-body text-secondary italic">Your cart is currently empty.</p>
                   <button
                     onClick={() => setIsCartOpen(false)}
                     className="font-label text-sm uppercase tracking-widest text-primary hover:underline"

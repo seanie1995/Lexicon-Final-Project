@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#ffffff",
+              "inverse-surface": "#333027",
+              "secondary-container": "#fedcbe",
+              "surface-dim": "#dfdacc",
+              "tertiary": "#2a2a2a",
+              "secondary": "#725a42",
+              "secondary-fixed": "#fedcbe",
+              "inverse-on-surface": "#f6f0e2",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#eee8da",
+              "surface-variant": "#e8e2d4",
+              "primary-fixed": "#ffdad8",
+              "surface": "#fff9eb",
+              "surface-container-low": "#f9f3e5",
+              "primary-container": "#6b2d2d",
+              "tertiary-container": "#414040",
+              "on-error-container": "#93000a",
+              "primary": "#4f1819",
+              "on-surface": "#1d1c13",
+              "on-primary-fixed-variant": "#733333",
+              "on-primary-container": "#eb9593",
+              "on-surface-variant": "#534342",
+              "background": "#fff9eb",
+              "on-secondary-fixed-variant": "#59422c",
+              "on-tertiary-container": "#aeacab",
+              "outline-variant": "#d8c1c0",
+              "inverse-primary": "#ffb3b0",
+              "secondary-fixed-dim": "#e1c1a4",
+              "error": "#ba1a1a",
+              "on-secondary-container": "#796048",
+              "surface-tint": "#904a49",
+              "on-tertiary-fixed-variant": "#474746",
+              "on-secondary-fixed": "#291806",
+              "on-secondary": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-container": "#f3eddf",
+              "primary-fixed-dim": "#ffb3b0",
+              "tertiary-fixed": "#e5e2e1",
+              "surface-container-highest": "#e8e2d4",
+              "on-tertiary-fixed": "#1c1b1b",
+              "on-primary": "#ffffff",
+              "outline": "#867372",
+              "on-primary-fixed": "#3b080b",
+              "on-background": "#1d1c13",
+              "on-error": "#ffffff",
+              "surface-bright": "#fff9eb",
+              "tertiary-fixed-dim": "#c8c6c5"
+            },
+            fontFamily: {
+              "headline": ["Newsreader"],
+              "body": ["Noto Serif"],
+              "label": ["Public Sans"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .serif-italic { font-style: italic; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container">
+<!-- Shared Navigation -->
+<header class="sticky top-0 z-50 bg-surface/85 backdrop-blur-md border-b border-outline-variant/15 px-6 lg:px-20 py-4 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="size-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519ZM37.5563 18.7877C36.3176 19.3925 34.8502 19.8839 33.2571 20.2642C30.5836 20.9025 27.3973 21.2655 24 21.2655C20.6027 21.2655 17.4164 20.9025 14.7429 20.2642C13.1498 19.8839 11.6824 19.3925 10.4436 18.7877V34.1275C10.4515 34.1545 10.5427 34.4867 11.379 35.027C12.298 35.6207 13.7492 36.2054 15.6717 36.6644C18.0007 37.2205 20.8712 37.5564 24 37.5564C27.1288 37.5564 29.9993 37.2205 32.3283 36.6644C34.2508 36.2054 35.702 35.6207 36.621 35.027C37.4573 34.4867 37.5485 34.1546 37.5563 34.1275V18.7877ZM41.5563 13.8546V34.1455C41.5563 36.1078 40.158 37.5042 38.7915 38.3869C37.3498 39.3182 35.4192 40.0389 33.2571 40.5551C30.5836 41.1934 27.3973 41.5564 24 41.5564C20.6027 41.5564 17.4164 41.1934 14.7429 40.5551C12.5808 40.0389 10.6502 39.3182 9.20848 38.3869C7.84205 37.5042 6.44365 36.1078 6.44365 34.1455L6.44365 13.8546C6.44365 12.2684 7.37223 11.0454 8.39581 10.2036C9.43325 9.3505 10.8137 8.67141 12.343 8.13948C15.4203 7.06909 19.5418 6.44366 24 6.44366C28.4582 6.44366 32.5797 7.06909 35.657 8.13948C37.1863 8.67141 38.5667 9.3505 39.6042 10.2036C40.6278 11.0454 41.5563 12.2684 41.5563 13.8546Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-on-surface font-headline text-2xl font-bold tracking-tight">The Digital Archivist</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-label text-sm uppercase tracking-widest text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Shop</a>
+<a class="hover:text-primary transition-colors font-bold border-b border-primary" href="#">Rarities</a>
+<a class="hover:text-primary transition-colors" href="#">Sell</a>
+<a class="hover:text-primary transition-colors" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex border-b border-outline-variant py-1">
+<span class="material-symbols-outlined text-secondary text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-label placeholder:text-on-surface-variant/50 w-48" placeholder="Search archive..." type="text"/>
+</div>
+<button class="text-on-surface hover:text-primary">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="text-on-surface hover:text-primary">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="bg-surface relative overflow-hidden px-6 lg:px-20 py-24 flex flex-col lg:flex-row gap-16 items-center">
+<div class="flex-1 space-y-8 z-10 max-w-2xl">
+<div class="space-y-4">
+<p class="font-label text-xs uppercase tracking-[0.3em] text-secondary">First Edition Highlight</p>
+<h1 class="font-headline text-5xl lg:text-7xl font-black text-on-surface leading-[1.1] tracking-tight">
+                        Preserving the <span class="italic serif-italic font-normal">Soul</span> of the Written Word
+                    </h1>
+<p class="text-on-surface-variant text-lg lg:text-xl leading-relaxed max-w-lg">
+                        Step into a curated digital vault where rare first editions and centuries-old manuscripts find a second life. Each volume is a piece of history, waiting to be rediscovered.
+                    </p>
+</div>
+<div class="flex flex-wrap gap-6 pt-4">
+<button class="bg-primary hover:bg-primary-container text-on-primary font-label uppercase tracking-widest text-xs px-10 py-5 transition-all">
+                        Explore the Archive
+                    </button>
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant font-label uppercase tracking-widest text-xs px-10 py-5 transition-all">
+                        Request Appraisal
+                    </button>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="aspect-[4/5] w-full max-w-md ml-auto bg-surface-container-low p-8 border border-outline-variant/10 shadow-2xl relative">
+<img alt="Rare Manuscript" class="w-full h-full object-cover grayscale-[20%] sepia-[10%]" data-alt="close-up of an aged leather-bound book with intricate gold leaf stamping on the cover, soft natural light on parchment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM2SQIHyfsXzhrP3ZdGGqGlbS7B7Enz1yTvXBu9qdAMj-1m8CpxF4M7belMmHY5CXgQJrU702_BPpS--yFElKPQ7tvPFyKiRNhJCuriQvSxbL353bam2j6Ewf0SQkqOqPMFltupKL3-1trvu0gVH6jk0jVgfkY17XqWX2buo4xrkEwKZzMxL9IQTcq4jaDG-1S_HM_7rl9nWbswVJLRXqpnQ4MqQsorHKBhEWKwYkCarAO4YLg54PV2oZkvc5bM9mmTaCw-TF25dYh"/>
+<!-- Marginal Note Style Overlay -->
+<div class="absolute -bottom-10 -left-12 bg-surface-container-lowest p-6 max-w-xs shadow-xl hidden md:block">
+<div class="border-l-2 border-primary pl-4">
+<p class="font-body italic text-on-surface leading-relaxed text-sm">
+                                "A truly great book should be read in youth, again in maturity and once more in old age."
+                            </p>
+<p class="font-label text-[10px] uppercase tracking-widest text-secondary mt-3">— Robertson Davies</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Rarities (Scrolling Row) -->
+<section class="bg-surface-container-low py-24 overflow-hidden">
+<div class="px-6 lg:px-20 mb-12 flex justify-between items-end">
+<div class="space-y-2">
+<p class="font-label text-xs uppercase tracking-[0.3em] text-secondary">The Collection</p>
+<h2 class="font-headline text-4xl font-bold">Featured Rarities</h2>
+</div>
+<a class="font-label text-xs uppercase tracking-widest text-primary border-b border-primary pb-1" href="#">View Full Catalog</a>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-10 px-6 lg:px-20 pb-10">
+<!-- Book Card 1 -->
+<div class="min-w-[300px] group cursor-pointer">
+<div class="aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="Antique Book Collection" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="vertical shot of a stack of antique books with worn leather spines and weathered gold lettering in a library setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjSf9gHtdUc5NsS43dlYn7hYiwPwEhvsI2kcR7OWm7Ka8fqe11Udu7qJaAi-5wKWuYrWKsPx-SE0v6_IHIx07ClWaNoG9oYVuXbUNrOmIQkAkRkMsTIZJdUcMCWObvwNJdInhCjqzq5MuF9z-oQxKFA6C48YhZgAwh9Lqr6rcFUVwYSVjU8VAP9FskH04gBxpxqSp3vmzYa0iu4rydRkOJsESpiQbqsRuEgXWOpL3ts-ubpsZ_8c2u73y7TUrF74XF7MNvQeboafNN"/>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">C. 1851 • First Edition</p>
+<h3 class="font-headline text-xl font-bold text-on-surface">Moby Dick; or, The Whale</h3>
+<p class="font-body text-secondary mt-2">$18,450.00</p>
+</div>
+<!-- Book Card 2 -->
+<div class="min-w-[300px] group cursor-pointer">
+<div class="aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="Botanical Manuscript" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="aged parchment paper with elegant handwritten ink calligraphy and botanical illustrations, warm vintage lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmgKhZYM4QeuAtMbapUR0O4-gxRWIRHpgB-swGefXTqlwWG8ZrCqvqqrzs_jBslMRSv5gNV-_TovH8SBUJTujMEQPvIXsaZ1_mHJOTvXK_UtHbUpCAJSg6DVQKRCyHiRRVuEggpPWsvb1KmS7-50ngPJ1PSF_i8EHzAfj9JAMb0ecb-2eFUSmimhZ6SK3-mf0gTi1t9XxR0ZhoF1_AhYf7GAz1hJ48UfSSjMZwr3QLMrPkGqKnfttkduyrFcDTXbsie7Ap2U-eq-Jp"/>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">C. 1792 • Manuscript</p>
+<h3 class="font-headline text-xl font-bold text-on-surface">Botanical Flora of the Alps</h3>
+<p class="font-body text-secondary mt-2">$4,200.00</p>
+</div>
+<!-- Book Card 3 -->
+<div class="min-w-[300px] group cursor-pointer">
+<div class="aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="Leather bound book" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a close-up of a dark leather-bound book spine with decorative ribs and faded gold text on a dark wooden shelf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFCt_Chg-k-SpIAz4_3E6t_1O8fR19eZpZH5XGVkNEazinva8IdAMMcYCrIIU-IMJsU9tqYDnGeCgiUaGNVjxVIaEW2TG6LSxVcGW6JzH4quuJWlFatLuVNrqrYv1Ju4J9Gd_Q20r658JvKGUZiltzXEJ8Ib0pIiErHGRrQbQ9pTeofeRhnFKESw8RGht1mt2-Ha5QxE3VFXUYIS_dQ9EpYixAv0Evz37BUKGnPPrNTmIYzemXtvvP2jMq291cDB7tE73t7gtY4Aab"/>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">C. 1922 • Signed</p>
+<h3 class="font-headline text-xl font-bold text-on-surface">Ulysses</h3>
+<p class="font-body text-secondary mt-2">$22,000.00</p>
+</div>
+<!-- Book Card 4 -->
+<div class="min-w-[300px] group cursor-pointer">
+<div class="aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="Open vintage book" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="an open old book with yellowed pages lying on a rustic wooden table with a soft focus library background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsAJFQQpkxWd-S-wKi2_ucJartKcH_KHZL5HIyC-bq2r-NH_UF0hYNWZvPK_g7APhdXCSdLa3bja3GCJn4laJMb6VdQFeUNI6mShChppWsE1wesxW3mHFm1xw139wIyOnf_gvbPCJT4ySncxNznLWzDhcoc-jTJEYcbhk2-mX4EVvykkiIuWzQcI7EnLaso0rLTfbvgreFi2gKEEc_eSxKSeW6VfPIB99HRiNPCZvF7b8RfXSa01tUUs59avyB4L2kXaEvgO3KLGiu"/>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">C. 1890 • Illustrated</p>
+<h3 class="font-headline text-xl font-bold text-on-surface">Grimm's Fairy Tales</h3>
+<p class="font-body text-secondary mt-2">$1,850.00</p>
+</div>
+</div>
+</section>
+<!-- Categories / Editorial Sections -->
+<section class="bg-surface py-24 px-6 lg:px-20">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Large Editorial Block -->
+<div class="lg:col-span-2 relative group overflow-hidden">
+<div class="aspect-[16/9] w-full bg-secondary overflow-hidden">
+<img alt="Classic Library" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" data-alt="wide shot of a historic mahogany wood library with floor-to-ceiling bookshelves and a rolling wooden ladder, warm atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQx2RPr_BgFWj4GVC5cxcgZcewE9fii9vNvwR5rzRLL416PRxbodg6Tz5CxugzyHAQrQ-n2wJJkavIc6a-dOBVnvkpdr3UqqSItTnWs5TNZxaMbc6f3xtov6LC0tt-DSf0qCHP57_LyNgjuV7qbg-uThr7doDK61i20HF1Pw2PB_zMFQ8hQKYaGVTVebyVecrFWVyH0vNuqpUVuh119i_jsgVtA9Q89SEPuXb_l8_2Uz5BUWAIrgAX7nohR-EM4QQ9BssbADJFIO-z"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-12">
+<p class="font-label text-xs uppercase tracking-[0.3em] text-on-primary/70 mb-2">Curated Category</p>
+<h3 class="font-headline text-4xl font-bold text-on-primary mb-6">Classic Literature</h3>
+<a class="text-on-primary font-label text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
+                            Browse the Collection <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<!-- Vertical Block -->
+<div class="bg-surface-container-high p-12 flex flex-col justify-between border border-outline-variant/10">
+<div class="space-y-6">
+<h3 class="font-headline text-3xl font-bold text-on-surface">Leather-bound Volumes</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                            Discover the tactile luxury of hand-stitched leather bindings from the golden age of publishing.
+                        </p>
+</div>
+<div class="pt-12">
+<div class="aspect-square bg-surface-container-lowest mb-8">
+<img alt="Leather Bound detail" class="w-full h-full object-cover grayscale-[30%]" data-alt="close-up of several aged book spines in various shades of brown and tan leather, stacked horizontally on a rustic surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7LmOBJvOIR-jKYo0FP2MwFH4VyoNhPdpQOrsNGotXMRkPqfrf3VpHWpDWobHcysRQeORNsgCAUyBvG0lSj_AP2ipJZZJZBZ28XWPf1R5RmXF-h7TqkXsjPU1DVacFxVvodyFEEuJT8B-BJrduL01iYWSfJr4_CRs-FEvAb6F5LQxBbRVSzsza5t4CRImc2BrPHf_W3znYxC6zBvCANNhzkPtuyJ2ItNpAOSoIstusXOWTzf49tpAOHTVEk1t25S_UIq-kwiLXwbHz"/>
+</div>
+<a class="font-label text-xs uppercase tracking-widest text-primary border-b border-primary pb-1" href="#">Shop Leather-bound</a>
+</div>
+</div>
+<!-- Margin Note Callout -->
+<div class="bg-surface-container-lowest p-12 border border-outline-variant/10 lg:mt-[-4rem] shadow-xl z-10 flex flex-col justify-center">
+<div class="border-l-4 border-primary pl-8 space-y-6">
+<h4 class="font-headline text-2xl italic serif-italic">"The archive is not a graveyard of books, but a sanctuary of human thought."</h4>
+<p class="text-on-surface-variant text-sm leading-loose">
+                            Our team of preservationists meticulously digitizes and catalogs every volume to ensure that even the rarest editions are accessible to scholars and bibliophiles alike. We believe that physical history deserves a digital legacy.
+                        </p>
+<button class="font-label text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">Our Preservation Process</button>
+</div>
+</div>
+<!-- More Categories -->
+<div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-12">
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container-high mb-6 overflow-hidden">
+<img alt="Poetry category" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="a vintage fountain pen resting on an open journal with flowing script, soft morning light hitting the ink and paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg5wx04jwrwuBloxURW5fJD8qwpjHchxIjFbWpO_R9CEclQsZ9fZrs4QtaPhG6L0vA4mI_w2QgM5ItLsKbYtyH7e-DcIxf9xUWID_CCJE-MtAiKku0OZ9RVg7Z7TXbAlIVDPAoikTh99H2oc0vwlgZYNf_jldyB3-gDiHDQbL29LjKIpll7xKrOshSrufmEoxDIVWkeI7sT8lhLJDHopBJzy3H-gItobDvFO5r2LiudkDouvHiBnj6rpkFHFFD_IKwBRbf8QXlI_dL"/>
+</div>
+<h3 class="font-headline text-2xl font-bold">Poetry &amp; Verse</h3>
+<p class="text-on-surface-variant text-sm mt-2">Signed first editions of 19th-century masters.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container-high mb-6 overflow-hidden">
+<img alt="History category" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="atmospheric library with rows of books receding into shadows, lit by warm desk lamps, classical architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCaL1idVZjinxFaGJDkpBsFOr9r2wf2dS3NbUhga0EmEErjdaw_bmcrd2bSENi_bixficd8pQEsXUCztkLM3Z5sZdtIlONiwVsjMxy2PrQ5hKt2e1OtVuByLpMtvG5sl7KPeSbPCPliI5JJ71W1HmqmsBf6u8nze05fu8KbLjLSUUTA8NCPSNv9biabfiG3-FQTqOhvHU9om8TbDFcH0q8JB_kdm0M8QOI0rA1aoIvwTVHDNF4w8U_-DPsY35vT-h5pBFZu6TCelYL"/>
+</div>
+<h3 class="font-headline text-2xl font-bold">Historical Records</h3>
+<p class="text-on-surface-variant text-sm mt-2">Original cartography and census documents.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- New Arrivals List (Vertical Editorial) -->
+<section class="bg-surface-container-lowest py-24 px-6 lg:px-20 border-t border-outline-variant/10">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-16 space-y-4">
+<p class="font-label text-xs uppercase tracking-[0.4em] text-secondary">Just Cataloged</p>
+<h2 class="font-headline text-5xl font-bold">New Arrivals</h2>
+</div>
+<div class="space-y-20">
+<!-- Item 1 -->
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="w-full md:w-1/3 aspect-[3/4] bg-surface-container-low">
+<img alt="Rare Red Book" class="w-full h-full object-cover" data-alt="minimalist overhead shot of an old red book lying on a neutral surface with clean sharp shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCagjQL-XTGTT55RnLKdtCrHMTbQ0JVguWcmK420xCnu34UiwErgpCArJcMPekhBkxpVZ95yARKjRwvPC7K7RYzw1jsj8qzO0XxbQkAVTj_e7RC4nHECYgDrh_H4XhufS7Ztnqd94Oo3MZWU9FfQRGlEgoKVdSiWIwfmzzp8MNfm0ZTNSyd8fkQrD0e-hWiRNCBctIM7Sh7NEtQhMncG31UrxLXwFkvHpHnC5Br4lS5icDLEe4GgXOW7NQLzSKhqyDti_wExRuBjrIm"/>
+</div>
+<div class="flex-1 space-y-4">
+<p class="font-label text-[10px] uppercase tracking-widest text-primary font-bold">Reference #AR-9021</p>
+<h3 class="font-headline text-3xl font-bold">A Christmas Carol (1843)</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                                A remarkably preserved first edition, first issue with the "Stave I" header. Original salmon-colored cloth with gilt-edged pages. Truly a cornerstone of any serious Dickens collection.
+                            </p>
+<div class="pt-4 flex items-center gap-8">
+<span class="font-body text-xl">$12,500</span>
+<button class="font-label text-xs uppercase tracking-widest text-on-surface border border-outline-variant px-6 py-3 hover:bg-on-surface hover:text-white transition-all">Acquire Piece</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+<div class="w-full md:w-1/3 aspect-[3/4] bg-surface-container-low">
+<img alt="Occult History Book" class="w-full h-full object-cover" data-alt="a dark leather book resting on a wooden table next to a small candle flame in a dark room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBru646PKzofowftBpaikkCEqnhwEtJOZqImOdX4q2pLf8NWRvimb_j-DzTKJkoBzQJBdav0Tk31yGDF2HR0O7eqw8ThhkpDWPaI_RxsgHXBB8dbQWFNDw8fiJMDK_jB9u2H_2odPF3m0sj_oVVToFLRuTL_XmoRG5weEogyZX1X8FJv_jPHCb92peokWWIScSM_dQAqgkH65qKL-y2SuhoZO1p6Fo2W16UyuTiKxgapI75oPsXE0Wz3k4_E8V8RLkDX0D4jSzvpCfT"/>
+</div>
+<div class="flex-1 space-y-4">
+<p class="font-label text-[10px] uppercase tracking-widest text-primary font-bold">Reference #AR-7734</p>
+<h3 class="font-headline text-3xl font-bold">The Complete Herbalist (1864)</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                                Featuring over 400 hand-colored engravings of rare botanicals. This volume was previously held in the private library of the Royal Botanic Society.
+                            </p>
+<div class="pt-4 flex items-center gap-8">
+<span class="font-body text-xl">$3,150</span>
+<button class="font-label text-xs uppercase tracking-widest text-on-surface border border-outline-variant px-6 py-3 hover:bg-on-surface hover:text-white transition-all">Acquire Piece</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-24 text-center">
+<button class="bg-secondary text-on-secondary px-12 py-5 font-label uppercase tracking-widest text-xs hover:bg-on-secondary-fixed-variant transition-colors">
+                        View All New Additions
+                    </button>
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="bg-primary-container py-24 px-6 lg:px-20 text-on-primary">
+<div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+<div class="flex-1 space-y-6">
+<h2 class="font-headline text-4xl font-bold leading-tight">Join the Inner Circle of Bibliophiles</h2>
+<p class="text-on-primary-container text-lg">Receive exclusive previews of newly acquired rarities and scholarly essays on preservation before they reach the general archive.</p>
+</div>
+<div class="flex-1 w-full">
+<form class="space-y-6">
+<div class="relative">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-primary-container mb-2 block">Email Address</label>
+<input class="w-full bg-transparent border-b border-on-primary-container focus:border-on-primary focus:ring-0 px-0 py-3 text-on-primary placeholder:text-on-primary-container/40" placeholder="archivist@library.org" type="email"/>
+</div>
+<button class="w-full bg-surface text-primary font-label uppercase tracking-widest text-xs py-5 hover:bg-primary hover:text-on-primary transition-all">Subscribe to the Ledger</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface text-inverse-on-surface py-20 px-6 lg:px-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-16">
+<div class="md:col-span-1 space-y-6">
+<div class="flex items-center gap-3">
+<div class="text-on-primary-container">
+<svg class="size-6" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.1288 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519ZM37.5563 18.7877C36.3176 19.3925 34.8502 19.8839 33.2571 20.2642C30.5836 20.9025 27.3973 21.2655 24 21.2655C20.6027 21.2655 17.4164 20.9025 14.7429 20.2642C13.1498 19.8839 11.6824 19.3925 10.4436 18.7877V34.1275C10.4515 34.1545 10.5427 34.4867 11.379 35.027C12.298 35.6207 13.7492 36.2054 15.6717 36.6644C18.0007 37.2205 20.8712 37.5564 24 37.5564C27.1288 37.5564 29.9993 37.2205 32.3283 36.6644C34.2508 36.2054 35.702 35.6207 36.621 35.027C37.4573 34.4867 37.5485 34.1546 37.5563 34.1275V18.7877ZM41.5563 13.8546V34.1455C41.5563 36.1078 40.158 37.5042 38.7915 38.3869C37.3498 39.3182 35.4192 40.0389 33.2571 40.5551C30.5836 41.1934 27.3973 41.5564 24 41.5564C20.6027 41.5564 17.4164 41.1934 14.7429 40.5551C12.5808 40.0389 10.6502 39.3182 9.20848 38.3869C7.84205 37.5042 6.44365 36.1078 6.44365 34.1455L6.44365 13.8546C6.44365 12.2684 7.37223 11.0454 8.39581 10.2036C9.43325 9.3505 10.8137 8.67141 12.343 8.13948C15.4203 7.06909 19.5418 6.44366 24 6.44366C28.4582 6.44366 32.5797 7.06909 35.657 8.13948C37.1863 8.67141 38.5667 9.3505 39.6042 10.2036C40.6278 11.0454 41.5563 12.2684 41.5563 13.8546Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="font-headline text-xl font-bold tracking-tight">The Digital Archivist</h2>
+</div>
+<p class="text-xs text-on-tertiary-container leading-loose">A sanctuary for the preservation and collection of rare literary heritage. Established 1902. Digitized 2024.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-label text-xs uppercase tracking-widest text-on-tertiary">Catalog</h4>
+<ul class="space-y-2 text-xs text-on-tertiary-container font-label uppercase tracking-widest">
+<li><a class="hover:text-on-tertiary" href="#">First Editions</a></li>
+<li><a class="hover:text-on-tertiary" href="#">Signed Copies</a></li>
+<li><a class="hover:text-on-tertiary" href="#">Manuscripts</a></li>
+<li><a class="hover:text-on-tertiary" href="#">New Arrivals</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label text-xs uppercase tracking-widest text-on-tertiary">Journal</h4>
+<ul class="space-y-2 text-xs text-on-tertiary-container font-label uppercase tracking-widest">
+<li><a class="hover:text-on-tertiary" href="#">Preservation Techniques</a></li>
+<li><a class="hover:text-on-tertiary" href="#">Collector Spotlights</a></li>
+<li><a class="hover:text-on-tertiary" href="#">Historical Essays</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label text-xs uppercase tracking-widest text-on-tertiary">Contact</h4>
+<p class="text-xs text-on-tertiary-container leading-relaxed">
+                    124 Archivist’s Lane<br/>
+                    Oxford, OX1 2JD<br/>
+                    curator@digitalarchivist.com
+                </p>
+<div class="flex gap-4 pt-2">
+<span class="material-symbols-outlined text-sm">language</span>
+<span class="material-symbols-outlined text-sm">auto_stories</span>
+<span class="material-symbols-outlined text-sm">history_edu</span>
+</div>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-on-tertiary-container/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+<p class="text-[10px] font-label uppercase tracking-widest text-on-tertiary-container">© 2024 The Digital Archivist. All Rights Reserved.</p>
+<div class="flex gap-8 text-[10px] font-label uppercase tracking-widest text-on-tertiary-container">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Sale</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -9,9 +9,9 @@ export interface Product {
 	shippingInformation: string;
 	availabilityStatus: string;
 	category: Category;
-	images: string[];
+	images: any;
 	thumbnail: string;
-	tags: string[];
+	tags: any;
 	condition: Condition;
 	era: string;
 	genre: string;

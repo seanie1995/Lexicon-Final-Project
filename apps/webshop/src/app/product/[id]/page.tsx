@@ -8,6 +8,8 @@ interface PageProps {
 	params: Promise<{ id: string }>;
 }
 
+import AddToCartButton from "@/components/add-to-cart-button";
+
 export default async function ProductPage({ params }: PageProps) {
 	const { id } = await params;
 	const product = await getProductById(Number(id));
@@ -89,13 +91,8 @@ export default async function ProductPage({ params }: PageProps) {
 							</div>
 						</div>
 
-						<div className="pt-6 space-y-4">
-							<button
-								type="button"
-								className="w-full py-5 bg-primary text-on-primary font-label font-bold tracking-widest hover:bg-primary-container transition-all duration-300 cursor-pointer"
-							>
-								ADD TO CART
-							</button>
+						<div className="pt-6">
+							<AddToCartButton product={product} />
 						</div>
 
 					</div>

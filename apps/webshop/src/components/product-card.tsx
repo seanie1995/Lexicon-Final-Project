@@ -7,7 +7,7 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 	const image = product.thumbnail || images[0] || "";
 
 	return (
-		<Link href={`/product/${product.id}`} className="group cursor-pointer">
+		<Link href={`/product/${product.id}`} className="group cursor-pointer block relative">
 			<div className="aspect-3/4 overflow-hidden bg-surface-container-low mb-6 relative">
 				<Image
 					className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

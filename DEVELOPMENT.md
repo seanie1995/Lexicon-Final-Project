@@ -108,4 +108,4 @@ Two special keys are needed to get supabase auth to function. These are:
 NEXT_PUBLIC_SUPABASE_URL=[key]
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=[key]
 
-Create a .env.local file in the apps/webshop directory. You will find the keys in the Supabase project dasboard that you access via the browser.
+Create a .env.local file in the apps/webshop directory. You will find the keys in the Supabase project dasboard that you access via the browser. These keys are called Project URL and Publishable Key

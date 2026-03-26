@@ -74,7 +74,7 @@ const LoginFormContent = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="bg-surface-container-lowest p-8 md:p-12 border border-outline-variant">
+      <div className="bg-surface-container-lowest p-8 md:p-12 border border-outline-variant/10 shadow-2xl">
         <h1 className="text-2xl font-serif text-primary mb-2">Welcome Back</h1>
         <p className="text-on-surface-variant font-body text-sm mb-8">
           Sign in to your account to continue.
@@ -175,7 +175,7 @@ const LoginForm = () => {
   return (
     <Suspense
       fallback={
-        <div className="w-full max-w-md mx-auto p-8 bg-surface-container-lowest border border-outline-variant">
+        <div className="w-full max-w-md mx-auto p-8 bg-surface-container-lowest border border-outline-variant/10 shadow-2xl">
           Loading...
         </div>
       }

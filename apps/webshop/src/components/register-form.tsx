@@ -82,7 +82,7 @@ const RegisterForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="bg-surface-container-lowest p-8 md:p-12 border border-outline/20">
+      <div className="bg-surface-container-lowest p-8 md:p-12 border border-outline-variant/10 shadow-2xl">
         <h1 className="text-2xl font-serif text-primary mb-2">
           Create Account
         </h1>

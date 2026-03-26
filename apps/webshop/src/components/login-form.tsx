@@ -12,7 +12,8 @@ const LoginFormContent = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [showRegisteredMessage, setShowRegisteredMessage] = useState(justRegistered);
+  const [showRegisteredMessage, setShowRegisteredMessage] =
+    useState(justRegistered);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -81,8 +82,9 @@ const LoginFormContent = () => {
 
         {showRegisteredMessage && (
           <div className="mb-6 p-3 bg-primary-fixed text-on-primary-fixed-variant text-sm font-label flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 flex-shrink-0" />
-            Your account has been created. Please verify your email before signing in.
+            <CheckCircle className="h-4 w-4 shrink-0" />
+            Your account has been created. Please verify your email before
+            signing in.
           </div>
         )}
 
@@ -171,7 +173,13 @@ const LoginFormContent = () => {
 
 const LoginForm = () => {
   return (
-    <Suspense fallback={<div className="w-full max-w-md mx-auto p-8 bg-surface-container-lowest border border-outline-variant">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="w-full max-w-md mx-auto p-8 bg-surface-container-lowest border border-outline-variant">
+          Loading...
+        </div>
+      }
+    >
       <LoginFormContent />
     </Suspense>
   );

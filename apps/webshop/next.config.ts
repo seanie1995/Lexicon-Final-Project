@@ -7,7 +7,11 @@ const nextConfig: NextConfig = {
 			{
 				protocol: "https",
 				hostname: "www.gutenberg.org",
-			}
+			},
+			{
+				protocol: "https",
+				hostname: "lh3.googleusercontent.com",
+			},
 		],
 	},
 };

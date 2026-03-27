@@ -2,6 +2,7 @@ import { ArrowRight, CheckCircle, MapPin } from "lucide-react";
 import Link from "next/link";
 import Stripe from "stripe";
 import { formatPrice } from "@/lib/formatters";
+import { ClearCartOnMount } from "./clear-cart";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -28,6 +29,7 @@ export default async function SuccessPage({
 
 	return (
 		<div className="min-h-screen pt-32 pb-20 px-8 flex flex-col items-center justify-center bg-background">
+			<ClearCartOnMount />
 			<div className="max-w-lg w-full text-center space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
 				<div className="mx-auto w-20 h-20 rounded-full bg-green-50 flex items-center justify-center">
 					<CheckCircle className="w-10 h-10 text-green-600" />

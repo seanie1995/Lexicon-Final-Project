@@ -85,6 +85,12 @@ const Header = () => {
 
           {/* Search input — now a separate client component */}
           <div className="flex items-center gap-6 text-primary">
+<<<<<<< HEAD
+=======
+
+          {/* Search input — now a separate client component */}
+          <SearchInput />
+>>>>>>> 25b2d36 (Added search client with URL params + server filtering)
 
           {/* Search input — now a separate client component */}
           <SearchInput />

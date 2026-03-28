@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Search, User, ShoppingBag, LogOut, Loader2 } from "lucide-react";
 import { useCart } from "@/lib/contexts/cart-context";
 import CartDrawer from "./cart-drawer";
+import SearchInput from "./search-input";
 
 const navLinks = [
   { label: "Catalog", href: "/catalog" },
@@ -58,15 +59,11 @@ const Header = () => {
             })}
           </div>
 
+          {/* Search input — now a separate client component */}
           <div className="flex items-center gap-6 text-primary">
-            <div className="hidden lg:flex items-center bg-surface-container-low px-4 py-2">
-              <Search className="w-4 h-4 mr-2" />
-              <input
-                className="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48"
-                placeholder="Search the archives..."
-                type="text"
-              />
-            </div>
+
+          {/* Search input — now a separate client component */}
+          <SearchInput />
 
             <User className="w-5 h-5 cursor-pointer hover:text-primary transition-colors" />
             <div
@@ -100,6 +97,7 @@ const Header = () => {
       </nav>
       <CartDrawer />
     </>
+    
   );
 };
 

@@ -98,7 +98,7 @@ async function handleCheckoutSessionCompleted(
 			items: {
 				create:
 					expandedSession.line_items?.data.map((item) => {
-						const productIdStr = item.price?.metadata?.productId;
+						const productIdStr = item.metadata?.productId;
 						let productId: number | null = null;
 						if (productIdStr) {
 							const parsed = parseInt(productIdStr, 10);

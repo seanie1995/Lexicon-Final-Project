@@ -51,7 +51,7 @@ export async function createOrderFromStripeSession(
 			items: {
 				create:
 					session.line_items?.data.map((item) => {
-						const productIdStr = item.price?.metadata?.productId;
+						const productIdStr = item.metadata?.productId;
 						let productId: number | null = null;
 						if (productIdStr) {
 							const parsed = parseInt(productIdStr, 10);

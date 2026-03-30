@@ -38,11 +38,11 @@ export async function POST(request: Request) {
 						...(image && { images: [image] }),
 					},
 					unit_amount: Math.round(item.price * 100),
-					metadata: {
-						productId: item.id.toString(),
-					},
 				},
 				quantity: 1,
+				metadata: {
+					productId: item.id.toString(),
+				},
 			};
 		},
 	);

@@ -42,21 +42,24 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 		[cartItems],
 	);
 
-	const addToCart = useCallback(
-		(product: ProductWithRelations) => {
-			if (!isInCart(product.id)) {
-				setCartItems((prev) => [...prev, product]);
-				setIsCartOpen(true);
+	const addToCart = useCallback((product: ProductWithRelations) => {
+		setCartItems((prev) => {
+			if (prev.some((i) => i.id === product.id)) {
+				return prev;
 			}
-		},
-		[isInCart],
-	);
+			return [...prev, product];
+		});
+		setIsCartOpen(true);
+	}, []);
 
 	const removeFromCart = useCallback(
 		(id: number) => setCartItems((prev) => prev.filter((i) => i.id !== id)),
 		[],
 	);
-	const clearCart = useCallback(() => setCartItems([]), []);
+	const clearCart = useCallback(() => {
+		setCartItems([]);
+		localStorage.setItem("cart", "[]");
+	}, []);
 
 	return (
 		<CartContext.Provider

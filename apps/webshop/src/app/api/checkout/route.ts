@@ -13,6 +13,7 @@ export async function POST(request: Request) {
 	// Map our cart item to sessioncreate params, line by line
 	const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(
 		(item: {
+			id: number;
 			title: string;
 			price: number;
 			thumbnail?: string;
@@ -29,6 +30,9 @@ export async function POST(request: Request) {
 						...(image && { images: [image] }),
 					},
 					unit_amount: Math.round(item.price * 100),
+					metadata: {
+						productId: item.id.toString(),
+					},
 				},
 				quantity: 1,
 			};

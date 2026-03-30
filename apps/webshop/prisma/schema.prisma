@@ -100,7 +100,6 @@ model OrderItem {
   id        String  @id @default(uuid())
   productId Int?
   title     String
-  quantity  Int
   unitPrice Int
   totalPrice Int
   

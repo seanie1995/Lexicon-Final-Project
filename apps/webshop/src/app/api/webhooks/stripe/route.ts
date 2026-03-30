@@ -102,15 +102,11 @@ async function handleCheckoutSessionCompleted(
 								productId = parsed;
 							}
 						}
-						const quantity = item.quantity ?? 1;
-						const unitPrice = Math.round(
-							(item.amount_total ?? 0) / quantity / 100,
-						);
-						const totalPrice = Math.round((item.amount_total ?? 0) / 100);
+						const unitPrice = Math.round((item.amount_total ?? 0) / 100);
+						const totalPrice = unitPrice;
 						return {
 							productId,
 							title: item.description ?? "",
-							quantity,
 							unitPrice,
 							totalPrice,
 						};

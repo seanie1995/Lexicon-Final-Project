@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Search, User, ShoppingBag, LogOut, LogIn, Loader2 } from "lucide-react";
 import { useCart } from "@/lib/contexts/cart-context";
 import CartDrawer from "./cart-drawer";
+import SearchInput from "./search-input";
 import { createClient } from "@supabase-lib/supabase/client";
 
 const navLinks = [
@@ -82,15 +83,11 @@ const Header = () => {
             })}
           </div>
 
+          {/* Search input — now a separate client component */}
           <div className="flex items-center gap-6 text-primary">
-            <div className="hidden lg:flex items-center bg-surface-container-low px-4 py-2">
-              <Search className="w-4 h-4 mr-2" />
-              <input
-                className="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48"
-                placeholder="Search the archives..."
-                type="text"
-              />
-            </div>
+
+          {/* Search input — now a separate client component */}
+          <SearchInput />
 
             {/* User icon + welcome message */}
             <div className="hidden xl:flex items-center gap-2">
@@ -147,6 +144,7 @@ const Header = () => {
       </nav>
       <CartDrawer />
     </>
+    
   );
 };
 

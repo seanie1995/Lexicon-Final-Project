@@ -8,7 +8,10 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 	const image = product.thumbnail || images[0] || "";
 
 	return (
-		<Link href={`/product/${product.id}`} className="group cursor-pointer block relative">
+		<Link
+			href={`/product/${product.id}`}
+			className="group cursor-pointer block relative"
+		>
 			<div className="aspect-3/4 overflow-hidden bg-surface-container-low mb-6 relative">
 				<Image
 					className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -29,10 +32,11 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 					</span>
 				</div>
 				<p className="font-body italic text-secondary">{product.author.name}</p>
-				<div className="flex items-center gap-3 pt-2">
+				<div className="flex items-center gap-2 pt-2 flex-wrap">
 					<span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
 						{new Date(product.year).getFullYear()}
 					</span>
+
 					<span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
 						{product.condition.grade}
 					</span>

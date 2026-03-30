@@ -29,14 +29,23 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 					</span>
 				</div>
 				<p className="font-body italic text-secondary">{product.author.name}</p>
-				<div className="flex items-center gap-3 pt-2">
-					<span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
-						{new Date(product.year).getFullYear()}
-					</span>
-					<span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
-						{product.condition.grade}
-					</span>
-				</div>
+				<div className="flex items-center gap-2 pt-2 flex-wrap">
+    <span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
+        {new Date(product.year).getFullYear()}
+    </span>
+    <span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
+        {product.condition.grade}
+    </span>
+    {/* Tags from database */}
+    {Array.isArray(product.tags) && product.tags.map((tag, index) => (
+        <span
+            key={index}
+            className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary border border-primary/20"
+        >
+            {String(tag)}
+        </span>
+    ))}
+</div>
 			</div>
 		</Link>
 	);

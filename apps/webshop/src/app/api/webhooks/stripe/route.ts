@@ -72,6 +72,9 @@ async function handleCheckoutSessionCompleted(
 	const totalAmount = expandedSession.amount_total ?? 0;
 	const currency = expandedSession.currency ?? "sek";
 
+	// Extract userId from session metadata (if present)
+	const userId = expandedSession.metadata?.userId;
+
 	// Create order with items
 	await prisma.order.create({
 		data: {
@@ -82,6 +85,7 @@ async function handleCheckoutSessionCompleted(
 			currency,
 			status: OrderStatus.PAID,
 			paidAt: new Date(),
+			...(userId && { userId }),
 
 			shippingName: shipping.name ?? "",
 			shippingLine1: shipping.address?.line1 ?? "",

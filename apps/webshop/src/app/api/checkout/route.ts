@@ -1,3 +1,4 @@
+import { createClient } from "@supabase-lib/supabase/server";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -5,6 +6,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(request: Request) {
 	const { items } = await request.json();
+
+	// Get authenticated user (if any)
+	const supabase = await createClient();
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+	const userId = user?.id;
 
 	if (!items || items.length === 0) {
 		return NextResponse.json({ error: "No items in cart" }, { status: 400 });
@@ -50,6 +58,9 @@ export async function POST(request: Request) {
 		},
 		success_url: `${process.env.NEXT_PUBLIC_APP_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
 		cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
+		metadata: {
+			...(userId && { userId }),
+		},
 	});
 
 	return NextResponse.json({ url: session.url, sessionId: session.id });

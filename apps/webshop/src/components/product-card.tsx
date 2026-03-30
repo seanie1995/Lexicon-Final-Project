@@ -8,7 +8,10 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 	const image = product.thumbnail || images[0] || "";
 
 	return (
-		<Link href={`/product/${product.id}`} className="group cursor-pointer block relative">
+		<Link
+			href={`/product/${product.id}`}
+			className="group cursor-pointer block relative"
+		>
 			<div className="aspect-3/4 overflow-hidden bg-surface-container-low mb-6 relative">
 				<Image
 					className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -29,40 +32,15 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 					</span>
 				</div>
 				<p className="font-body italic text-secondary">{product.author.name}</p>
-		{/* 
-    Card metadata — year, condition and a 
-    couple of tags to give the reader a feel 
-    for the book without overwhelming them.
-    Full tag list lives on the detail page.
-*/}
-<div className="flex items-center gap-2 pt-2 flex-wrap">
+				<div className="flex items-center gap-2 pt-2 flex-wrap">
+					<span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
+						{new Date(product.year).getFullYear()}
+					</span>
 
-    {/* Publication year */}
-    <span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
-        {new Date(product.year).getFullYear()}
-    </span>
-
-    {/* Physical condition of this copy */}
-    <span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
-        {product.condition.grade}
-    </span>
-
-    {/* 
-        Show max 2 tags as a preview.
-        Slicing to 2 keeps the card clean —
-        too many tags made it feel cluttered.
-    */}
-    {Array.isArray(product.tags) && 
-        (product.tags as string[]).slice(0, 2).map((tag, index) => (
-            <span
-                key={index}
-                className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary border border-primary/20"
-            >
-                {tag}
-            </span>
-        ))
-    }
-</div>
+					<span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
+						{product.condition.grade}
+					</span>
+				</div>
 			</div>
 		</Link>
 	);

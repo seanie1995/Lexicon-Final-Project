@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, User, ShoppingBag, LogOut, Loader2 } from "lucide-react";
+import { Search, User, ShoppingBag, LogOut, LogIn, Loader2 } from "lucide-react";
 import { useCart } from "@/lib/contexts/cart-context";
 import CartDrawer from "./cart-drawer";
+import { createClient } from "@supabase-lib/supabase/client";
 
 const navLinks = [
   { label: "Catalog", href: "/catalog" },
@@ -19,11 +20,34 @@ const Header = () => {
   const router = useRouter();
   const { cartItems, setIsCartOpen } = useCart();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    // Get the initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUserEmail(session?.user?.email ?? null);
+    });
+
+    // Subscribe to auth state changes (login / logout)
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUserEmail(session?.user?.email ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
       await fetch("/api/auth/logout", { method: "POST" });
+      // Sync the sign-out to the browser client so onAuthStateChange fires
+      // immediately and the header updates without waiting for navigation.
+      const supabase = createClient();
+      await supabase.auth.signOut();
       router.push("/login");
     } catch {
       console.error("Logout failed");
@@ -68,7 +92,18 @@ const Header = () => {
               />
             </div>
 
-            <User className="w-5 h-5 cursor-pointer hover:text-primary transition-colors" />
+            {/* User icon + welcome message */}
+            <div className="hidden xl:flex items-center gap-2">
+              <User className="w-5 h-5" />
+              {userEmail && (
+                <span className="text-sm font-label text-secondary truncate max-w-[180px]" title={userEmail}>
+                  Welcome, {userEmail}
+                </span>
+              )}
+            </div>
+            {/* Show icon-only on smaller screens */}
+            <User className="xl:hidden w-5 h-5 cursor-pointer hover:text-primary transition-colors" />
+
             <div
               className="relative cursor-pointer group"
               onClick={() => setIsCartOpen(true)}
@@ -81,20 +116,32 @@ const Header = () => {
               )}
             </div>
 
-            <button
-              type="button"
-              onClick={handleLogout}
-              disabled={isLoggingOut}
-              className="flex items-center gap-1 px-3 py-1.5 hover:bg-primary hover:text-on-primary transition-colors duration-300 disabled:opacity-50"
-              title="Logout"
-            >
-              {isLoggingOut ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
-              ) : (
-                <LogOut className="w-5 h-5" />
-              )}
-              <span className="hidden xl:inline text-sm font-label">Logout</span>
-            </button>
+            {/* Login / Logout button */}
+            {userEmail ? (
+              <button
+                type="button"
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+                className="flex items-center gap-1 px-3 py-1.5 hover:bg-primary hover:text-on-primary transition-colors duration-300 disabled:opacity-50"
+                title="Logout"
+              >
+                {isLoggingOut ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <LogOut className="w-5 h-5" />
+                )}
+                <span className="hidden xl:inline text-sm font-label">Logout</span>
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center gap-1 px-3 py-1.5 hover:bg-primary hover:text-on-primary transition-colors duration-300"
+                title="Login"
+              >
+                <LogIn className="w-5 h-5" />
+                <span className="hidden xl:inline text-sm font-label">Login</span>
+              </Link>
+            )}
           </div>
         </div>
       </nav>

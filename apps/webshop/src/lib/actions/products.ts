@@ -59,7 +59,10 @@ export async function getProducts(
 		prisma.product.findMany({
 			where,
 			include: productInclude,
-			orderBy: { [sortBy]: sortOrder },
+			orderBy:
+				sortBy === "author"
+					? { author: { name: sortOrder } }
+					: { [sortBy]: sortOrder },
 			skip: (page - 1) * pageSize,
 			take: pageSize,
 		}),

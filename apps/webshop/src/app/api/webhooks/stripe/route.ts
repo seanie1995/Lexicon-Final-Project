@@ -75,6 +75,12 @@ async function handleCheckoutSessionCompleted(
 	// Extract userId from session metadata (if present)
 	const userId = expandedSession.metadata?.userId;
 
+	// Determine order status based on Stripe payment status
+	const isPaid =
+		expandedSession.payment_status === "paid" ||
+		expandedSession.payment_status === "no_payment_required";
+	const orderStatus = isPaid ? OrderStatus.PAID : OrderStatus.PENDING;
+
 	// Create order with items
 	await prisma.order.create({
 		data: {
@@ -83,8 +89,8 @@ async function handleCheckoutSessionCompleted(
 			customerName: customerName ?? undefined,
 			totalAmount: Math.round(totalAmount / 100), // Convert from cents to whole units
 			currency,
-			status: OrderStatus.PAID,
-			paidAt: new Date(),
+			status: orderStatus,
+			paidAt: isPaid ? new Date() : undefined,
 			...(userId && { userId }),
 
 			shippingName: shipping.name ?? "",

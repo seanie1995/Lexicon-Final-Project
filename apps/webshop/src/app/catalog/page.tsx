@@ -1,5 +1,6 @@
 import CatalogFilters from "@/components/catalog-filters";
 import CatalogHero from "@/components/catalog-hero";
+import CatalogSort from "@/components/catalog-sort";
 import ProductCard from "@/components/product-card";
 import { getProducts } from "@/lib/actions/products";
 
@@ -24,7 +25,22 @@ export default async function CatalogPage({
 	const conditionGrades = toArray(sp.condition).filter(Boolean);
 	const era = typeof sp.era === "string" ? sp.era : undefined;
 
-	const { data: products } = await getProducts({ genres, conditionGrades, era });
+	const sortParam = typeof sp.sort === "string" ? sp.sort : "title-asc";
+	const [sortByRaw, sortOrderRaw] = sortParam.split("-");
+	const validSorts = ["title", "price", "year", "author"] as const;
+	type ValidSort = (typeof validSorts)[number];
+	const sortBy: ValidSort = validSorts.includes(sortByRaw as ValidSort)
+		? (sortByRaw as ValidSort)
+		: "title";
+	const sortOrder = sortOrderRaw === "desc" ? "desc" : "asc";
+
+	const { data: products } = await getProducts({
+		genres,
+		conditionGrades,
+		era,
+		sortBy,
+		sortOrder,
+	});
 	const uniqueValues = <T,>(values: T[]) => [...new Set(values)];
 
 	const filterSections = [
@@ -60,7 +76,10 @@ export default async function CatalogPage({
 					}}
 				/>
 				<div className="min-w-0 flex-1">
-					<h1 className="mb-8 font-headline text-3xl">Catalog</h1>
+					<div className="mb-8 flex items-end justify-between">
+						<h1 className="font-headline text-3xl">Catalog</h1>
+						<CatalogSort />
+					</div>
 					<div className="grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
 						{products.map((product) => (
 							<ProductCard key={product.id} product={product} />

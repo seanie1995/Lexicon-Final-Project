@@ -11,7 +11,7 @@ export interface ProductFilters extends PaginationParams {
 	genres?: string[];
 	era?: string;
 	conditionGrades?: string[];
-	sortBy?: "title" | "price" | "year";
+	sortBy?: "title" | "price" | "year" | "author";
 	sortOrder?: "asc" | "desc";
 }
 

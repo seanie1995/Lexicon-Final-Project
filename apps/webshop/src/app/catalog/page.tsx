@@ -1,5 +1,6 @@
 import CatalogFilters from "@/components/catalog-filters";
 import CatalogHero from "@/components/catalog-hero";
+import CatalogPagination from "@/components/catalog-pagination";
 import CatalogSort from "@/components/catalog-sort";
 import ProductCard from "@/components/product-card";
 import { getProducts } from "@/lib/actions/products";
@@ -34,12 +35,16 @@ export default async function CatalogPage({
 		: "title";
 	const sortOrder = sortOrderRaw === "desc" ? "desc" : "asc";
 
-	const { data: products } = await getProducts({
+	const pageParam = typeof sp.page === "string" ? Number.parseInt(sp.page, 10) : 1;
+	const currentPage = Number.isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
+
+	const { data: products, total, pageSize, totalPages } = await getProducts({
 		genres,
 		conditionGrades,
 		era,
 		sortBy,
 		sortOrder,
+		page: currentPage,
 	});
 	const uniqueValues = <T,>(values: T[]) => [...new Set(values)];
 
@@ -85,6 +90,13 @@ export default async function CatalogPage({
 							<ProductCard key={product.id} product={product} />
 						))}
 					</div>
+					{totalPages > 1 && (
+						<p className="mt-12 text-center font-label text-sm text-outline">
+							Showing {(currentPage - 1) * pageSize + 1}&ndash;
+							{Math.min(currentPage * pageSize, total)} of {total} results
+						</p>
+					)}
+					<CatalogPagination currentPage={currentPage} totalPages={totalPages} />
 				</div>
 			</div>
 		</main>

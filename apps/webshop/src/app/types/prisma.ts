@@ -8,6 +8,9 @@ export interface PaginationParams {
 export interface ProductFilters extends PaginationParams {
 	categoryId?: number;
 	search?: string;
+	genres?: string[];
+	era?: string;
+	conditionGrades?: string[];
 	sortBy?: "title" | "price" | "year";
 	sortOrder?: "asc" | "desc";
 }

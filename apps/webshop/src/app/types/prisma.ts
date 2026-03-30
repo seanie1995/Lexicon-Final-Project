@@ -28,3 +28,17 @@ export type ProductWithRelations = Prisma.ProductGetPayload<{
 		publisher: true;
 	};
 }>;
+
+export type OrderWithRelations = Prisma.OrderGetPayload<{
+	include: {
+		items: true;
+	};
+}>;
+
+export type OrderItemWithRelations = Prisma.OrderItemGetPayload<{
+	include: {
+		product: true;
+	};
+}>;
+
+export type OrderStatus = Prisma.OrderStatus;

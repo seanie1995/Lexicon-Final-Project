@@ -1,7 +1,15 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.4.8/schema.json",
 	"files": {
-		"includes": ["**", "!**/docs", "!**/node_modules"]
+		"includes": [
+			"**",
+			"!**/docs",
+			"!**/node_modules",
+			"!**/.next",
+			"!**/.git",
+			"!**/tmp",
+			"!**/globals.css"
+		]
 	},
 	"linter": {
 		"rules": {

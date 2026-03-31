@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeOff, Loader2, CheckCircle } from "lucide-react";
+import { createClient } from "@supabase-lib/supabase/client";
 
 const LoginFormContent = () => {
   const router = useRouter();
@@ -57,6 +58,16 @@ const LoginFormContent = () => {
       if (!response.ok) {
         setError(data.error || "Login failed");
         return;
+      }
+
+      // Sync the session to the browser-side Supabase client so that
+      // onAuthStateChange fires in the header without a page refresh.
+      if (data.session) {
+        const supabase = createClient();
+        await supabase.auth.setSession({
+          access_token: data.session.access_token,
+          refresh_token: data.session.refresh_token,
+        });
       }
 
       router.push("/");

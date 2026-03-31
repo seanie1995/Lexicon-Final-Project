@@ -22,6 +22,9 @@ export async function getProducts(
 		pageSize = 12,
 		categoryId,
 		search,
+		genres,
+		era,
+		conditionGrades,
 		sortBy = "title",
 		sortOrder = "asc",
 	} = filters;
@@ -40,11 +43,26 @@ export async function getProducts(
 		];
 	}
 
+	if (genres?.length) {
+		where.genre = { in: genres };
+	}
+
+	if (era) {
+		where.era = era;
+	}
+
+	if (conditionGrades?.length) {
+		where.condition = { grade: { in: conditionGrades } };
+	}
+
 	const [data, total] = await Promise.all([
 		prisma.product.findMany({
 			where,
 			include: productInclude,
-			orderBy: { [sortBy]: sortOrder },
+			orderBy:
+				sortBy === "author"
+					? { author: { name: sortOrder } }
+					: { [sortBy]: sortOrder },
 			skip: (page - 1) * pageSize,
 			take: pageSize,
 		}),

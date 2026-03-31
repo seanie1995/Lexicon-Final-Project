@@ -8,7 +8,10 @@ export interface PaginationParams {
 export interface ProductFilters extends PaginationParams {
 	categoryId?: number;
 	search?: string;
-	sortBy?: "title" | "price" | "year";
+	genres?: string[];
+	era?: string;
+	conditionGrades?: string[];
+	sortBy?: "title" | "price" | "year" | "author";
 	sortOrder?: "asc" | "desc";
 }
 
@@ -28,3 +31,17 @@ export type ProductWithRelations = Prisma.ProductGetPayload<{
 		publisher: true;
 	};
 }>;
+
+export type OrderWithRelations = Prisma.OrderGetPayload<{
+	include: {
+		items: true;
+	};
+}>;
+
+export type OrderItemWithRelations = Prisma.OrderItemGetPayload<{
+	include: {
+		product: true;
+	};
+}>;
+
+export type OrderStatus = Prisma.OrderStatus;

@@ -109,3 +109,7 @@ NEXT_PUBLIC_SUPABASE_URL=[key]
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=[key]
 
 Create a .env.local file in the apps/webshop directory. You will find the keys in the Supabase project dasboard that you access via the browser. These keys are called Project URL and Publishable Key
+
+## Stripe Webhooks
+
+For testing Stripe webhooks locally, use the official Stripe CLI to forward events to your development server. See the detailed guide in [`docs/STRIPE.md`](docs/STRIPE.md) for installation, authentication, and usage instructions.

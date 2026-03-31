@@ -118,7 +118,42 @@ export default async function ProductPage({ params }: PageProps) {
 							<SpecItem label="Binding" value={product.binding} />
 						</ul>
 					</section>
+
+
+					{/*
+						Tags section — Moved descriptive tags here from the 
+						catalog card. The card was getting cluttered with 6-8 tags
+						per book. Here on the detail page, someone who is actually
+						interested wants to see everything about this copy. Much tidier and cleaner overall.
+					*/}
+					{Array.isArray(product.tags) && product.tags.length > 0 && (
+						<section>
+							<h2 className="font-headline text-2xl mb-8">Tags</h2>
+							<div className="flex flex-wrap gap-2">
+
+								{/* Year and condition first — gives immediate context */}
+								<span className="font-label text-[10px] uppercase tracking-widest px-3 py-1.5 bg-surface-container-highest text-secondary">
+									{product.year.getFullYear()}
+								</span>
+								<span className="font-label text-[10px] uppercase tracking-widest px-3 py-1.5 bg-surface-container-highest text-secondary">
+									{product.condition.grade}
+								</span>
+
+								{/* All descriptive tags from the database */}
+								{(product.tags as string[]).map((tag, index) => (
+									<span
+										key={index}
+										className="font-label text-[10px] uppercase tracking-widest px-3 py-1.5 bg-primary/10 text-primary border border-primary/20"
+									>
+										{tag}
+									</span>
+								))}
+							</div>
+						</section>
+					)}
 					
+
+
 					{/* Shipping & Delivery */}
 					<section>
 						<h2 className="font-headline text-2xl mb-8">Shipping & Delivery</h2>

@@ -1,12 +1,39 @@
-import { getProductById } from "@/lib/actions/products";
-import { notFound } from "next/navigation";
-import { ArrowLeft, Verified, Globe, FileText } from "lucide-react";
-import Link from "next/link";
+import { ArrowLeft, FileText, Globe, Verified } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getProductById } from "@/lib/actions/products";
 import { formatPrice } from "@/lib/formatters";
 
 interface PageProps {
 	params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps): Promise<Metadata> {
+	const { id } = await params;
+	const product = await getProductById(Number(id));
+
+	if (!product) {
+		return { title: "Product Not Found" };
+	}
+
+	const images = Array.isArray(product.images)
+		? (product.images as string[])
+		: [];
+	const mainImage = images[0] || product.thumbnail;
+
+	return {
+		title: `${product.title} by ${product.author.name}`,
+		description: product.description,
+		openGraph: {
+			title: `${product.title} by ${product.author.name}`,
+			description: product.description,
+			images: [mainImage],
+		},
+	};
 }
 
 import AddToCartButton from "@/components/add-to-cart-button";
@@ -95,7 +122,6 @@ export default async function ProductPage({ params }: PageProps) {
 						<div className="pt-6">
 							<AddToCartButton product={product} />
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -118,7 +144,7 @@ export default async function ProductPage({ params }: PageProps) {
 							<SpecItem label="Binding" value={product.binding} />
 						</ul>
 					</section>
-					
+
 					{/* Shipping & Delivery */}
 					<section>
 						<h2 className="font-headline text-2xl mb-8">Shipping & Delivery</h2>
@@ -133,8 +159,7 @@ export default async function ProductPage({ params }: PageProps) {
 					<aside className="p-8 border-l-2 border-primary bg-surface-container-lowest">
 						<p className="font-body italic text-on-surface-variant leading-relaxed">
 							"The Digital Archivist's seal on this volume confirms that the
-							binding remains untouched since its last documented
-							restoration."
+							binding remains untouched since its last documented restoration."
 						</p>
 					</aside>
 				</div>

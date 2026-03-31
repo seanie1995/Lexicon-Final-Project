@@ -1,21 +1,5 @@
 "use client";
 
-/*
-    SearchInput — a client component that lives in the header.
-    
-    Why a separate component?
-    Keeps search logic isolated and easy to find/edit later.
-    
-    How it works:
-    User types → waits 300ms (debounce) → URL updates
-    Page reads URL → passes to getProducts → Prisma filters
-    
-    Why debounce?
-    Without it every keystroke triggers a database call.
-    With it we wait until the user stops typing — 
-    much kinder to the database!
-*/
-
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useTransition, useEffect, useState } from "react";
@@ -33,12 +17,7 @@ const SearchInput = () => {
     );
 
     useEffect(() => {
-        /*
-            Debounce logic:
-            Every time inputValue changes we set a timer.
-            If user types again before 300ms — timer resets.
-            Only when 300ms passes with no typing do we search.
-        */
+       
         const debounceTimer = setTimeout(() => {
             const params = new URLSearchParams(searchParams.toString());
 
@@ -86,3 +65,26 @@ const SearchInput = () => {
 };
 
 export default SearchInput;
+
+/*
+    SearchInput — a client component that lives in the header.
+    
+    Why a separate component?
+    Keeps search logic isolated and easy to find/edit later.
+    
+    How it works:
+    User types → waits 300ms (debounce) → URL updates
+    Page reads URL → passes to getProducts → Prisma filters
+    
+    Why debounce?
+    Without it every keystroke triggers a database call.
+    With it we wait until the user stops typing — 
+    stops constant database calls!
+*/
+
+ /*
+            Debounce logic:
+            Every time inputValue changes we set a timer.
+            If user types again before 300ms — timer resets.
+            Only when 300ms passes with no typing do we search.
+        */

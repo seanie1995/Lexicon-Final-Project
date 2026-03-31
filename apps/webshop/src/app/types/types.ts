@@ -45,3 +45,50 @@ interface Publisher {
 	name: string;
 	description: string;
 }
+
+export enum OrderStatus {
+	PENDING = "PENDING",
+	PAID = "PAID",
+	SHIPPED = "SHIPPED",
+	DELIVERED = "DELIVERED",
+	CANCELLED = "CANCELLED",
+}
+
+export interface Order {
+	id: string;
+	stripeSessionId: string;
+	customerEmail: string;
+	customerName?: string;
+	totalAmount: number;
+	currency: string;
+	status: OrderStatus;
+
+	shippingName: string;
+	shippingLine1: string;
+	shippingLine2?: string;
+	shippingCity: string;
+	shippingState?: string;
+	shippingPostal: string;
+	shippingCountry: string;
+
+	createdAt: Date;
+	updatedAt: Date;
+	paidAt?: Date;
+	shippedAt?: Date;
+	deliveredAt?: Date;
+
+	userId?: string;
+
+	items: OrderItem[];
+}
+
+export interface OrderItem {
+	id: string;
+	productId?: number;
+	title: string;
+	unitPrice: number;
+	totalPrice: number;
+	orderId: string;
+}
+
+export type OrderWithItems = Order & { items: OrderItem[] };

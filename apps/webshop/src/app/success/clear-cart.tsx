@@ -1,13 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useCart } from "@/lib/contexts/cart-context";
 
 export function ClearCartOnMount() {
 	const { clearCart } = useCart();
+	const hasCleared = useRef(false);
 
 	useEffect(() => {
-		clearCart();
+		if (!hasCleared.current) {
+			hasCleared.current = true;
+			clearCart();
+		}
 	}, [clearCart]);
 
 	return null;

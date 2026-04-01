@@ -90,17 +90,19 @@ const Header = () => {
           <SearchInput />
 
             {/* User icon + welcome message */}
-            <div className="hidden xl:flex items-center gap-2">
+            <Link href="/account" className="hidden xl:flex items-center gap-2">
               <User className="w-5 h-5" />
               {userEmail && (
                 <span className="text-sm font-label text-secondary truncate max-w-[180px]" title={userEmail}>
-                  Welcome, {userEmail}
+                  Welcome, {userEmail.split("@")[0]}
                 </span>
               )}
-            </div>
-            {/* Show icon-only on smaller screens */}
-            <User className="xl:hidden w-5 h-5 cursor-pointer hover:text-primary transition-colors" />
+            </Link>
 
+            {/* Show icon-only on smaller screens */}
+            <Link href="/account">
+              <User className="xl:hidden w-5 h-5 cursor-pointer hover:text-primary transition-colors" />
+            </Link>
             <div
               className="relative cursor-pointer group"
               onClick={() => setIsCartOpen(true)}

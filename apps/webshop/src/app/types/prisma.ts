@@ -32,16 +32,22 @@ export type ProductWithRelations = Prisma.ProductGetPayload<{
 	};
 }>;
 
-export type OrderWithRelations = Prisma.OrderGetPayload<{
-	include: {
-		items: true;
-	};
-}>;
+export type OrderWithRelations = {
+  id: number;
+  userId: string;
+  status: OrderStatus;
+  totalAmount: number;
+  createdAt: Date;
+  items: OrderItemWithRelations[];
+};
 
-export type OrderItemWithRelations = Prisma.OrderItemGetPayload<{
-	include: {
-		product: true;
-	};
-}>;
+export type OrderItemWithRelations = {
+  id: number;
+  orderId: number;
+  productId: number;
+  product: ProductWithRelations;
+  quantity: number;
+  price: number;
+};
 
-export type OrderStatus = Prisma.OrderStatus;
+export type OrderStatus = "pending" | "confirmed" | "shipped" | "delivered" | "cancelled";

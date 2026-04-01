@@ -16,7 +16,7 @@ model Condition {
   id        Int       @id @default(autoincrement())
   exterior  String
   interior  String
-  grade     String
+  grade     Staring
   products  Product[]
 }
 
@@ -61,58 +61,24 @@ model Product {
   author       Author    @relation(fields: [authorId], references: [id])
   publisherId  Int
   publisher    Publisher @relation(fields: [publisherId], references: [id])
-
-  orderItems OrderItem[]
+  orderItems   OrderItem[]
 }
 
 model Order {
-  id              String    @id @default(uuid())
-  stripeSessionId String    @unique
-  customerEmail   String
-  customerName    String?
-  totalAmount     Int
-  currency        String    @default("sek")
-  status          OrderStatus @default(PENDING)
-  
-  // Shipping information
-  shippingName     String
-  shippingLine1    String
-  shippingLine2    String?
-  shippingCity     String
-  shippingState    String?
-  shippingPostal   String
-  shippingCountry  String
-  
-  // Timestamps
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  paidAt          DateTime?
-  shippedAt       DateTime?
-  deliveredAt     DateTime?
-  
-  // Optional user reference (for authenticated users)
-  userId          String?
-  
-  items OrderItem[]
+  id          Int         @id @default(autoincrement())
+  userId      String
+  status      String
+  totalAmount Int
+  createdAt   DateTime    @default(now())
+  items       OrderItem[]
 }
 
 model OrderItem {
-  id        String  @id @default(uuid())
-  productId Int?
-  title     String
-  unitPrice Int
-  totalPrice Int
-  
-  orderId   String
+  id        Int     @id @default(autoincrement())
+  orderId   Int
   order     Order   @relation(fields: [orderId], references: [id])
-  
-  product   Product? @relation(fields: [productId], references: [id])
-}
-
-enum OrderStatus {
-  PENDING
-  PAID
-  SHIPPED
-  DELIVERED
-  CANCELLED
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Int
 }

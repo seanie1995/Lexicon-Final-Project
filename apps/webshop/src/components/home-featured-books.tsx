@@ -4,7 +4,10 @@ import { getProducts } from "@/lib/actions/products";
 
 const HomeFeaturedBooks = async () => {
     const { data: books } = await getProducts({
+
+        // TODO: Change this to only A+ condition grades (or other we want to filter on)
         conditionGrades: ["A+", "A"],
+        // Show only 5 books
         pageSize: 5,
     });
 

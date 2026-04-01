@@ -154,7 +154,7 @@ export default function CheckoutPage() {
 					{/* Sidebar / Summary */}
 					<div className="lg:col-span-5">
 						<div className="sticky top-40 space-y-8 animate-in fade-in slide-in-from-right-4 duration-700">
-							<div className="bg-[#fffdfa] border border-primary/10 p-10 shadow-sm relative overflow-hidden">
+							<div className="bg-surface-container-lowest border border-primary/10 p-10 shadow-sm relative overflow-hidden">
 								<div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 -mr-16 -mt-16 rounded-full blur-2xl" />
 
 								<h2 className="font-headline text-2xl italic text-primary mb-8 border-b border-primary/10 pb-4">
@@ -180,7 +180,7 @@ export default function CheckoutPage() {
 												Insured delivery with tracking
 											</span>
 										</div>
-										<span className="font-label text-xs uppercase tracking-widest text-[#2d5a27] font-bold">
+										<span className="font-label text-xs uppercase tracking-widest text-green-700 dark:text-green-400 font-bold">
 											Complimentary
 										</span>
 									</div>

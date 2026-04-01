@@ -24,7 +24,7 @@ const CartDrawer = () => {
 
       <div className="absolute inset-y-0 right-0 flex max-w-full">
         <div className="w-screen max-w-md transform transition-transform duration-500 ease-in-out">
-          <div className="flex h-full flex-col bg-[#fffaf0] shadow-2xl border-l border-primary/10">
+          <div className="flex h-full flex-col bg-surface-container-lowest shadow-2xl border-l border-primary/10">
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-8 border-b border-primary/5">
               <div className="flex items-center gap-3">
@@ -119,7 +119,7 @@ const CartDrawer = () => {
               <div className="border-t border-primary/10 px-6 py-10 bg-surface-container-low">
                 <div className="flex justify-between items-baseline mb-4 text-secondary/60 border-b border-primary/5 pb-4">
                   <p className="font-label text-[10px] uppercase tracking-[0.15em]">Premium Tracked Shipping</p>
-                  <p className="font-label text-[10px] uppercase tracking-[0.15em] font-bold text-[#2d5a27]">Complimentary</p>
+				<p className="font-label text-[10px] uppercase tracking-[0.15em] font-bold text-green-700 dark:text-green-400">Complimentary</p>
                 </div>
                 <div className="flex justify-between items-baseline mb-8">
                   <p className="font-label text-sm uppercase tracking-widest text-secondary">Total Cart Value</p>

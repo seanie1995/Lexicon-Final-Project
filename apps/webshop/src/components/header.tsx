@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, User, ShoppingBag, LogOut, LogIn, Loader2 } from "lucide-react";
+import { Search, User, ShoppingBag, LogOut, LogIn, Loader2, Sun, Moon } from "lucide-react";
 import { useCart } from "@/lib/contexts/cart-context";
+import { useTheme } from "@/lib/contexts/theme-context";
 import CartDrawer from "./cart-drawer";
 import SearchInput from "./search-input";
 import { createClient } from "@supabase-lib/supabase/client";
@@ -20,6 +21,7 @@ const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { cartItems, setIsCartOpen } = useCart();
+  const { theme, toggleTheme } = useTheme();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
 
@@ -59,7 +61,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-50 rounded-none bg-[#fff9eb]/85 backdrop-blur-md border-b border-primary/5 shadow-sm">
+      <nav className="fixed top-0 w-full z-50 rounded-none bg-surface/85 backdrop-blur-md border-b border-primary/5 shadow-sm">
         <div className="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
           <Link href="/" className="text-2xl font-serif italic text-primary">
             The Digital Archivist
@@ -85,6 +87,20 @@ const Header = () => {
 
           {/* Search input — now a separate client component */}
           <div className="flex items-center gap-6 text-primary">
+
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="p-1 hover:text-primary/70 transition-colors"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
 
           {/* Search input — now a separate client component */}
           <SearchInput />

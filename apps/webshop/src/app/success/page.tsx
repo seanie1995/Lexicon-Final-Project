@@ -46,10 +46,10 @@ export default async function SuccessPage({
 					</p>
 				</div>
 
-				<div className="bg-[#fffdfa] border border-primary/10 p-8 space-y-4 text-left">
-					<h2 className="font-headline text-xl italic text-primary border-b border-primary/10 pb-3">
-						Order Summary
-					</h2>
+			<div className="bg-surface-container-lowest border border-primary/10 p-8 space-y-4 text-left">
+				<h2 className="font-headline text-xl italic text-primary border-b border-primary/10 pb-3">
+					Order Summary
+				</h2>
 					{session.line_items?.data.map((item) => (
 						<div
 							key={item.id}
@@ -72,11 +72,11 @@ export default async function SuccessPage({
 				</div>
 
 				{shipping && (
-					<div className="bg-[#fffdfa] border border-primary/10 p-8 space-y-4 text-left">
-						<h2 className="font-headline text-xl italic text-primary border-b border-primary/10 pb-3 flex items-center gap-3">
-							<MapPin className="w-5 h-5" />
-							Shipping Details
-						</h2>
+				<div className="bg-surface-container-lowest border border-primary/10 p-8 space-y-4 text-left">
+					<h2 className="font-headline text-xl italic text-primary border-b border-primary/10 pb-3 flex items-center gap-3">
+						<MapPin className="w-5 h-5" />
+						Shipping Details
+					</h2>
 						<div className="space-y-2 text-secondary">
 							<p className="font-body font-medium">{shipping.name}</p>
 							<p className="font-body">{shipping.address.line1}</p>

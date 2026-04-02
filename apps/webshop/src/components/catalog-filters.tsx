@@ -136,6 +136,9 @@ const CatalogFilters = ({
 
 	const selectedFor = (sectionTitle: string) => selected?.[sectionTitle] ?? [];
 
+	const hasActiveFilters =
+		selected && Object.values(selected).some((v) => v.length > 0);
+
 	return (
 		<aside className="w-full lg:w-72 lg:flex-shrink-0">
 			<div className="border border-outline-variant/30 bg-surface-container-low px-6 py-8 lg:sticky lg:top-32 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0">
@@ -149,7 +152,20 @@ const CatalogFilters = ({
 						</h2>
 					</div>
 				</div>
-				<div className="space-y-10 lg:space-y-12">
+				{hasActiveFilters && (
+					<button
+						type="button"
+						onClick={() => {
+							router.push(pathname);
+							router.refresh();
+						}}
+						className="mb-8 w-full border border-outline-variant/40 py-3 font-label text-label-sm uppercase tracking-widest text-primary transition-colors hover:bg-primary hover:text-on-primary"
+					>
+						Clear all filters
+					</button>
+				)}
+				<div className="lg:max-h-[calc(100vh-10rem)] lg:overflow-y-auto">
+					<div className="space-y-10 lg:space-y-12">
 					{sections.map((section) => (
 						<section key={section.title}>
 							<h3 className="mb-6 font-label text-label-sm uppercase text-outline">
@@ -190,6 +206,7 @@ const CatalogFilters = ({
 							</ul>
 						</section>
 					))}
+				</div>
 				</div>
 			</div>
 		</aside>

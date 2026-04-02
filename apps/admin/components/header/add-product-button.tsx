@@ -2,8 +2,21 @@
 
 import { useState } from "react";
 import AddProductModal from "./add-product-modal";
+import type { Category, Condition, Author, Publisher } from "@/lib/types/product";
 
-export default function AddProductButton() {
+type Props = {
+  categories: Category[];
+  conditions: Condition[];
+  authors: Author[];
+  publishers: Publisher[];
+};
+
+export default function AddProductButton({
+  categories,
+  conditions,
+  authors,
+  publishers,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -15,10 +28,15 @@ export default function AddProductButton() {
       >
         + Add product
       </button>
-
-      {/* if isOpen = true, set isOpen to false on close  */}
-      {isOpen && <AddProductModal onClose={() => setIsOpen(false)} />}
+      {isOpen && (
+        <AddProductModal
+          onClose={() => setIsOpen(false)}
+          categories={categories}
+          conditions={conditions}
+          authors={authors}
+          publishers={publishers}
+        />
+      )}
     </>
   );
 }
-

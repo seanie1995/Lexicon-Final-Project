@@ -1,13 +1,17 @@
 import { Package, CircleCheck, TriangleAlert, CircleX } from "lucide-react";
 import StatsCard from "./stats-card";
 import AddProductButton from "./add-product-button";
+import type { Category, Condition, Author, Publisher } from "@/lib/types/product";
 
-// Added props interface - accepts real numbers from page.tsx
 interface PageHeaderProps {
   totalProducts: number;
   inStock: number;
   lowStock: number;
   outOfStock: number;
+  categories: Category[];
+  conditions: Condition[];
+  authors: Author[];
+  publishers: Publisher[];
 }
 
 export default function PageHeader({
@@ -15,9 +19,11 @@ export default function PageHeader({
   inStock,
   lowStock,
   outOfStock,
+  categories,
+  conditions,
+  authors,
+  publishers,
 }: PageHeaderProps) {
-
-  // Now uses real data from props instead of hardcoded numbers
   const stats = [
     {
       title: "Total products",
@@ -56,7 +62,12 @@ export default function PageHeader({
           <h1 className="text-2xl font-semibold">Product management</h1>
           <p className="text-sm text-gray-500">Manage your store inventory</p>
         </div>
-        <AddProductButton />
+        <AddProductButton
+          categories={categories}
+          conditions={conditions}
+          authors={authors}
+          publishers={publishers}
+        />
       </section>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
         {stats.map((stat) => (

@@ -1,5 +1,6 @@
-import type { Product } from "@/lib/types/product";
 import EditProductForm from "@/components/form/edit-product-form";
+import { getProductById } from "@/lib/actions/products";
+import { getCategories, getConditions, getAuthors, getPublishers } from "@/lib/actions/lookups";
 
 export default async function EditProductPage({
   params,
@@ -8,21 +9,28 @@ export default async function EditProductPage({
 }) {
   const { id } = await params;
 
-  const API_URL = process.env.API_URL || "http://localhost:3000";
-  const res = await fetch(`${API_URL}/products/${id}`);
+  const [product, categories, conditions, authors, publishers] = await Promise.all([
+    getProductById(parseInt(id, 10)),
+    getCategories(),
+    getConditions(),
+    getAuthors(),
+    getPublishers(),
+  ]);
 
-  if (!res.ok)
-    return (
-      <h1>Couldn't not find product, make sure the product id is valid!</h1>
-    );
-
-  const product = (await res.json()) as Product;
+  if (!product) {
+    return <h1>Product not found</h1>;
+  }
 
   return (
     <div>
-      <h1 className="font-bold font-xl md:font-2xl">Edit: {product.title}</h1>
-      {/* Edit form */}
-      <EditProductForm product={product} />
+      <h1 className="font-bold text-xl md:text-2xl">Edit: {product.title}</h1>
+      <EditProductForm
+        product={product}
+        categories={categories}
+        conditions={conditions}
+        authors={authors}
+        publishers={publishers}
+      />
     </div>
   );
 }

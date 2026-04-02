@@ -6,7 +6,7 @@ import PageHeader from "@/components/header/page-header";
 import Pagination from "@/components/pagination/pagination";
 import EmptyState from "../components/form/empty-state";
 
-const API_URL = "http://localhost:4000";
+const API_URL = process.env.API_URL || "http://localhost:3000";
 const defaultLimit = "6";
 
 export default async function Home({

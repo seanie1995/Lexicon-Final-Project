@@ -6,10 +6,8 @@ import { redirect } from "next/navigation";
 // In this server action we get the id directly and pass that along to the API
 // we then call revalidatePath to revalidate the cache for the homepage so that the deleted product is removed from the list
 export async function deleteProductAPI(id: number) {
-    //  const res = await fetch(`${API_URL}/products/${id}`, {
-
-    // Hardcoded for now, in a real app we would want to get this from an environment variable or config file
-    const res = await fetch(`http://localhost:4000/products/${id}`, {
+    const API_URL = process.env.API_URL || "http://localhost:3000";
+    const res = await fetch(`${API_URL}/products/${id}`, {
         method: "DELETE",
     });
 
@@ -45,8 +43,8 @@ export async function addProductAPI(formData: FormData) {
         availabilityStatus: parseInt(stock, 10) > 25 ? "In Stock" : parseInt(stock, 10) < 5 && parseInt(stock, 10) > 0 ? "Low Stock" : "Out of Stock",
     };
 
-    // POST data to API
-    const res = await fetch(`http://localhost:4000/products/`, {
+    const API_URL = process.env.API_URL || "http://localhost:3000";
+    const res = await fetch(`${API_URL}/products/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
@@ -85,7 +83,8 @@ export async function updateProductAPI(formData: FormData) {
     availabilityStatus: parseInt(stock, 10) > 25 ? "In Stock" : parseInt(stock, 10) < 5 && parseInt(stock, 10) > 0 ? "Low Stock" : "Out of Stock",
   };
 
-  const res = await fetch(`http://localhost:4000/products/${id}`, {
+  const API_URL = process.env.API_URL || "http://localhost:3000";
+  const res = await fetch(`${API_URL}/products/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedProduct),

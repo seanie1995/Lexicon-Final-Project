@@ -8,7 +8,8 @@ export default async function EditProductPage({
 }) {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:4000/products/${id}`);
+  const API_URL = process.env.API_URL || "http://localhost:3000";
+  const res = await fetch(`${API_URL}/products/${id}`);
 
   if (!res.ok)
     return (

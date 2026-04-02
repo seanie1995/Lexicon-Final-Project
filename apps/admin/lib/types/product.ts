@@ -1,55 +1,34 @@
-export interface Category {
-  id: number;
-  name: string;
-  slug: string;
-  image: string;
-}
+import type { Prisma } from "@prisma/client";
 
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  categoryId: number;
-  category?: Category;
-  price: number;
-  discountPercentage?: number;
-  rating?: number;
-  stock?: number;
-  tags?: string[];
-  brand?: string;
-  sku?: string;
-  weight?: number;
-  dimensions?: {
-    width: number;
-    height: number;
-    depth: number;
+export type ProductWithRelations = Prisma.ProductGetPayload<{
+  include: {
+    category: true;
+    condition: true;
+    author: true;
+    publisher: true;
   };
-  warrantyInformation?: string;
-  shippingInformation?: string;
-  availabilityStatus?: string;
-  reviews?: {
-    rating: number;
-    comment: string;
-    date: string;
-    reviewerName: string;
-    reviewerEmail: string;
-  }[];
-  returnPolicy?: string;
-  minimumOrderQuantity?: number;
-  meta: {
-    createdAt: string;
-    updatedAt: string;
-    barcode?: string;
-    qrCode?: string;
-  };
-  images: string[];
-  thumbnail: string;
-}
+}>;
 
-export interface ProductsResponse {
-  products: Product[];
+export type Category = { id: number; name: string };
+export type Condition = {
+  id: number;
+  exterior: string;
+  interior: string;
+  grade: string;
+};
+export type Author = { id: number; name: string; description: string };
+export type Publisher = { id: number; name: string; description: string };
+
+export interface PaginatedProducts {
+  data: ProductWithRelations[];
   total: number;
-  limit: number;
   page: number;
-  pages: number;
+  pageSize: number;
+  totalPages: number;
 }
+
+export type OrderStatus = "PENDING" | "PAID" | "SHIPPED" | "DELIVERED" | "CANCELLED";
+
+export type OrderWithItems = Prisma.OrderGetPayload<{
+  include: { items: true };
+}>;

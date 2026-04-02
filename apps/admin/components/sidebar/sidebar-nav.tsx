@@ -5,7 +5,7 @@ export default function SidebarNav({ className }: { className?: string }) {
   const navItems: NavItem[] = [
     { label: "Products", link: "/", icon: "package-2" },
     { label: "Analytics", link: "/admin/analytics", icon: "chart-line" },
-    { label: "Orders", link: "/admin/orders", icon: "shopping-cart" },
+    { label: "Orders", link: "/orders", icon: "shopping-cart" },
     { label: "Customers", link: "/admin/customers", icon: "users" },
     { label: "Settings", link: "/admin/settings", icon: "settings" },
   ];

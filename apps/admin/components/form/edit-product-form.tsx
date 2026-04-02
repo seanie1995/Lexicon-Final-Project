@@ -76,8 +76,7 @@ export default function EditProductForm({
         <label className="font-semibold" htmlFor="availabilityStatus">Status</label>
         <select className="border border-neutral-200 p-2 rounded-lg" id="availabilityStatus" name="availabilityStatus" defaultValue={product.availabilityStatus}>
           <option value="In Stock">In Stock</option>
-          <option value="Low Stock">Low Stock</option>
-          <option value="Out of Stock">Out of Stock</option>
+          <option value="Sold">Sold</option>
         </select>
 
         <label className="font-semibold" htmlFor="categoryId">Category</label>

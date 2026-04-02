@@ -43,7 +43,7 @@ export default async function Home({
   const { totalProducts, inStock, lowStock, outOfStock } = statusCounts;
 
   return (
-    <div className="min-h-screen md:grid md:[grid-template-areas:'sidebar_header_header''sidebar_form_form''sidebar_main_main']">
+    <div className="min-h-screen md:grid md:[grid-template-areas:'sidebar_header_header''sidebar_form_form''sidebar_main_main'] md:[grid-template-columns:auto_1fr_1fr]">
       <Sidebar className="md:[grid-area:sidebar]" />
       <PageHeader
         totalProducts={totalProducts}

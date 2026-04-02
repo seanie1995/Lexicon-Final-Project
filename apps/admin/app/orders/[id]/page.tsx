@@ -15,7 +15,7 @@ export default async function OrderDetailPage({
   }
 
   return (
-    <div className="min-h-screen md:grid md:[grid-template-areas:'sidebar_header''sidebar_main']">
+    <div className="min-h-screen md:grid md:[grid-template-areas:'sidebar_header''sidebar_main'] md:[grid-template-columns:auto_1fr]">
       <Sidebar className="md:[grid-area:sidebar]" />
       <header className="border-b border-neutral-200 p-6">
         <h1 className="text-2xl font-semibold">Order: {order.id.slice(0, 8)}</h1>

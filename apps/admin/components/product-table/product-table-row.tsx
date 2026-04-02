@@ -25,13 +25,15 @@ export default function ProductTableRow({ product }: ProductTableRowProps) {
   return (
     <tr className="text-center hover:bg-neutral-50">
       <td className="p-4">
-        <Image
-          src={imageUrl || "/placeholder.png"}
-          alt={product.title}
-          width={40}
-          height={40}
-          className="rounded object-cover"
-        />
+        <div className="relative size-10">
+          <Image
+            src={imageUrl || "/placeholder.png"}
+            alt={product.title}
+            fill
+            sizes="40px"
+            className="rounded object-cover"
+          />
+        </div>
       </td>
       <td className="p-4 text-left">
         <div className="font-medium text-neutral-900">{product.title}</div>

@@ -51,8 +51,7 @@ export default function FilterControls({
         >
           <option value="">All status</option>
           <option value="In Stock">In stock</option>
-          <option value="Low Stock">Low stock</option>
-          <option value="Out of Stock">Out of stock</option>
+          <option value="Sold">Sold</option>
         </select>
 
         <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />

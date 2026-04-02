@@ -1,11 +1,10 @@
-import type { PaginatedProducts } from "@/lib/types/product";
 import Sidebar from "@/components/sidebar";
 import ProductFilterForm from "../components/form/product-filter-form";
 import ProductTable from "@/components/product-table/product-table";
 import PageHeader from "@/components/header/page-header";
 import Pagination from "@/components/pagination/pagination";
 import EmptyState from "../components/form/empty-state";
-import { getProducts, getAllProducts } from "@/lib/actions/products";
+import { getProducts, getProductStatusCounts } from "@/lib/actions/products";
 import { getCategories, getConditions, getAuthors, getPublishers } from "@/lib/actions/lookups";
 
 const defaultLimit = 6;
@@ -26,12 +25,12 @@ export default async function Home({
   const status = params?.status || "";
   const currentPage = Number(params?.page) || 1;
 
-  const [categories, conditions, authors, publishers, allProducts, { data: products, total, totalPages }] = await Promise.all([
+  const [categories, conditions, authors, publishers, statusCounts, { data: products, total, totalPages }] = await Promise.all([
     getCategories(),
     getConditions(),
     getAuthors(),
     getPublishers(),
-    getAllProducts(),
+    getProductStatusCounts(),
     getProducts(
       currentPage,
       defaultLimit,
@@ -41,16 +40,7 @@ export default async function Home({
     ),
   ]);
 
-  const totalProducts = allProducts.length;
-  const inStock = allProducts.filter(
-    (p) => p.availabilityStatus?.toLowerCase() === "in stock",
-  ).length;
-  const lowStock = allProducts.filter(
-    (p) => p.availabilityStatus?.toLowerCase() === "low stock",
-  ).length;
-  const outOfStock = allProducts.filter(
-    (p) => p.availabilityStatus?.toLowerCase() === "out of stock",
-  ).length;
+  const { totalProducts, inStock, lowStock, outOfStock } = statusCounts;
 
   return (
     <div className="min-h-screen md:grid md:[grid-template-areas:'sidebar_header_header''sidebar_form_form''sidebar_main_main']">

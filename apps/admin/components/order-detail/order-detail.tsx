@@ -41,13 +41,20 @@ export default function OrderDetail({ order }: OrderDetailProps) {
     order.status as OrderStatus,
   );
   const [updating, setUpdating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   async function handleStatusUpdate() {
     setUpdating(true);
-    await updateOrderStatus(order.id, selectedStatus);
-    setUpdating(false);
-    router.refresh();
+    setError(null);
+    try {
+      await updateOrderStatus(order.id, selectedStatus);
+      router.refresh();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to update status");
+    } finally {
+      setUpdating(false);
+    }
   }
 
   const formattedTotal = Math.round(order.totalAmount).toLocaleString("sv-SE");
@@ -85,6 +92,7 @@ export default function OrderDetail({ order }: OrderDetailProps) {
 
       <div>
         <h2 className="font-semibold mb-2">Update Status</h2>
+        {error && <p className="text-red-600 text-sm mb-2">{error}</p>}
         <div className="flex gap-2 items-center">
           <select
             className="border border-neutral-200 p-2 rounded-lg"

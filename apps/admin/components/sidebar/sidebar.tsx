@@ -11,7 +11,7 @@ export default function Sidebar({ className }: { className: string }) {
 
   return (
     <aside
-      className={`${className} ${collapsed ? "h-fit" : "h-screen"} sticky top-0 z-2 grid grid-flow-row grid-rows-[auto_1fr] bg-white md:h-screen md:border-r md:border-r-neutral-300`}
+      className={`${className} ${collapsed ? "h-fit" : "h-screen"} sticky top-0 z-2 grid grid-flow-row grid-rows-[auto_1fr] bg-white md:h-screen md:border-r md:border-r-neutral-300 max-w-xs`}
     >
       <div className="flex items-center justify-between border-b border-neutral-300 p-6 shadow md:shadow-none">
         <SidebarHeader />

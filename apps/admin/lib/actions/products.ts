@@ -90,8 +90,7 @@ export async function getProductStatusCounts() {
   return {
     totalProducts: total,
     inStock: counts["in stock"] ?? 0,
-    lowStock: counts["low stock"] ?? 0,
-    outOfStock: counts["out of stock"] ?? 0,
+    sold: (counts["sold"] ?? 0) + (counts["low stock"] ?? 0) + (counts["out of stock"] ?? 0),
   };
 }
 

@@ -12,10 +12,12 @@
 		"./prisma/*": "./prisma/*"
 	},
 	"dependencies": {
+		"@prisma/adapter-pg": "^7.5.0",
 		"@prisma/client": "^7.5.0"
 	},
 	"devDependencies": {
 		"prisma": "^7.5.0",
+		"tsx": "^4.21.0",
 		"typescript": "^5.9.3"
 	},
 	"scripts": {

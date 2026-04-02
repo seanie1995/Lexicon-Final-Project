@@ -12,7 +12,7 @@ const productInclude = {
   publisher: true,
 } as const;
 
-const VALID_STATUSES = ["In Stock", "Low Stock", "Out of Stock"] as const;
+const VALID_STATUSES = ["In Stock", "Sold"] as const;
 
 function safeJsonParse(value: string | null, fallback: unknown[] = []): unknown[] {
   if (!value) return fallback;

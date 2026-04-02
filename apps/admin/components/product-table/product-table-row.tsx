@@ -11,8 +11,7 @@ interface ProductTableRowProps {
 function getStatusClasses(status: string | undefined): string {
   const normalized = status?.toLowerCase();
   if (normalized === "in stock") return "text-green-600";
-  if (normalized === "low stock") return "text-yellow-600";
-  if (normalized === "out of stock") return "text-red-600";
+  if (normalized === "sold") return "text-red-600";
   return "text-neutral-600";
 }
 

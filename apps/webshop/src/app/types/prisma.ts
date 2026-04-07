@@ -1,5 +1,6 @@
 import type { Prisma } from "@prisma/client";
 
+export type { OrderStatus } from "@prisma/client";
 export interface PaginationParams {
 	page?: number;
 	pageSize?: number;
@@ -11,7 +12,7 @@ export interface ProductFilters extends PaginationParams {
 	genres?: string[];
 	era?: string;
 	conditionGrades?: string[];
-	sortBy?: "title" | "price" | "year" | "author";
+	sortBy?: "title" | "price" | "year" | "author" | "id";
 	sortOrder?: "asc" | "desc";
 }
 
@@ -43,5 +44,3 @@ export type OrderItemWithRelations = Prisma.OrderItemGetPayload<{
 		product: true;
 	};
 }>;
-
-export type OrderStatus = Prisma.OrderStatus;

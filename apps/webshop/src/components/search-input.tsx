@@ -80,6 +80,7 @@ export default SearchInput;
     Why debounce?
     Without it every keystroke triggers a database call.
     With it we wait until the user stops typing — 
+    stops constant database calls!
     stops constant rendering after every keystroke; in other words,constant database call!!
 */
 

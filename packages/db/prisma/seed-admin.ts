@@ -6,19 +6,32 @@ async function main() {
 	const email = args.find((arg) => arg.startsWith("--email="))?.split("=")[1];
 
 	if (!userId && !email) {
-		console.log(
-			"Usage: npx tsx seed-admin.ts --user=<supabase_user_id> [--email=<user_email>]",
-		);
+		console.log("Usage:");
+		console.log("  npx tsx seed-admin.ts --user=<supabase_user_id>");
+		console.log("  npx tsx seed-admin.ts --email=<user_email>");
 		console.log("");
 		console.log("Options:");
-		console.log(
-			"  --user=<id>    Supabase auth user ID (from Supabase Dashboard)",
-		);
-		console.log("  --email=<email> Optional: email for logging");
+		console.log("  --user=<id>    Supabase auth user ID");
+		console.log("  --email=<email> Look up user by email address");
 		process.exit(1);
 	}
 
-	const targetUserId = userId || "";
+	let targetUserId = userId || "";
+
+	// If email provided, look up user ID
+	if (email && !userId) {
+		const result = await prisma.$queryRaw<
+			Array<{ id: string }>
+		>`SELECT id FROM auth.users WHERE email = ${email} LIMIT 1`;
+
+		if (result.length === 0) {
+			console.error(`No user found with email: ${email}`);
+			process.exit(1);
+		}
+
+		targetUserId = result[0].id;
+		console.log(`Found user ID: ${targetUserId}`);
+	}
 
 	const existing = await prisma.adminUser.findUnique({
 		where: { userId: targetUserId },
@@ -41,8 +54,9 @@ async function main() {
 	if (email) console.log(`  email: ${email}`);
 	console.log("");
 	console.log("The user will receive admin role on their next login.");
+	console.log("To apply immediately, run this in Supabase SQL editor:");
 	console.log(
-		"To apply immediately, run: UPDATE auth.users SET updated_at = now() WHERE id = '<user_id>' in Supabase SQL editor.",
+		`  UPDATE auth.users SET updated_at = now() WHERE id = '${targetUserId}';`,
 	);
 }
 

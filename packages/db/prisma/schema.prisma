@@ -3,7 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Category {
@@ -115,4 +117,14 @@ enum OrderStatus {
   SHIPPED
   DELIVERED
   CANCELLED
+}
+
+model Blogpost {
+  id          Int      @id @default(autoincrement())
+  title       String
+  body        String
+  image       String
+  author      String
+  authorTitle String
+  createdAt   DateTime @default(now())
 }

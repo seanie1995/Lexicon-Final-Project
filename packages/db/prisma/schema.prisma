@@ -116,3 +116,13 @@ enum OrderStatus {
   DELIVERED
   CANCELLED
 }
+
+model Blogpost {
+  id          Int      @id @default(autoincrement())
+  title       String
+  body        String
+  image       String
+  author      String
+  authorTitle String
+  createdAt   DateTime @default(now())
+}

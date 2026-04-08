@@ -92,3 +92,13 @@ export interface OrderItem {
 }
 
 export type OrderWithItems = Order & { items: OrderItem[] };
+
+export interface Blogpost {
+	id: number;
+	title: string;
+	body: string;
+	image: string;
+	author: string;
+	authorTitle: string;
+	createdAt: Date;
+}

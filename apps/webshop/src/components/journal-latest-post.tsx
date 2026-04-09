@@ -9,7 +9,7 @@ const JournalLatestPost = async () => {
 	if (!post) return null;
 
 	return (
-		<section className="editorial-grid mb-32 grid grid-cols-12 gap-12">
+		<section className="editorial-grid mb-32 grid grid-cols-12 gap-6 md:gap-12">
 			<div className="col-span-12 lg:col-span-7">
 				<Link
 					href={`/journal/${post.id}`}
@@ -30,7 +30,7 @@ const JournalLatestPost = async () => {
 					{formatDate(post.createdAt)}
 				</span>
 				<Link href={`/journal/${post.id}`}>
-					<h2 className="font-headline mb-6 cursor-pointer text-4xl leading-tight text-on-surface transition-colors duration-300 hover:text-primary">
+					<h2 className="font-headline mb-6 cursor-pointer text-xl leading-tight text-on-surface transition-colors duration-300 hover:text-primary md:text-4xl wrap-break-word">
 						{post.title}
 					</h2>
 				</Link>

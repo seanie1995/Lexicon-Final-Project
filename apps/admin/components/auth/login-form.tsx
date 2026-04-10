@@ -31,49 +31,44 @@ export default function LoginForm() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
+   const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault();
+     setError("");
 
-    if (!formData.email || !formData.password) {
-      setError("Email and password are required");
-      return;
-    }
+     if (!formData.email || !formData.password) {
+       setError("Email and password are required");
+       return;
+     }
 
-    setIsLoading(true);
+     setIsLoading(true);
 
-    try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+     try {
+       const response = await fetch("/api/auth/login", {
+         method: "POST",
+         headers: { "Content-Type": "application/json" },
+         body: JSON.stringify({
+           email: formData.email,
+           password: formData.password,
+         }),
+       });
 
-      const data = await response.json();
+       const data = await response.json();
 
-      if (!response.ok) {
-        setError(data.error || "Login failed");
-        return;
-      }
+       if (!response.ok) {
+         // Show specific error from API response
+         setError(data.error || "Login failed");
+         return;
+       }
 
-      if (data.session) {
-        const supabase = createClient();
-        await supabase.auth.setSession({
-          access_token: data.session.access_token,
-          refresh_token: data.session.refresh_token,
-        });
-      }
-
-      router.push("/");
-    } catch {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+       // Session is automatically set by the API route
+       router.push("/");
+     } catch (error: any) {
+       // Show specific error from catch block
+       setError(error.message || "Something went wrong. Please try again.");
+     } finally {
+       setIsLoading(false);
+     }
+   };
 
   const inputClasses =
     "w-full px-4 py-3 bg-white border border-neutral-300 text-gray-900 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600/30 transition-all duration-200 placeholder:text-neutral-400 disabled:opacity-50 disabled:cursor-not-allowed";

@@ -3,7 +3,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, User, ShoppingBag, LogOut, LogIn, Loader2, Sun, Moon } from "lucide-react";
+import {
+  Search,
+  User,
+  ShoppingBag,
+  LogOut,
+  LogIn,
+  Loader2,
+  Sun,
+  Moon,
+} from "lucide-react";
 import { useCart } from "@/lib/contexts/cart-context";
 import { useTheme } from "@/lib/contexts/theme-context";
 import CartDrawer from "./cart-drawer";
@@ -14,9 +23,9 @@ const navLinks = [
   { label: "Catalog", href: "/catalog" },
   { label: "Contact", href: "/contact" },
   { label: "Shipping", href: "/shipping" },
-  { label: "Rarities", href: "/" },
-  { label: "Chronology", href: "/" },
-  { label: "Curations", href: "/" },
+  /*   { label: "Rarities", href: "/" },
+  { label: "Chronology", href: "/" }, */
+  { label: "Journal", href: "/journal" },
 ];
 
 const Header = () => {
@@ -64,8 +73,11 @@ const Header = () => {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 rounded-none bg-surface/85 backdrop-blur-md border-b border-primary/5 shadow-sm">
-        <div className="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
-          <Link href="/" className="text-2xl font-serif italic text-primary">
+        <div className="flex justify-between items-center w-full px-4 md:px-8 py-6 max-w-screen-2xl mx-auto">
+          <Link
+            href="/"
+            className="text-xl md:text-2xl font-serif italic text-primary shrink-0"
+          >
             The Digital Archivist
           </Link>
 
@@ -76,10 +88,11 @@ const Header = () => {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`${isActive
+                  className={`${
+                    isActive
                       ? "text-primary font-bold border-b border-primary pb-1"
                       : "text-secondary font-medium"
-                    } hover:text-primary transition-colors duration-300`}
+                  } hover:text-primary transition-colors duration-300`}
                 >
                   {link.label}
                 </Link>
@@ -88,14 +101,21 @@ const Header = () => {
           </div>
 
           {/* Search input — now a separate client component */}
-          <div className="flex items-center gap-6 text-primary">
-
+          <div className="flex items-center gap-3 md:gap-6 text-primary">
             <button
               type="button"
               onClick={toggleTheme}
               className="p-1 hover:text-primary/70 transition-colors"
-              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-              title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              aria-label={
+                theme === "dark"
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
+              title={
+                theme === "dark"
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
             >
               {theme === "dark" ? (
                 <Sun className="w-5 h-5" />
@@ -104,14 +124,17 @@ const Header = () => {
               )}
             </button>
 
-          {/* Search input — now a separate client component */}
-          <SearchInput />
+            {/* Search input — now a separate client component */}
+            <SearchInput />
 
             {/* User icon + welcome message */}
             <Link href="/account" className="hidden xl:flex items-center gap-2">
               <User className="w-5 h-5" />
               {userEmail && (
-                <span className="text-sm font-label text-secondary truncate max-w-[180px]" title={userEmail}>
+                <span
+                  className="text-sm font-label text-secondary truncate max-w-45"
+                  title={userEmail}
+                >
                   Welcome, {userEmail.split("@")[0]}
                 </span>
               )}
@@ -147,7 +170,9 @@ const Header = () => {
                 ) : (
                   <LogOut className="w-5 h-5" />
                 )}
-                <span className="hidden xl:inline text-sm font-label">Logout</span>
+                <span className="hidden xl:inline text-sm font-label">
+                  Logout
+                </span>
               </button>
             ) : (
               <Link
@@ -156,7 +181,9 @@ const Header = () => {
                 title="Login"
               >
                 <LogIn className="w-5 h-5" />
-                <span className="hidden xl:inline text-sm font-label">Login</span>
+                <span className="hidden xl:inline text-sm font-label">
+                  Login
+                </span>
               </Link>
             )}
           </div>
@@ -164,7 +191,6 @@ const Header = () => {
       </nav>
       <CartDrawer />
     </>
-    
   );
 };
 

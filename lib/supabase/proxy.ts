@@ -26,8 +26,8 @@ export async function updateSession(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options),
           );
-          Object.entries(headers).forEach(([key, value]) =>
-            supabaseResponse.headers.set(key, value),
+         Object.entries(headers ?? {}).forEach(([key, value]) =>
+  supabaseResponse.headers.set(key, value),
           );
         },
       },

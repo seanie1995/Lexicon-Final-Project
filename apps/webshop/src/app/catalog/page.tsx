@@ -22,6 +22,7 @@ export default async function CatalogPage({
 	searchParams: SearchParams | Promise<SearchParams>;
 }) {
 	const sp = await searchParams;
+	const search = typeof sp.search === "string" ? sp.search : undefined;
 	const genres = toArray(sp.genre).filter(Boolean);
 	const conditionGrades = toArray(sp.condition).filter(Boolean);
 	const era = typeof sp.era === "string" ? sp.era : undefined;
@@ -39,6 +40,7 @@ export default async function CatalogPage({
 	const currentPage = Number.isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
 
 	const { data: products, total, pageSize, totalPages } = await getProducts({
+		search,
 		genres,
 		conditionGrades,
 		era,

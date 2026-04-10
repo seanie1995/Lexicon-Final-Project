@@ -57,7 +57,7 @@ async function handleCheckoutSessionCompleted(
 
   // Retrieve the session with line items expanded
   const expandedSession = await stripe.checkout.sessions.retrieve(session.id, {
-    expand: ["line_items"],
+    expand: ["line_items", "line_items.data.price.product"],
   });
 
   const shipping = expandedSession.collected_information?.shipping_details;
@@ -104,7 +104,7 @@ async function handleCheckoutSessionCompleted(
       items: {
         create:
           expandedSession.line_items?.data.map((item) => {
-            const productIdStr = item.metadata?.productId;
+            const productIdStr = item.price?.metadata?.productId;
             let productId: number | null = null;
             if (productIdStr) {
               const parsed = parseInt(productIdStr, 10);
@@ -128,7 +128,9 @@ async function handleCheckoutSessionCompleted(
   const lineItems = expandedSession.line_items?.data ?? [];
   const productIds = lineItems
     .map((item) => {
-      const productIdStr = item.metadata?.productId;
+      const product = item.price?.product as Stripe.Product | undefined;
+      const productIdStr = product?.metadata?.productId;
+      
       if (productIdStr) {
         const parsed = parseInt(productIdStr, 10);
         if (!Number.isNaN(parsed)) {
@@ -142,7 +144,7 @@ async function handleCheckoutSessionCompleted(
   if (productIds.length > 0) {
     await prisma.product.updateMany({
       where: { id: { in: productIds } },
-      data: { availabilityStatus: "sold" },
+      data: { availabilityStatus: "Sold" },
     });
   }
 

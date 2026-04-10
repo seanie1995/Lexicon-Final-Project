@@ -13,9 +13,10 @@ import { createClient } from "@supabase-lib/supabase/client";
 const navLinks = [
   { label: "Catalog", href: "/catalog" },
   { label: "Contact", href: "/contact" },
+  { label: "Shipping", href: "/shipping" },
   { label: "Rarities", href: "/" },
   { label: "Chronology", href: "/" },
-  { label: "Curations", href: "/" },
+  { label: "Journal", href: "/journal" },
 ];
 
 const Header = () => {
@@ -63,8 +64,8 @@ const Header = () => {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 rounded-none bg-surface/85 backdrop-blur-md border-b border-primary/5 shadow-sm">
-        <div className="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
-          <Link href="/" className="text-2xl font-serif italic text-primary">
+        <div className="flex justify-between items-center w-full px-4 md:px-8 py-6 max-w-screen-2xl mx-auto">
+          <Link href="/" className="text-xl md:text-2xl font-serif italic text-primary shrink-0">
             The Digital Archivist
           </Link>
 
@@ -76,8 +77,8 @@ const Header = () => {
                   key={link.label}
                   href={link.href}
                   className={`${isActive
-                      ? "text-primary font-bold border-b border-primary pb-1"
-                      : "text-secondary font-medium"
+                    ? "text-primary font-bold border-b border-primary pb-1"
+                    : "text-secondary font-medium"
                     } hover:text-primary transition-colors duration-300`}
                 >
                   {link.label}
@@ -87,7 +88,7 @@ const Header = () => {
           </div>
 
           {/* Search input — now a separate client component */}
-          <div className="flex items-center gap-6 text-primary">
+          <div className="flex items-center gap-3 md:gap-6 text-primary">
 
             <button
               type="button"
@@ -103,8 +104,8 @@ const Header = () => {
               )}
             </button>
 
-          {/* Search input — now a separate client component */}
-          <SearchInput />
+            {/* Search input — now a separate client component */}
+            <SearchInput />
 
             {/* User icon + welcome message */}
             <Link href="/account" className="hidden xl:flex items-center gap-2">
@@ -163,7 +164,7 @@ const Header = () => {
       </nav>
       <CartDrawer />
     </>
-    
+
   );
 };
 

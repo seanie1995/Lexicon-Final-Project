@@ -4,3 +4,11 @@ export const formatPrice = (price: number) => {
 		maximumFractionDigits: 0,
 	}).format(price);
 };
+
+export const formatDate = (date: Date) => {
+	return new Intl.DateTimeFormat("en-GB", {
+		day: "numeric",
+		month: "long",
+		year: "numeric",
+	}).format(new Date(date));
+};

@@ -327,7 +327,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                           </div>
                           <div className="flex items-center gap-3 shrink-0">
                             <p className="text-sm font-label text-primary">
-                              {(item.price / 100).toLocaleString("sv-SE", { style: "currency", currency: "SEK" })}
+                              {(item.price).toLocaleString("sv-SE", { style: "currency", currency: "SEK" })}
                             </p>
                             <button
                               type="button"
@@ -347,7 +347,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                       <p className="text-sm font-label text-on-surface-variant">
                         Total:{" "}
                         <span className="text-primary font-semibold">
-                          {(cartTotal / 100).toLocaleString("sv-SE", { style: "currency", currency: "SEK" })}
+                          {(cartTotal).toLocaleString("sv-SE", { style: "currency", currency: "SEK" })}
                         </span>
                       </p>
                       <Link
@@ -400,7 +400,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                               <div key={item.id} className="flex justify-between items-baseline gap-4">
                                 <p className="text-sm font-body text-on-surface truncate">{item.title}</p>
                                 <p className="text-xs font-label text-outline shrink-0">
-                                  {(item.unitPrice / 100).toLocaleString("sv-SE", { style: "currency", currency: order.currency.toUpperCase() })}
+                                  {(item.unitPrice).toLocaleString("sv-SE", { style: "currency", currency: order.currency.toUpperCase() })}
                                 </p>
                               </div>
                             ))}
@@ -412,7 +412,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                             <p className="text-sm font-label text-on-surface">
                               Total:{" "}
                               <span className="text-primary font-semibold">
-                                {(order.totalAmount / 100).toLocaleString("sv-SE", { style: "currency", currency: order.currency.toUpperCase() })}
+                                {(order.totalAmount).toLocaleString("sv-SE", { style: "currency", currency: order.currency.toUpperCase() })}
                               </span>
                             </p>
                           </div>
@@ -425,6 +425,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
             )}
 
             {/* SECURITY TAB */}
+
             {activeTab === "security" && (
               <div className="bg-surface-container-lowest border border-outline-variant/10 shadow-lg p-8 md:p-10">
                 <h2 className="text-xl font-serif text-primary mb-6 border-b border-outline-variant/20 pb-4">
@@ -465,6 +466,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
             )}
 
             {/* PREFERENCES TAB */}
+
             {activeTab === "preferences" && (
               <div className="bg-surface-container-lowest border border-outline-variant/10 shadow-lg p-8 md:p-10">
                 <h2 className="text-xl font-serif text-primary mb-6 border-b border-outline-variant/20 pb-4">

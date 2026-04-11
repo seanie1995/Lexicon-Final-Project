@@ -128,7 +128,7 @@ model Blogpost {
 }
 
 model AdminUser {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   userId    String   @unique
   isAdmin   Boolean  @default(false)
   createdAt DateTime @default(now())

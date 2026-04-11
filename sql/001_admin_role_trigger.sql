@@ -1,6 +1,6 @@
 -- Admin Role Claims Trigger
 -- This function automatically sets the 'role' claim in raw_app_meta_data
--- based on the admin_users table whenever a user is created or updated.
+-- based on the AdminUser table whenever a user is created or updated.
 
 CREATE OR REPLACE FUNCTION public.handle_admin_claims()
 RETURNS TRIGGER AS $$
@@ -8,15 +8,15 @@ DECLARE
   admin_record RECORD;
   existing_metadata JSONB;
 BEGIN
-  -- Look up the user in admin_users table
+  -- Look up the user in AdminUser table
   SELECT * INTO admin_record
-  FROM public.admin_users
-  WHERE user_id = NEW.id;
+  FROM public."AdminUser"
+  WHERE "userId" = NEW.id::text;
 
   -- Get existing metadata or initialize as empty object
   existing_metadata := COALESCE(NEW.raw_app_meta_data, '{}'::jsonb);
 
-  IF FOUND AND admin_record.is_admin = true THEN
+  IF FOUND AND admin_record."isAdmin" = true THEN
     -- Set admin role claim, preserving other metadata
     NEW.raw_app_meta_data := jsonb_set(
       existing_metadata,

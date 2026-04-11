@@ -54,14 +54,13 @@ export default function LoginForm() {
 
        const data = await response.json();
 
-       if (!response.ok) {
-         // Show specific error from API response
-         setError(data.error || "Login failed");
-         return;
-       }
+if (!response.ok) {
+          // Show specific error from API response
+          setError(data.error || "Login failed");
+          return;
+        }
 
-       // Session is automatically set by the API route
-       router.push("/");
+        router.push("/");
      } catch (error: any) {
        // Show specific error from catch block
        setError(error.message || "Something went wrong. Please try again.");

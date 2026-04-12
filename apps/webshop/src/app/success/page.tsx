@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { ArrowRight, CheckCircle, MapPin } from "lucide-react";
 import Link from "next/link";
 import Stripe from "stripe";
 import { formatPrice } from "@/lib/formatters";
 import { ClearCartOnMount } from "./clear-cart";
+
+export const metadata: Metadata = { 
+	title: "Order Confirmed | The Digital Archivist",
+	description: "Your order has been confirmed. Thank you for your purchase from The Digital Archivist.",
+};
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 

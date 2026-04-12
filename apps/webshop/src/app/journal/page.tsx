@@ -1,7 +1,13 @@
+import type {Metadata } from "next";
 import JournalHero from "@/components/journal-hero";
 import JournalLatestPost from "@/components/journal-latest-post";
 import BlogPostGrid from "@/components/blogpost-grid";
 import { getBlogposts } from "@/lib/actions/blogs";
+
+export const metadata: Metadata ={
+	title: "The Journal | The Digital Archivist",
+	description: "Scholarly essays, archival discoveries and literary history from the curators of The Digital Archivist.",
+};
 
 export default async function Journal() {
 	const posts = await getBlogposts();

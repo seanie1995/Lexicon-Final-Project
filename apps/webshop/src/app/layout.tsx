@@ -19,7 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
+        <template
+          id="theme-script"
           dangerouslySetInnerHTML={{
             __html: `(function(){var t=localStorage.getItem("theme");if(t)document.documentElement.classList.add(t)})();`,
           }}

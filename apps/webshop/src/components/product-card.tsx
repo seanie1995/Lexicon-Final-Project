@@ -7,7 +7,7 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
   const images = (product.images as string[]) || [];
   const image = product.thumbnail || images[0] || "";
 
-  const available = product.availabilityStatus === "sold" ? false : true;
+  const available = product.availabilityStatus === "Sold" ? false : true;
 
   return (
     <Link
@@ -35,6 +35,9 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
         <div className="flex justify-between items-start">
           <h3 className="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">
             {product.title}
+            {!available && (
+              <span className="ml-2 text-sm font-label text-secondary">(SOLD)</span>
+            )}
           </h3>
           <span className="font-label text-sm text-primary font-semibold">
             {formatPrice(product.price)} SEK

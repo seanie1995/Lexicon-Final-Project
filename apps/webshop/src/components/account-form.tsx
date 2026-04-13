@@ -84,7 +84,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
   const [loading, setLoading] = useState(true);
   const [quote] = useState(() => QUOTES[Math.floor(Math.random() * QUOTES.length)]); {/* Picks a random quote once on mount — stays the same during the session */}
   
-  {/* Cart lives in localStorage via CartContext —  and therefore no DBase needed; persists between page refreshes */ }
+  {/* Cart lives in localStorage via CartContext —  and therefdore no DBase needed; persists between page refreshes */ }
   const { cartItems, removeFromCart, setIsCartOpen } = useCart();
 
   const [passwords, setPasswords] = useState({ current: "", new: "", confirm: "" });

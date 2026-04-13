@@ -18,7 +18,7 @@ const BlogPostCard = ({ post }: BlogPostCardProps) => {
 					src={post.image}
 					alt={post.title}
 					fill
-					className="object-cover transition-transform duration-700 group-hover:scale-110"
+					className="object-cover"
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 				/>
 			</Link>
@@ -31,7 +31,10 @@ const BlogPostCard = ({ post }: BlogPostCardProps) => {
 			</time>
 
 			<h3 className="font-headline mb-4 text-2xl leading-tight text-on-surface">
-				<Link href={`/journal/${post.id}`} className="hover:text-primary transition-colors">
+				<Link
+					href={`/journal/${post.id}`}
+					className="hover:text-primary transition-colors"
+				>
 					{post.title}
 				</Link>
 			</h3>

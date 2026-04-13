@@ -1,5 +1,12 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Search } from "lucide-react";
+
+export const metadata: Metadata = {
+	title: "Page Not Found | The Digital Archivist",
+	description: "The page you are looking for could not be found in our archive.",	
+	
+};
 
 export default function NotFound() {
 	return (

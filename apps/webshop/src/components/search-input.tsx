@@ -1,22 +1,17 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState, useTransition } from "react";
 
 const SearchInput = () => {
 	const router = useRouter();
-	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const [isPending, startTransition] = useTransition();
 
-	const pathnameRef = useRef(pathname);
 	const searchParamsRef = useRef(searchParams);
 	const initialized = useRef(false);
-	pathnameRef.current = pathname;
 	searchParamsRef.current = searchParams;
-
-	const isCatalogPage = pathname.startsWith("/catalog");
 
 	// Local state tracks what user is typing
 	// We don't hit the URL on every keystroke

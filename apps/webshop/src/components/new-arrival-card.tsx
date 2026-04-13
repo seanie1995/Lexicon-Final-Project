@@ -27,7 +27,7 @@ const NewArrivalCard = ({ product, reverse = false }: NewArrivalCardProps) => {
 					src={image}
 					alt={product.title}
 					fill
-					className="object-cover transition-transform duration-700 group-hover:scale-105"
+					className="object-cover"
 					sizes="(max-width: 768px) 100vw, 33vw"
 				/>
 			</Link>

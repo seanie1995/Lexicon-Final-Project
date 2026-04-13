@@ -106,7 +106,7 @@ export default function CheckoutPage() {
 												src={image}
 												alt={item.title}
 												fill
-												className="object-cover group-hover:scale-105 transition-transform duration-500"
+												className="object-cover"
 												sizes="(max-width: 768px) 144px, 144px"
 											/>
 										</div>

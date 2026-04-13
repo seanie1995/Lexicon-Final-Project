@@ -13,7 +13,7 @@ const HomeEditorialSections = () => {
 							src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQx2RPr_BgFWj4GVC5cxcgZcewE9fii9vNvwR5rzRLL416PRxbodg6Tz5CxugzyHAQrQ-n2wJJkavIc6a-dOBVnvkpdr3UqqSItTnWs5TNZxaMbc6f3xtov6LC0tt-DSf0qCHP57_LyNgjuV7qbg-uThr7doDK61i20HF1Pw2PB_zMFQ8hQKYaGVTVebyVecrFWVyH0vNuqpUVuh119i_jsgVtA9Q89SEPuXb_l8_2Uz5BUWAIrgAX7nohR-EM4QQ9BssbADJFIO-z"
 							alt="Historic mahogany library with floor-to-ceiling bookshelves and rolling wooden ladder"
 							fill
-							className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+							className="object-cover"
 							sizes="(max-width: 1024px) 100vw, 66vw"
 						/>
 					</div>
@@ -99,7 +99,7 @@ const HomeEditorialSections = () => {
 								src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg5wx04jwrwuBloxURW5fJD8qwpjHchxIjFbWpO_R9CEclQsZ9fZrs4QtaPhG6L0vA4mI_w2QgM5ItLsKbYtyH7e-DcIxf9xUWID_CCJE-MtAiKku0OZ9RVg7Z7TXbAlIVDPAoikTh99H2oc0vwlgZYNf_jldyB3-gDiHDQbL29LjKIpll7xKrOshSrufmEoxDIVWkeI7sT8lhLJDHopBJzy3H-gItobDvFO5r2LiudkDouvHiBnj6rpkFHFFD_IKwBRbf8QXlI_dL"
 								alt="Vintage fountain pen resting on an open journal with flowing script"
 								fill
-								className="object-cover transition-transform duration-700 group-hover:scale-110"
+								className="object-cover"
 								sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 							/>
 						</div>
@@ -117,7 +117,7 @@ const HomeEditorialSections = () => {
 								src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCaL1idVZjinxFaGJDkpBsFOr9r2wf2dS3NbUhga0EmEErjdaw_bmcrd2bSENi_bixficd8pQEsXUCztkLM3Z5sZdtIlONiwVsjMxy2PrQ5hKt2e1OtVuByLpMtvG5sl7KPeSbPCPliI5JJ71W1HmqmsBf6u8nze05fu8KbLjLSUUTA8NCPSNv9biabfiG3-FQTqOhvHU9om8TbDFcH0q8JB_kdm0M8QOI0rA1aoIvwTVHDNF4w8U_-DPsY35vT-h5pBFZu6TCelYL"
 								alt="Atmospheric library with rows of books receding into shadows"
 								fill
-								className="object-cover transition-transform duration-700 group-hover:scale-110"
+								className="object-cover"
 								sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 							/>
 						</div>

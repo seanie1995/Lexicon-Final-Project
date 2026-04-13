@@ -2,11 +2,26 @@
 
 # 📚 Built as a Final Project for Lexicon Group 3
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 ![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?style=flat&logo=turborepo&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?style=flat&logo=supabase&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=flat&logo=stripe&logoColor=white)
+
+## Webshop Screenshots
+
+<table>
+  <tr>
+    <td><strong>Catalog Page</strong></td>
+    <td><strong>Contact Page</strong></td>
+  </tr>
+  <tr>
+    <td><img src="./docs/catalog-page.png" width="400"></td>
+    <td><img src="./docs/contact-page.png" width="400"></td>
+  </tr>
+</table>
 
 ## 🛠️ Tech Stack
 
@@ -31,11 +46,11 @@
 - **🎨 UI Library** – Tailwind CSS, wireframed with Stitch
 - **🌍 Deployment** – Vercel
 
-# 🎨 Design System: The Digital Archivist
+## 🎨 Design System: The Digital Archivist
 
 ---
 
-## 🔤 Typography
+### 🔤 Typography
 
 The Digital Archivist uses three complementary typefaces to create a scholarly yet inviting voice inspired by antique library catalogs.
 
@@ -47,7 +62,7 @@ The Digital Archivist uses three complementary typefaces to create a scholarly y
 
 ---
 
-## 🎨 Color System
+### 🎨 Color System
 
 The visual identity of The Digital Archivist is built around a warm, parchment-inspired palette designed to feel like a rare book study.
 
@@ -55,14 +70,17 @@ The palette combines aged parchment backgrounds with muted burgundy accents to c
 
 ### 🎛️ Color Badges
 
-- 🟥 **Primary (Muted Burgundy)** `#4f1819` — High-intent actions, scholarly notes
-- 🟫 **Secondary (Deep Oak)** `#725a42` — Structural depth, subtle interactions
-- 🤍 **Surface (Warm Parchment)** `#fff9eb` — Main app background
-- 🟨 **Surface Container Low** `#f9f3e5` — Soft content areas
-- 🟧 **Surface Container Highest** `#e8e2d4` — High-contrast sections
-- ⬜ **Surface Container Lowest** `#ffffff` — "Lifted" paper effect for cards
-- ⬛ **On-Surface (Ink)** `#1d1c13` — Primary text (never pure black)
-- 🩶 **Outline Variant** `#d8c1c0` — Ghost borders at low opacity
+**Primary (Very dark desaturated red)**  
+![#6B2D2D](https://img.shields.io/badge/-6B2D2D-6B2D2D?style=flat)
+
+**Secondary (Café Noir)**  
+![#4B3621](https://img.shields.io/badge/-4B3621-4B3621?style=flat)
+
+**Tertiary (Eerie Black)**  
+![#1A1A1A](https://img.shields.io/badge/-1A1A1A-1A1A1A?style=flat)
+
+**Neutral (Brilliant Pearl)**  
+![#F5EFE1](https://img.shields.io/badge/-F5EFE1-F5EFE1?style=flat)
 
 ## 📁 Project Structure
 

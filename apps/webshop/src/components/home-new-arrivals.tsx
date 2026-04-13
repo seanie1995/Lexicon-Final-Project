@@ -10,13 +10,19 @@ const HomeNewArrivals = async () => {
 	});
 
 	return (
-		<section className="border-t border-outline-variant/10 bg-surface-container-low py-24">
+		<section
+			className="border-t border-outline-variant/10 bg-surface-container-low py-24"
+			aria-labelledby="new-arrivals-title"
+		>
 			<div className="mx-auto max-w-screen-2xl px-8 lg:px-12">
 				<header className="mb-16 space-y-4 text-center">
 					<p className="font-label text-xs uppercase tracking-[0.4em] text-secondary">
 						Just Cataloged
 					</p>
-					<h2 className="font-headline text-5xl font-bold text-on-surface">
+					<h2
+						id="new-arrivals-title"
+						className="font-headline text-5xl font-bold text-on-surface"
+					>
 						New Arrivals
 					</h2>
 				</header>

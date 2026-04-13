@@ -36,14 +36,20 @@ const HomeFeaturedBooks = () => {
 	};
 
 	return (
-		<section className="overflow-hidden bg-surface-container-low py-24 group relative">
+		<section
+			className="overflow-hidden bg-surface-container-low py-24 group relative"
+			aria-labelledby="featured-title"
+		>
 			<div className="mx-auto max-w-screen-2xl px-8 lg:px-12">
 				<header className="mb-12 flex items-end justify-between">
 					<div className="space-y-2">
 						<p className="font-label text-xs uppercase tracking-[0.3em] text-secondary">
 							The Collection
 						</p>
-						<h2 className="font-headline text-4xl font-bold text-on-surface">
+						<h2
+							id="featured-title"
+							className="font-headline text-4xl font-bold text-on-surface"
+						>
 							Featured Rarities
 						</h2>
 					</div>

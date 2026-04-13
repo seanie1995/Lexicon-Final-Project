@@ -3,7 +3,10 @@ import Link from "next/link";
 
 const HomeHero = () => {
 	return (
-		<section className="relative overflow-hidden bg-surface py-24">
+		<section
+			className="relative overflow-hidden bg-surface py-24"
+			aria-labelledby="hero-title"
+		>
 			<div className="flex flex-col gap-16 lg:flex-row lg:items-center">
 				{/* ── Text block ── */}
 				<div className="z-10 max-w-2xl flex-1 space-y-8">
@@ -12,7 +15,10 @@ const HomeHero = () => {
 							First Edition Highlight
 						</p>
 
-						<h1 className="font-headline text-5xl font-black leading-[1.1] tracking-tight text-on-surface lg:text-7xl">
+						<h1
+							id="hero-title"
+							className="font-headline text-5xl font-black leading-[1.1] tracking-tight text-on-surface lg:text-7xl"
+						>
 							Preserving the{" "}
 							<span className="font-serif italic font-normal">Soul</span> of the
 							Written Word

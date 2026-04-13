@@ -30,12 +30,10 @@ const SearchInput = () => {
 			return;
 		}
 
-		if (!isCatalogPage) return;
-
 		const debounceTimer = setTimeout(() => {
 			if (!inputValue) return;
 
-			const params = new URLSearchParams(searchParamsRef.current.toString());
+			const params = new URLSearchParams();
 			params.set("search", inputValue);
 			params.delete("page");
 
@@ -45,7 +43,7 @@ const SearchInput = () => {
 		}, 300);
 
 		return () => clearTimeout(debounceTimer);
-	}, [inputValue, router, isCatalogPage]);
+	}, [inputValue, router]);
 
 	return (
 		<div

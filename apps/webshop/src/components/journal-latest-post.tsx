@@ -19,7 +19,7 @@ const JournalLatestPost = async () => {
 						src={post.image}
 						alt={post.title}
 						fill
-						className="object-cover transition-transform duration-700 group-hover:scale-105"
+						className="object-cover"
 						sizes="(max-width: 1024px) 100vw, 60vw"
 						priority
 					/>

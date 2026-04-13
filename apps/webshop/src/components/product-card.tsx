@@ -14,7 +14,7 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 		>
 			<div className="aspect-3/4 overflow-hidden bg-surface-container-low mb-6 relative">
 				<Image
-					className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+					className="w-full h-full object-cover"
 					alt={product.title}
 					src={image}
 					fill

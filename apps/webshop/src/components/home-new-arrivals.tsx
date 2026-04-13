@@ -10,8 +10,8 @@ const HomeNewArrivals = async () => {
 	});
 
 	return (
-		<section className="border-t border-outline-variant/10 bg-surface-container-low px-6 py-24 lg:px-20">
-			<div className="mx-auto max-w-4xl">
+		<section className="border-t border-outline-variant/10 bg-surface-container-low py-24">
+			<div className="mx-auto max-w-screen-2xl px-8 lg:px-12">
 				<header className="mb-16 space-y-4 text-center">
 					<p className="font-label text-xs uppercase tracking-[0.4em] text-secondary">
 						Just Cataloged

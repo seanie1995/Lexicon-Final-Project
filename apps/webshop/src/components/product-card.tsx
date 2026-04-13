@@ -1,6 +1,6 @@
-import type { ProductWithRelations } from "@/app/types/prisma";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import type { ProductWithRelations } from "@/app/types/prisma";
 import { formatPrice } from "@/lib/formatters";
 
 const ProductCard = ({ product }: { product: ProductWithRelations }) => {
@@ -14,7 +14,7 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
 		>
 			<div className="aspect-3/4 overflow-hidden bg-surface-container-low mb-6 relative">
 				<Image
-					className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+					className="w-full h-full object-cover"
 					alt={product.title}
 					src={image}
 					fill

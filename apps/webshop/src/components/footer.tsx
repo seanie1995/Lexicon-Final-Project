@@ -52,7 +52,7 @@ const Footer = () => {
 							<li>
 								<Link
 									className="text-secondary hover:text-primary underline decoration-transparent hover:decoration-primary transition-all"
-									href="/sitemap.xml"
+									href="/sitemap"
 								>
 									Sitemap
 								</Link>

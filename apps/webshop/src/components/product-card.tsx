@@ -22,22 +22,12 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        {!available && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/70">
-            <span className="bg-error-container text-error font-bold uppercase px-4 py-2 text-sm rounded">
-              Sold
-            </span>
-          </div>
-        )}
         <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
       <div className="space-y-2">
         <div className="flex justify-between items-start">
           <h3 className="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">
             {product.title}
-            {!available && (
-              <span className="ml-2 text-sm font-label text-secondary">(SOLD)</span>
-            )}
           </h3>
           <span className="font-label text-sm text-primary font-semibold">
             {formatPrice(product.price)} SEK
@@ -48,6 +38,7 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
           <span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
             {new Date(product.year).getFullYear()}
           </span>
+
           <span className="font-label text-[10px] uppercase tracking-widest px-2 py-1 bg-surface-container-highest text-secondary">
             {product.condition.grade}
           </span>

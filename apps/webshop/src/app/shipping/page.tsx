@@ -58,7 +58,7 @@ export default function ShippingPage() {
 							<img
 								alt="Wrapped rare book prepared for shipment"
 								src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKwAAhg3Gm9fos9N7kTnTZMonf23Ik5iWxLU8nvoLtAixHIwu4jkGHtggr7HazKbJkcCVyGKvUXbz09peG3V9nd0jsuA-IoQnyA9qC6Y81B_BtE-u9H_scGbl0dlpnuVuYl_JtBc0rN8oItOB_W5MDMbf-VykxgdbT-ybisX1jqx2AkYzBbvOyTJk_XeP6WlNWqVfR9bkStwLZ99QlX7m7scIEU3cwprNbcJW7Fnsa1hw6S8jVZPd_QRv2_pwBRDociUDWP9WtfXsX"
-								className="aspect-[3/4] h-full w-full object-cover grayscale-[0.15] transition-transform duration-700 group-hover:scale-[1.03]"
+								className="aspect-[3/4] h-full w-full object-cover grayscale-[0.15]"
 							/>
 							<div className="pointer-events-none absolute inset-0 bg-primary/8" />
 						</div>

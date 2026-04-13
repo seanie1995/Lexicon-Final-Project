@@ -19,7 +19,7 @@ const HomeFeaturedBooks = () => {
 			});
 			const shuffled = [...(data || [])]
 				.sort(() => Math.random() - 0.5)
-				.slice(0, 5);
+				.slice(0, 8);
 			setBooks(shuffled);
 		};
 		fetchBooks();

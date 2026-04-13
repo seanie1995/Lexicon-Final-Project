@@ -77,12 +77,12 @@ const HomeEditorialSections = () => {
 							accessible to scholars and bibliophiles alike. We believe that
 							physical history deserves a digital legacy.
 						</p>
-						<button
-							type="button"
+						<Link
+							href="/journal"
 							className="font-label text-[10px] uppercase tracking-widest text-secondary transition-colors hover:text-primary"
 						>
 							Our Preservation Process
-						</button>
+						</Link>
 					</blockquote>
 				</aside>
 

@@ -23,7 +23,11 @@ export async function POST(request: Request) {
       from: "The Digital Archivist <onboarding@resend.dev>",
 
       // Change this to your real inbox once domain is verified
-      to: ["delivered@resend.dev"],
+      to: ["emelie.kedert@gmail.com",  
+            "jim@jine.se", 
+            "petra.oster.paulin@gmail.com", 
+            "seanschelin@gmail.com",
+            "cablejunkie@gmail.com"], 
 
       subject: `[Contact] ${subject}`,
 

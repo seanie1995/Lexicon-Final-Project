@@ -130,8 +130,13 @@ async function handleCheckoutSessionCompleted(
   const productIds = lineItems
     .map((item) => {
       const productIdStr = item.price?.metadata?.productId;
-      if (productIdStr) {
-        const parsed = parseInt(productIdStr, 10);
+      const productIdFromProduct = (
+        item.price?.product as Stripe.Product | undefined
+      )?.metadata?.productId;
+      const finalProductIdStr = productIdStr || productIdFromProduct;
+
+      if (finalProductIdStr) {
+        const parsed = parseInt(finalProductIdStr, 10);
         if (!Number.isNaN(parsed)) {
           return parsed;
         }

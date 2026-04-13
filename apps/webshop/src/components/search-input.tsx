@@ -1,66 +1,71 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useTransition, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState, useTransition } from "react";
 
 const SearchInput = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+	const [isPending, startTransition] = useTransition();
 
-  // Local state tracks what user is typing
-  // We don't hit the URL on every keystroke
-  const [inputValue, setInputValue] = useState(
-    searchParams.get("search") ?? "",
-  );
+	const pathnameRef = useRef(pathname);
+	const searchParamsRef = useRef(searchParams);
+	const initialized = useRef(false);
+	pathnameRef.current = pathname;
+	searchParamsRef.current = searchParams;
 
-  useEffect(() => {
-    const debounceTimer = setTimeout(() => {
-      const params = new URLSearchParams(searchParams.toString());
+	// Local state tracks what user is typing
+	// We don't hit the URL on every keystroke
+	const [inputValue, setInputValue] = useState(
+		searchParams.get("search") ?? "",
+	);
 
-      if (inputValue) {
-        params.set("search", inputValue);
-      } else {
-        params.delete("search");
-      }
+	useEffect(() => {
+		if (!initialized.current) {
+			initialized.current = true;
+			return;
+		}
 
-      // Always reset to page 1 on new search
-      params.delete("page");
+		const debounceTimer = setTimeout(() => {
+			if (!inputValue) return;
 
-      startTransition(() => {
-        router.push(`${pathname}?${params.toString()}`);
-      });
-    }, 300);
+			const params = new URLSearchParams(searchParamsRef.current.toString());
+			params.set("search", inputValue);
+			params.delete("page");
 
-    // Cleanup — cancel timer if user types again
-    return () => clearTimeout(debounceTimer);
-  }, [inputValue]);
+			startTransition(() => {
+				router.push(`${pathnameRef.current}?${params.toString()}`);
+			});
+		}, 300);
 
-  return (
-    <div
-      className={`
+		return () => clearTimeout(debounceTimer);
+	}, [inputValue, router]);
+
+	return (
+		<div
+			className={`
             hidden lg:flex items-center 
             bg-surface-container-low px-4 py-2 
             transition-opacity duration-200
             ${isPending ? "opacity-50" : "opacity-100"}
         `}
-    >
-      <Search className="w-4 h-4 mr-2 shrink-0 text-secondary" />
-      <input
-        className="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48"
-        placeholder="Search the archives..."
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      {/* Show subtle spinner while results load */}
-      {isPending && (
-        <span className="ml-2 text-xs text-secondary animate-pulse">...</span>
-      )}
-    </div>
-  );
+		>
+			<Search className="w-4 h-4 mr-2 shrink-0 text-secondary" />
+			<input
+				className="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48"
+				placeholder="Search the archives..."
+				type="text"
+				value={inputValue}
+				onChange={(e) => setInputValue(e.target.value)}
+			/>
+			{/* Show subtle spinner while results load */}
+			{isPending && (
+				<span className="ml-2 text-xs text-secondary animate-pulse">...</span>
+			)}
+		</div>
+	);
 };
 
 export default SearchInput;

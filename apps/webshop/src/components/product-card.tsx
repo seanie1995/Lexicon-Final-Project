@@ -22,12 +22,20 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
+        {!available && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+            <span className="bg-red-600 px-3 py-1 font-label text-xs text-white font-semibold tracking-widest">
+              SOLD
+            </span>
+          </div>
+        )}
         <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
       <div className="space-y-2">
         <div className="flex justify-between items-start">
           <h3 className="font-headline text-xl text-on-surface leading-tight group-hover:text-primary transition-colors">
             {product.title}
+            {!available && <span className="text-on-surface-variant font-semibold ml-2">(SOLD)</span>}
           </h3>
           <span className="font-label text-sm text-primary font-semibold">
             {formatPrice(product.price)} SEK

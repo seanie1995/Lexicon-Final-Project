@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import CatalogFilters from "@/components/catalog-filters";
 import CatalogHero from "@/components/catalog-hero";
 import CatalogPagination from "@/components/catalog-pagination";
 import CatalogSort from "@/components/catalog-sort";
 import ProductCard from "@/components/product-card";
 import { getProducts } from "@/lib/actions/products";
+
+export const metadata: Metadata = {
+	title: "The General Catalog | The Digital Archivist",
+	description:
+		"Browse our curated collection of rare first editions, illuminated manuscripts and leather-bound treasures across the centuries.",
+};
+
 
 type SearchParams = Record<string, string | string[] | undefined>;
 

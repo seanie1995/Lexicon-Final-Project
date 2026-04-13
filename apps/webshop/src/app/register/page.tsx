@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import AuthLayout from "@/components/auth-layout";
 import RegisterForm from "@/components/register-form";
+
+export const metadata: Metadata = {
+	title: "Register | The Digital Archivist",
+	description: "Create an account with The Digital Archivist to access exclusive content and resources.",
+};
 
 const RegisterPage = () => {
   return (

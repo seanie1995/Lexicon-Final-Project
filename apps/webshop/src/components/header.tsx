@@ -24,8 +24,6 @@ const navLinks = [
 	{ label: "Catalog", href: "/catalog" },
 	{ label: "Contact", href: "/contact" },
 	{ label: "Shipping", href: "/shipping" },
-	/*   { label: "Rarities", href: "/" },
-  { label: "Chronology", href: "/" }, */
 	{ label: "Journal", href: "/journal" },
 ];
 

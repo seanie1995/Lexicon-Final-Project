@@ -88,11 +88,10 @@ const Header = () => {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`${
-                    isActive
-                      ? "text-primary font-bold border-b border-primary pb-1"
-                      : "text-secondary font-medium"
-                  } hover:text-primary transition-colors duration-300`}
+                  className={`${isActive
+                    ? "text-primary font-bold border-b border-primary pb-1"
+                    : "text-secondary font-medium"
+                    } hover:text-primary transition-colors duration-300`}
                 >
                   {link.label}
                 </Link>
@@ -100,12 +99,15 @@ const Header = () => {
             })}
           </div>
 
-          {/* Search input — now a separate client component */}
-          <div className="flex items-center gap-3 md:gap-6 text-primary">
+          <div className="flex gap-3 items-center text-primary">
+            {/* Search input — now a separate client component */}
+            <SearchInput />
+
+            {/* Theme toggle */}
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-1 hover:text-primary/70 transition-colors"
+              className="hover:text-primary/70 transition-colors"
               aria-label={
                 theme === "dark"
                   ? "Switch to light mode"
@@ -123,9 +125,6 @@ const Header = () => {
                 <Moon className="w-5 h-5" />
               )}
             </button>
-
-            {/* Search input — now a separate client component */}
-            <SearchInput />
 
             {/* User icon + welcome message */}
             <Link href="/account" className="hidden xl:flex items-center gap-2">

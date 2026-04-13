@@ -73,7 +73,9 @@ export default async function CatalogPage({
 	return (
 		<main className="mx-auto max-w-screen-2xl px-8 pb-24 pt-24">
 			<CatalogHero />
+
 			<div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
+
 				<CatalogFilters
 					sections={filterSections}
 					selected={{
@@ -84,7 +86,12 @@ export default async function CatalogPage({
 				/>
 				<div className="min-w-0 flex-1">
 					<div className="mb-8 flex items-end justify-between">
-						<h1 className="font-headline text-3xl">Catalog</h1>
+						{totalPages > 1 && (
+							<p className="mt-12 text-center font-label text-sm text-outline">
+								Showing {(currentPage - 1) * pageSize + 1}&ndash;
+								{Math.min(currentPage * pageSize, total)} of {total} results
+							</p>
+						)}
 						<CatalogSort />
 					</div>
 					<div className="grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
@@ -92,12 +99,7 @@ export default async function CatalogPage({
 							<ProductCard key={product.id} product={product} />
 						))}
 					</div>
-					{totalPages > 1 && (
-						<p className="mt-12 text-center font-label text-sm text-outline">
-							Showing {(currentPage - 1) * pageSize + 1}&ndash;
-							{Math.min(currentPage * pageSize, total)} of {total} results
-						</p>
-					)}
+
 					<CatalogPagination currentPage={currentPage} totalPages={totalPages} />
 				</div>
 			</div>

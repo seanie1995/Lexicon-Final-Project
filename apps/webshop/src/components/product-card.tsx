@@ -1,6 +1,6 @@
-import type { ProductWithRelations } from "@/app/types/prisma";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import type { ProductWithRelations } from "@/app/types/prisma";
 import { formatPrice } from "@/lib/formatters";
 
 const ProductCard = ({ product }: { product: ProductWithRelations }) => {

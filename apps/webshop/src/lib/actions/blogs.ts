@@ -30,3 +30,15 @@ export async function getBlogposts(): Promise<Blogpost[]> {
 		return [];
 	}
 }
+
+export async function getBlogpostById(id: number): Promise<Blogpost | null> {
+	try {
+		const post = await prisma.blogpost.findUnique({
+			where: { id },
+		});
+		return post as Blogpost | null;
+	} catch (error) {
+		console.error(`Error fetching blogpost with id ${id}:`, error);
+		return null;
+	}
+}

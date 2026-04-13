@@ -16,6 +16,8 @@ const SearchInput = () => {
 	pathnameRef.current = pathname;
 	searchParamsRef.current = searchParams;
 
+	const isCatalogPage = pathname.startsWith("/catalog");
+
 	// Local state tracks what user is typing
 	// We don't hit the URL on every keystroke
 	const [inputValue, setInputValue] = useState(
@@ -28,6 +30,8 @@ const SearchInput = () => {
 			return;
 		}
 
+		if (!isCatalogPage) return;
+
 		const debounceTimer = setTimeout(() => {
 			if (!inputValue) return;
 
@@ -36,12 +40,12 @@ const SearchInput = () => {
 			params.delete("page");
 
 			startTransition(() => {
-				router.push(`${pathnameRef.current}?${params.toString()}`);
+				router.push(`/catalog?${params.toString()}`);
 			});
 		}, 300);
 
 		return () => clearTimeout(debounceTimer);
-	}, [inputValue, router]);
+	}, [inputValue, router, isCatalogPage]);
 
 	return (
 		<div

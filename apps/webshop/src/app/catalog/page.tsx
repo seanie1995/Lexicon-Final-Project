@@ -1,3 +1,4 @@
+import { Search } from "lucide-react";
 import type { Metadata } from "next";
 import CatalogFilters from "@/components/catalog-filters";
 import CatalogHero from "@/components/catalog-hero";
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
 	description:
 		"Browse our curated collection of rare first editions, illuminated manuscripts and leather-bound treasures across the centuries.",
 };
-
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -44,10 +44,16 @@ export default async function CatalogPage({
 		: "title";
 	const sortOrder = sortOrderRaw === "desc" ? "desc" : "asc";
 
-	const pageParam = typeof sp.page === "string" ? Number.parseInt(sp.page, 10) : 1;
+	const pageParam =
+		typeof sp.page === "string" ? Number.parseInt(sp.page, 10) : 1;
 	const currentPage = Number.isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
 
-	const { data: products, total, pageSize, totalPages } = await getProducts({
+	const {
+		data: products,
+		total,
+		pageSize,
+		totalPages,
+	} = await getProducts({
 		search,
 		genres,
 		conditionGrades,
@@ -58,57 +64,88 @@ export default async function CatalogPage({
 	});
 	const uniqueValues = <T,>(values: T[]) => [...new Set(values)];
 
-	const filterSections = [
-		{
-			title: "Genre",
-			type: "checkbox" as const,
-			options: uniqueValues(products.map((product) => product.genre)).sort(),
-		},
-		{
-			title: "Era",
-			type: "radio" as const,
-			options: uniqueValues(products.map((product) => product.era)).sort(),
-		},
-		{
-			title: "Condition",
-			type: "checkbox" as const,
-			options: uniqueValues(
-				products.map((product) => product.condition.grade),
-			).sort(),
-		},
-	];
+	const filterSections =
+		products.length > 0
+			? [
+					{
+						title: "Genre",
+						type: "checkbox" as const,
+						options: uniqueValues(
+							products.map((product) => product.genre),
+						).sort(),
+					},
+					{
+						title: "Era",
+						type: "radio" as const,
+						options: uniqueValues(
+							products.map((product) => product.era),
+						).sort(),
+					},
+					{
+						title: "Condition",
+						type: "checkbox" as const,
+						options: uniqueValues(
+							products.map((product) => product.condition.grade),
+						).sort(),
+					},
+				]
+			: [];
 
 	return (
 		<main className="mx-auto max-w-screen-2xl px-8 pb-24 pt-24">
 			<CatalogHero />
 
 			<div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
-
-				<CatalogFilters
-					sections={filterSections}
-					selected={{
-						Genre: genres,
-						Era: era ? [era] : [],
-						Condition: conditionGrades,
-					}}
-				/>
+				{products.length > 0 && (
+					<CatalogFilters
+						sections={filterSections}
+						selected={{
+							Genre: genres,
+							Era: era ? [era] : [],
+							Condition: conditionGrades,
+						}}
+					/>
+				)}
 				<div className="min-w-0 flex-1">
-					<div className="mb-8 flex items-end justify-between">
-						{totalPages > 1 && (
-							<p className="mt-12 text-center font-label text-sm text-outline">
-								Showing {(currentPage - 1) * pageSize + 1}&ndash;
-								{Math.min(currentPage * pageSize, total)} of {total} results
+					{products.length > 0 && (
+						<div className="mb-8 flex items-end justify-between">
+							{totalPages > 1 && (
+								<p className="mt-12 text-center font-label text-sm text-outline">
+									Showing {(currentPage - 1) * pageSize + 1}&ndash;
+									{Math.min(currentPage * pageSize, total)} of {total} results
+								</p>
+							)}
+							<CatalogSort />
+						</div>
+					)}
+					{products.length === 0 ? (
+						<div className="flex flex-col items-center justify-center py-24 text-center">
+							<div className="mb-6 p-6 bg-surface-container-low rounded-full">
+								<Search className="w-12 h-12 text-primary opacity-50" />
+							</div>
+							<h2 className="font-headline text-2xl text-on-surface mb-2">
+								No results found
+							</h2>
+							<p className="font-body text-secondary max-w-md">
+								{search
+									? `No volumes matching "${search}" were found in our archive. Try adjusting your search or filters.`
+									: "No volumes match your current filters. Try adjusting your selection."}
 							</p>
-						)}
-						<CatalogSort />
-					</div>
-					<div className="grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
-						{products.map((product) => (
-							<ProductCard key={product.id} product={product} />
-						))}
-					</div>
+						</div>
+					) : (
+						<div className="grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
+							{products.map((product) => (
+								<ProductCard key={product.id} product={product} />
+							))}
+						</div>
+					)}
 
-					<CatalogPagination currentPage={currentPage} totalPages={totalPages} />
+					{products.length > 0 && (
+						<CatalogPagination
+							currentPage={currentPage}
+							totalPages={totalPages}
+						/>
+					)}
 				</div>
 			</div>
 		</main>

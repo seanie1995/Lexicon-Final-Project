@@ -5,11 +5,13 @@ import {
 	Loader2,
 	LogIn,
 	LogOut,
+	Menu,
 	Moon,
 	Search,
 	ShoppingBag,
 	Sun,
 	User,
+	X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -34,6 +36,12 @@ const Header = () => {
 	const { theme, toggleTheme } = useTheme();
 	const [isLoggingOut, setIsLoggingOut] = useState(false);
 	const [userEmail, setUserEmail] = useState<string | null>(null);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	// Close mobile menu on route change
+	useEffect(() => {
+		setIsMenuOpen(false);
+	}, [pathname]);
 
 	useEffect(() => {
 		const supabase = createClient();
@@ -99,8 +107,21 @@ const Header = () => {
 						})}
 					</div>
 
-					{/* Search input — now a separate client component */}
+					{/* Right side: icons + hamburger */}
 					<div className="flex items-center gap-3 md:gap-6 text-primary">
+						{/* Hamburger toggle — visible on mobile only */}
+						<button
+							type="button"
+							className="md:hidden p-1 hover:text-primary/70 transition-colors"
+							onClick={() => setIsMenuOpen(!isMenuOpen)}
+							aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+						>
+							{isMenuOpen ? (
+								<X className="w-6 h-6" />
+							) : (
+								<Menu className="w-6 h-6" />
+							)}
+						</button>
 						<button
 							type="button"
 							onClick={toggleTheme}
@@ -187,7 +208,42 @@ const Header = () => {
 						)}
 					</div>
 				</div>
+
+				{/* Mobile nav panel */}
+				<div
+					className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+						isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+					}`}
+				>
+					<div className="flex flex-col gap-1 px-4 pb-6 pt-2 border-t border-primary/5">
+						{navLinks.map((link) => {
+							const isActive = pathname === link.href;
+							return (
+								<Link
+									key={link.label}
+									href={link.href}
+									className={`font-headline text-lg py-3 px-2 transition-colors duration-200 ${
+										isActive
+											? "text-primary font-bold"
+											: "text-secondary hover:text-primary"
+									}`}
+								>
+									{link.label}
+								</Link>
+							);
+						})}
+					</div>
+				</div>
 			</nav>
+
+			{/* Overlay backdrop when mobile menu is open */}
+			{isMenuOpen && (
+				<div
+					className="fixed inset-0 z-40 bg-on-surface/20 backdrop-blur-sm md:hidden"
+					onClick={() => setIsMenuOpen(false)}
+				/>
+			)}
+
 			<CartDrawer />
 		</>
 	);

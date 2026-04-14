@@ -56,7 +56,16 @@ const BookSpinner = () => (
         .page:nth-child(2) { animation-delay: 0.2s; }
         .page:nth-child(3) { animation-delay: 0.4s; }
       `}</style>
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      
+      {/* aria-label on the svg describes the loading state to screen readers */}
+      <svg
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full"
+        aria-label="Loading"
+        role="img"
+      >
         <rect x="28" y="8" width="4" height="48" fill="#4f1819" rx="1"/>
         <rect x="8" y="8" width="22" height="48" rx="1" fill="#6b2d2d" opacity="0.8"/>
         <rect x="32" y="8" width="22" height="48" rx="1" fill="#6b2d2d" opacity="0.6"/>
@@ -82,9 +91,11 @@ const labelClasses =
 export default function AccountForm({ user, orders }: AccountFormProps) {
   const [activeTab, setActiveTab] = useState<ActiveTab>("profile");
   const [loading, setLoading] = useState(true);
-  const [quote] = useState(() => QUOTES[Math.floor(Math.random() * QUOTES.length)]); {/* Picks a random quote once on mount — stays the same during the session */}
-  
-  {/* Cart lives in localStorage via CartContext —  and therefore no DBase needed; persists between page refreshes */ }
+
+  {/* Picks a random quote once on mount — stays the same during the session */}
+  const [quote] = useState(() => QUOTES[Math.floor(Math.random() * QUOTES.length)]);
+
+  {/* Cart lives in localStorage via CartContext — no DB needed, persists between page refreshes */}
   const { cartItems, removeFromCart, setIsCartOpen } = useCart();
 
   const [passwords, setPasswords] = useState({ current: "", new: "", confirm: "" });
@@ -96,8 +107,9 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
   const [preferences, setPreferences] = useState({ newsletter: false, orderUpdates: true });
   const [prefSaved, setPrefSaved] = useState(false);
 
+  {/* Small delay so the book spinner actually shows — without this it flashes too fast to see */}
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1400); {/* Book spinner delay, otherwise it flashes too fast to be seen */}
+    const timer = setTimeout(() => setLoading(false), 1400);
     return () => clearTimeout(timer);
   }, []);
 
@@ -109,6 +121,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
     year: "numeric", month: "long", day: "numeric",
   });
 
+  {/* Prices are stored in öre so we divide by 100 — e.g. 89900 = 899 SEK */}
   const cartTotal = cartItems.reduce((sum, item) => sum + item.price, 0);
 
   const handlePasswordChange = async (e: React.FormEvent) => {
@@ -134,17 +147,17 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
   };
 
   const tabs: { id: ActiveTab; label: string; icon: React.ReactNode }[] = [
-    { id: "profile",     label: "Profile",     icon: <UserIcon className="w-4 h-4" /> },
-    { id: "orders",      label: "Orders",      icon: <ShoppingBag className="w-4 h-4" /> },
-    { id: "security",    label: "Security",    icon: <Lock className="w-4 h-4" /> },
-    { id: "preferences", label: "Preferences", icon: <Settings className="w-4 h-4" /> },
+    { id: "profile",     label: "Profile",     icon: <UserIcon className="w-4 h-4" aria-hidden="true" /> },
+    { id: "orders",      label: "Orders",      icon: <ShoppingBag className="w-4 h-4" aria-hidden="true" /> },
+    { id: "security",    label: "Security",    icon: <Lock className="w-4 h-4" aria-hidden="true" /> },
+    { id: "preferences", label: "Preferences", icon: <Settings className="w-4 h-4" aria-hidden="true" /> },
   ];
 
   return (
     <div className="min-h-screen bg-surface pt-28 pb-20 px-6 lg:px-20">
       <div className="max-w-5xl mx-auto">
 
-        {/* Random quote */}
+        {/* Random quote — changes on each visit */}
         <div className="mb-10 border-l-2 border-primary/30 pl-5">
           <p className="font-body italic text-on-surface-variant leading-relaxed text-sm md:text-base">
             &ldquo;{quote.text}&rdquo;
@@ -158,7 +171,12 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
         <div className="mb-12 border-b border-outline-variant/30 pb-8">
           <div className="flex items-start justify-between gap-6 flex-wrap">
             <div className="flex items-start gap-6">
-              <div className="w-16 h-16 bg-primary-container flex items-center justify-center shrink-0 border border-outline-variant/20">
+              
+              {/* Monogram avatar — aria-hidden since username is shown in text below */}
+              <div
+                className="w-16 h-16 bg-primary-container flex items-center justify-center shrink-0 border border-outline-variant/20"
+                aria-hidden="true"
+              >
                 <span className="text-on-primary-container font-headline text-2xl italic">
                   {username.charAt(0).toUpperCase()}
                 </span>
@@ -169,14 +187,14 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                   Welcome, {username}.
                 </h1>
                 <p className="text-on-surface-variant font-body text-sm mt-1 flex items-center gap-1.5">
-                  <BookOpen className="w-3.5 h-3.5" />
+                  <BookOpen className="w-3.5 h-3.5" aria-hidden="true" />
                   Member since {memberSince}
                 </p>
               </div>
             </div>
 
-            {/* Quick stats — fills the empty space on the right */}
-            <div className="flex gap-4 flex-wrap">
+            {/* Quick stats */}
+            <div className="flex gap-4 flex-wrap" aria-label="Account summary">
               <div className="bg-surface-container-low border border-outline-variant/20 px-5 py-3 text-center min-w-[80px]">
                 <p className="text-2xl font-serif text-primary">{orders.length}</p>
                 <p className="text-[10px] font-label uppercase tracking-widest text-outline mt-0.5">Orders</p>
@@ -195,17 +213,17 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
           </div>
         </div>
 
-        {/* Main layout — wider max width, sidebar + panel */}
         <div className="flex flex-col lg:flex-row gap-10">
 
-          {/* Sidebar */}
-          <nav className="lg:w-48 shrink-0">
-            <ul className="flex lg:flex-col gap-1">
+          {/* aria-label tells screen readers this is the account navigation */}
+          <nav className="lg:w-48 shrink-0" aria-label="Account navigation">
+            <ul className="flex lg:flex-col gap-1" role="list">
               {tabs.map((tab) => (
                 <li key={tab.id} className="flex-1 lg:flex-none">
                   <button
                     type="button"
                     onClick={() => setActiveTab(tab.id)}
+                    aria-current={activeTab === tab.id ? "page" : undefined}
                     className={`w-full flex items-center gap-2.5 px-4 py-3 text-sm font-label uppercase tracking-wider transition-colors duration-200 text-left
                       ${activeTab === tab.id
                         ? "bg-primary text-on-primary"
@@ -215,12 +233,18 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                     {tab.icon}
                     <span className="hidden sm:inline">{tab.label}</span>
                     {tab.id === "orders" && orders.length > 0 && (
-                      <span className="ml-auto text-[10px] bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 font-label">
+                      <span
+                        className="ml-auto text-[10px] bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 font-label"
+                        aria-label={`${orders.length} orders`}
+                      >
                         {orders.length}
                       </span>
                     )}
                     {tab.id === "orders" && cartItems.length > 0 && orders.length === 0 && (
-                      <span className="ml-auto text-[10px] bg-secondary-container text-on-secondary-container px-1.5 py-0.5 font-label">
+                      <span
+                        className="ml-auto text-[10px] bg-secondary-container text-on-secondary-container px-1.5 py-0.5 font-label"
+                        aria-label={`${cartItems.length} items in cart`}
+                      >
                         {cartItems.length}
                       </span>
                     )}
@@ -229,18 +253,22 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
               ))}
             </ul>
 
-            {/* Cart quick-open below sidebar */}
+            {/* Cart quick-open — only shows when cart has items */}
             {cartItems.length > 0 && (
               <button
                 type="button"
                 onClick={() => setIsCartOpen(true)}
+                aria-label={`View cart, ${cartItems.length} items`}
                 className="mt-4 w-full flex items-center justify-between gap-2 px-4 py-3 border border-outline-variant/30 text-xs font-label uppercase tracking-wider text-on-surface-variant hover:bg-surface-container transition-colors duration-200"
               >
                 <span className="flex items-center gap-2">
-                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <ShoppingBag className="w-3.5 h-3.5" aria-hidden="true" />
                   View Cart
                 </span>
-                <span className="bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                <span
+                  className="bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center"
+                  aria-hidden="true"
+                >
                   {cartItems.length}
                 </span>
               </button>
@@ -258,23 +286,37 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                 </h2>
                 <div className="space-y-6">
                   <div>
-                    <label className={labelClasses}>Username</label>
-                    <div className="flex items-center gap-3 px-4 py-3 bg-surface-container border border-outline/20 text-on-surface font-label text-sm text-outline">
-                      <UserIcon className="w-4 h-4 shrink-0 text-outline" />{username}
+
+                    {/* Read-only display fields use aria-labelledby instead of htmlFor */}
+                    <p id="username-label" className={labelClasses}>Username</p>
+                    <div
+                      aria-labelledby="username-label"
+                      className="flex items-center gap-3 px-4 py-3 bg-surface-container border border-outline/20 text-on-surface font-label text-sm text-outline"
+                    >
+                      <UserIcon className="w-4 h-4 shrink-0 text-outline" aria-hidden="true" />
+                      {username}
                     </div>
-                    <p className="mt-1.5 text-xs font-label text-outline">Username is set at registration and cannot be changed.</p>
+                    <p className="mt-1.5 text-xs font-label text-outline">
+                      Username is set at registration and cannot be changed.
+                    </p>
                   </div>
                   <div>
-                    <label className={labelClasses}>Email Address</label>
-                    <div className="flex items-center gap-3 px-4 py-3 bg-surface-container border border-outline/20 text-on-surface font-label text-sm text-outline">
-                      <Mail className="w-4 h-4 shrink-0 text-outline" />{displayEmail}
+                    <p id="email-label" className={labelClasses}>Email Address</p>
+                    <div
+                      aria-labelledby="email-label"
+                      className="flex items-center gap-3 px-4 py-3 bg-surface-container border border-outline/20 text-on-surface font-label text-sm text-outline"
+                    >
+                      <Mail className="w-4 h-4 shrink-0 text-outline" aria-hidden="true" />
+                      {displayEmail}
                     </div>
-                    <p className="mt-1.5 text-xs font-label text-outline">To change your email, please contact support.</p>
+                    <p className="mt-1.5 text-xs font-label text-outline">
+                      To change your email, please contact support.
+                    </p>
                   </div>
                   <div>
-                    <label className={labelClasses}>Account Status</label>
+                    <p className={labelClasses}>Account Status</p>
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+                      <span className="w-2 h-2 rounded-full bg-primary inline-block" aria-hidden="true" />
                       <span className="text-sm font-label text-on-surface">
                         {user.email_confirmed_at ? "Verified" : "Awaiting email verification"}
                       </span>
@@ -288,7 +330,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
             {activeTab === "orders" && (
               <div className="space-y-4">
 
-                {/* Cart preview — shown at top of orders if cart has items */}
+                {/* Cart preview — only visible when cart has items */}
                 {cartItems.length > 0 && (
                   <div className="bg-surface-container-lowest border border-outline-variant/10 shadow-lg p-6 md:p-8">
                     <div className="flex items-center justify-between mb-4">
@@ -298,21 +340,21 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                       <button
                         type="button"
                         onClick={() => setIsCartOpen(true)}
+                        aria-label="Open cart drawer"
                         className="text-xs font-label uppercase tracking-wider text-secondary hover:text-primary transition-colors flex items-center gap-1"
                       >
-                        Open cart <ArrowRight className="w-3 h-3" />
+                        Open cart <ArrowRight className="w-3 h-3" aria-hidden="true" />
                       </button>
                     </div>
 
                     <div className="space-y-3">
                       {cartItems.map((item) => (
                         <div key={item.id} className="flex items-center gap-3 py-2 border-b border-outline-variant/10 last:border-0">
-                          {/* Thumbnail */}
                           {item.thumbnail && (
                             <div className="w-10 h-14 shrink-0 overflow-hidden bg-surface-container">
                               <Image
                                 src={item.thumbnail}
-                                alt={item.title}
+                                alt={`Cover of ${item.title}`}
                                 width={40}
                                 height={56}
                                 className="w-full h-full object-cover grayscale-[20%]"
@@ -329,20 +371,21 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                             <p className="text-sm font-label text-primary">
                               {(item.price).toLocaleString("sv-SE", { style: "currency", currency: "SEK" })}
                             </p>
+
+                            {/* aria-label tells screen readers exactly which item is being removed */}
                             <button
                               type="button"
                               onClick={() => removeFromCart(item.id)}
+                              aria-label={`Remove ${item.title} from cart`}
                               className="text-outline hover:text-error transition-colors"
-                              title="Remove from cart"
                             >
-                              <X className="w-3.5 h-3.5" />
+                              <X className="w-3.5 h-3.5" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
                       ))}
                     </div>
 
-                    {/* Cart total + checkout */}
                     <div className="mt-4 pt-4 border-t border-outline-variant/20 flex items-center justify-between gap-4 flex-wrap">
                       <p className="text-sm font-label text-on-surface-variant">
                         Total:{" "}
@@ -354,13 +397,13 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                         href="/checkout"
                         className="flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary text-xs font-label uppercase tracking-wider hover:bg-primary/90 transition-colors duration-300"
                       >
-                        Proceed to Checkout <ArrowRight className="w-3.5 h-3.5" />
+                        Proceed to Checkout <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                       </Link>
                     </div>
                   </div>
                 )}
 
-                {/* Past orders */}
+                {/* Past orders — from Stripe checkout history */}
                 <div className="bg-surface-container-lowest border border-outline-variant/10 shadow-lg p-8 md:p-10">
                   <h2 className="text-xl font-serif text-primary mb-6 border-b border-outline-variant/20 pb-4">
                     Your Orders
@@ -368,7 +411,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
 
                   {orders.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-12 gap-4 text-center">
-                      <Package className="w-10 h-10 text-outline/40" />
+                      <Package className="w-10 h-10 text-outline/40" aria-hidden="true" />
                       <p className="font-serif italic text-on-surface-variant text-lg">No orders yet.</p>
                       <p className="text-xs font-body text-outline tracking-wide">
                         When you purchase something, it will show up here. Thanks!
@@ -377,7 +420,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                         href="/catalog"
                         className="mt-2 flex items-center gap-2 text-xs font-label uppercase tracking-wider text-primary hover:underline underline-offset-4"
                       >
-                        Browse the catalog <ArrowRight className="w-3 h-3" />
+                        Browse the catalog <ArrowRight className="w-3 h-3" aria-hidden="true" />
                       </Link>
                     </div>
                   ) : (
@@ -425,58 +468,94 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
             )}
 
             {/* SECURITY TAB */}
-
             {activeTab === "security" && (
               <div className="bg-surface-container-lowest border border-outline-variant/10 shadow-lg p-8 md:p-10">
                 <h2 className="text-xl font-serif text-primary mb-6 border-b border-outline-variant/20 pb-4">
                   Change Password
                 </h2>
+
+                {/* role="alert" announces success/error to screen readers immediately */}
                 {passwordSuccess && (
-                  <div className="mb-6 p-3 bg-primary-fixed text-on-primary-fixed-variant text-sm font-label flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 shrink-0" />Password updated successfully.
+                  <div role="alert" className="mb-6 p-3 bg-primary-fixed text-on-primary-fixed-variant text-sm font-label flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    Password updated successfully.
                   </div>
                 )}
                 {passwordError && (
-                  <div className="mb-6 p-3 bg-error-container text-on-error-container text-sm font-label">{passwordError}</div>
+                  <div role="alert" aria-live="polite" className="mb-6 p-3 bg-error-container text-on-error-container text-sm font-label">
+                    {passwordError}
+                  </div>
                 )}
-                <form onSubmit={handlePasswordChange} className="space-y-6">
+
+                <form
+                  onSubmit={handlePasswordChange}
+                  aria-label="Change password form"
+                  className="space-y-6"
+                >
                   {(["new", "confirm"] as const).map((field) => (
                     <div key={field}>
-                      <label className={labelClasses}>{field === "new" ? "New Password" : "Please Confirm New Password"}</label>
+                      <label
+                        htmlFor={`password-${field}`}
+                        className={labelClasses}
+                      >
+                        {field === "new" ? "New Password" : "Please Confirm New Password"}
+                      </label>
                       <div className="relative">
                         <input
+                          id={`password-${field}`}
                           type={showPasswords[field] ? "text" : "password"}
                           value={passwords[field]}
                           onChange={(e) => { setPasswords((p) => ({ ...p, [field]: e.target.value })); setPasswordError(""); setPasswordSuccess(false); }}
                           placeholder={field === "new" ? "Min. 8 characters" : "Please Repeat new password"}
                           disabled={passwordLoading}
+                          autoComplete={field === "new" ? "new-password" : "new-password"}
                           className={inputClasses}
                         />
-                        <button type="button" onClick={() => setShowPasswords((s) => ({ ...s, [field]: !s[field] }))} className="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" tabIndex={-1}>
-                          {showPasswords[field] ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                        {/* aria-label tells screen readers which field's visibility is toggled */}
+                        <button
+                          type="button"
+                          onClick={() => setShowPasswords((s) => ({ ...s, [field]: !s[field] }))}
+                          aria-label={showPasswords[field] ? `Hide ${field === "new" ? "new" : "confirm"} password` : `Show ${field === "new" ? "new" : "confirm"} password`}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors"
+                          tabIndex={-1}
+                        >
+                          {showPasswords[field]
+                            ? <EyeOff className="h-5 w-5" aria-hidden="true" />
+                            : <Eye className="h-5 w-5" aria-hidden="true" />
+                          }
                         </button>
                       </div>
                     </div>
                   ))}
-                  <button type="submit" disabled={passwordLoading} className="w-full py-3 bg-primary text-on-primary font-label uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-                    {passwordLoading ? <><Loader2 className="h-4 w-4 animate-spin" />Updating…</> : "Update Password"}
+                  <button
+                    type="submit"
+                    disabled={passwordLoading}
+                    className="w-full py-3 bg-primary text-on-primary font-label uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {passwordLoading
+                      ? <><Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />Updating…</>
+                      : "Update Password"
+                    }
                   </button>
                 </form>
               </div>
             )}
 
             {/* PREFERENCES TAB */}
-
             {activeTab === "preferences" && (
               <div className="bg-surface-container-lowest border border-outline-variant/10 shadow-lg p-8 md:p-10">
                 <h2 className="text-xl font-serif text-primary mb-6 border-b border-outline-variant/20 pb-4">
                   Account Preferences
                 </h2>
+
+                {/* role="alert" announces save confirmation to screen readers */}
                 {prefSaved && (
-                  <div className="mb-6 p-3 bg-primary-fixed text-on-primary-fixed-variant text-sm font-label flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 shrink-0" />Preferences saved.
+                  <div role="alert" className="mb-6 p-3 bg-primary-fixed text-on-primary-fixed-variant text-sm font-label flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    Preferences saved.
                   </div>
                 )}
+
                 <div className="space-y-5">
                   {[
                     { key: "newsletter" as const, label: "Newsletter", description: "Receive curated reading recommendations and archive updates." },
@@ -484,10 +563,17 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                   ].map(({ key, label, description }) => (
                     <label key={key} className="flex items-start gap-4 cursor-pointer group">
                       <div className="mt-0.5 relative">
-                        <input type="checkbox" checked={preferences[key]} onChange={(e) => setPreferences((p) => ({ ...p, [key]: e.target.checked }))} className="sr-only peer" />
-                        <div className="w-5 h-5 border border-outline/50 bg-surface-container-low peer-checked:bg-primary peer-checked:border-primary transition-colors duration-200 flex items-center justify-center">
+                        <input
+                          type="checkbox"
+                          checked={preferences[key]}
+                          onChange={(e) => setPreferences((p) => ({ ...p, [key]: e.target.checked }))}
+                          className="sr-only peer"
+                          aria-describedby={`${key}-description`}
+                        />
+                        {/* Custom checkbox — sr-only input above handles the actual interaction */}
+                        <div className="w-5 h-5 border border-outline/50 bg-surface-container-low peer-checked:bg-primary peer-checked:border-primary transition-colors duration-200 flex items-center justify-center" aria-hidden="true">
                           {preferences[key] && (
-                            <svg className="w-3 h-3 text-on-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                            <svg className="w-3 h-3 text-on-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
                               <path strokeLinecap="square" strokeLinejoin="miter" d="M5 13l4 4L19 7" />
                             </svg>
                           )}
@@ -495,12 +581,17 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                       </div>
                       <div>
                         <span className="block text-sm font-label uppercase tracking-wider text-on-surface">{label}</span>
-                        <span className="block text-xs font-body text-on-surface-variant mt-0.5">{description}</span>
+                        {/* id matches aria-describedby on the checkbox above */}
+                        <span id={`${key}-description`} className="block text-xs font-body text-on-surface-variant mt-0.5">{description}</span>
                       </div>
                     </label>
                   ))}
                 </div>
-                <button type="button" onClick={handleSavePreferences} className="mt-8 w-full py-3 bg-primary text-on-primary font-label uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={handleSavePreferences}
+                  className="mt-8 w-full py-3 bg-primary text-on-primary font-label uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center"
+                >
                   Save Preferences
                 </button>
               </div>

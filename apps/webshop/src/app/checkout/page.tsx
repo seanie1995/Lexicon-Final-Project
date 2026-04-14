@@ -21,16 +21,26 @@ export default function CheckoutPage() {
 	async function handleCheckout() {
 		setLoading(true);
 
-		// Send cart items to the backend to create a Stripe Checkout session
 		const res = await fetch("/api/checkout", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ items: cartItems }),
 		});
 
-		const { url } = await res.json();
+		const data = await res.json();
 
-		// Redirect to Stripe Checkout
+		if (!res.ok) {
+			if (res.status === 409 && data.items) {
+				data.items.forEach((item: { id: number }) => {
+					removeFromCart(item.id);
+				});
+			}
+			setLoading(false);
+			return;
+		}
+
+		const { url } = data;
+
 		if (url) {
 			window.location.href = url;
 		} else {

@@ -1,13 +1,13 @@
 import { createClient } from "@supabase-lib/supabase/server";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { prisma } from "@repo/db";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(request: Request) {
   const { items } = await request.json();
 
-  // Get authenticated user (if any)
   const supabase = await createClient();
   const {
     data: { user },
@@ -16,6 +16,23 @@ export async function POST(request: Request) {
 
   if (!items || items.length === 0) {
     return NextResponse.json({ error: "No items in cart" }, { status: 400 });
+  }
+
+  const itemIds = items.map((item: { id: number }) => item.id);
+  const dbItems = await prisma.product.findMany({
+    where: { id: { in: itemIds } },
+    select: { id: true, title: true, availabilityStatus: true },
+  });
+
+  const unavailableItems = dbItems
+    .filter((item) => item.availabilityStatus === "Sold")
+    .map((item) => ({ id: item.id, title: item.title }));
+
+  if (unavailableItems.length > 0) {
+    return NextResponse.json(
+      { error: "unavailable", items: unavailableItems },
+      { status: 409 }
+    );
   }
 
   // Map our cart item to sessioncreate params, line by line

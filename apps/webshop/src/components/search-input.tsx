@@ -1,14 +1,17 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState, useTransition } from "react";
 
 const SearchInput = () => {
 	const router = useRouter();
-	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const [isPending, startTransition] = useTransition();
+
+	const searchParamsRef = useRef(searchParams);
+	const initialized = useRef(false);
+	searchParamsRef.current = searchParams;
 
 	// Local state tracks what user is typing
 	// We don't hit the URL on every keystroke
@@ -17,26 +20,25 @@ const SearchInput = () => {
 	);
 
 	useEffect(() => {
+		if (!initialized.current) {
+			initialized.current = true;
+			return;
+		}
+
 		const debounceTimer = setTimeout(() => {
-			const params = new URLSearchParams(searchParams.toString());
+			if (!inputValue) return;
 
-			if (inputValue) {
-				params.set("search", inputValue);
-			} else {
-				params.delete("search");
-			}
-
-			// Always reset to page 1 on new search
+			const params = new URLSearchParams();
+			params.set("search", inputValue);
 			params.delete("page");
 
 			startTransition(() => {
-				router.push(`${pathname}?${params.toString()}`);
+				router.push(`/catalog?${params.toString()}`);
 			});
 		}, 300);
 
-		// Cleanup — cancel timer if user types again
 		return () => clearTimeout(debounceTimer);
-	}, [inputValue]);
+	}, [inputValue, router]);
 
 	return (
 		<div

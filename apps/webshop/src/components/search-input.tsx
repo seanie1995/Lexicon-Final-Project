@@ -49,8 +49,12 @@ const SearchInput = () => {
             ${isPending ? "opacity-50" : "opacity-100"}
         `}
 		>
-			<Search className="w-4 h-4 mr-2 shrink-0 text-secondary" />
+			<Search
+				className="w-4 h-4 mr-2 shrink-0 text-secondary"
+				aria-label="Search the archives"
+			/>
 			<input
+				aria-label="Search the archives"
 				className="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48"
 				placeholder="Search the archives..."
 				type="text"

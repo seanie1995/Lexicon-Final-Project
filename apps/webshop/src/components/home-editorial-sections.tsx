@@ -1,11 +1,11 @@
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 const HomeEditorialSections = () => {
 	return (
-		<section className="bg-surface px-6 py-24 lg:px-20">
-			<div className="mx-auto grid max-w-screen-2xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+		<section className="bg-surface py-24" aria-labelledby="editorial-title">
+			<div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
 				{/* ── Large editorial block ── */}
 				<article className="group relative col-span-1 overflow-hidden lg:col-span-2">
 					<div className="relative aspect-video w-full overflow-hidden bg-secondary">
@@ -21,7 +21,10 @@ const HomeEditorialSections = () => {
 						<p className="mb-2 font-label text-xs uppercase tracking-[0.3em] text-on-primary/70">
 							Curated Category
 						</p>
-						<h3 className="mb-6 font-headline text-4xl font-bold text-on-primary">
+						<h3
+							id="editorial-title"
+							className="mb-6 font-headline text-4xl font-bold text-on-primary"
+						>
 							Classic Literature
 						</h3>
 						<Link
@@ -77,12 +80,12 @@ const HomeEditorialSections = () => {
 							accessible to scholars and bibliophiles alike. We believe that
 							physical history deserves a digital legacy.
 						</p>
-						<button
-							type="button"
+						<Link
+							href="/journal"
 							className="font-label text-[10px] uppercase tracking-widest text-secondary transition-colors hover:text-primary"
 						>
 							Our Preservation Process
-						</button>
+						</Link>
 					</blockquote>
 				</aside>
 

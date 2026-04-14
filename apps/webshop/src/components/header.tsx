@@ -124,7 +124,9 @@ const Header = () => {
 						</button>
 
 						{/* Search input — now a separate client component */}
-						<SearchInput />
+						<Suspense fallback={<div className="w-10 h-10" />}>
+							<SearchInput />
+						</Suspense>
 
 						<button
 							type="button"

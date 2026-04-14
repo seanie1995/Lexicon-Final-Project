@@ -126,13 +126,17 @@ async function handleCheckoutSessionCompleted(
   });
 
   const lineItems = expandedSession.line_items?.data ?? [];
+
   const productIds = lineItems
     .map((item) => {
-      const product = item.price?.product as Stripe.Product | undefined;
-      const productIdStr = product?.metadata?.productId;
-      
-      if (productIdStr) {
-        const parsed = parseInt(productIdStr, 10);
+      const productIdStr = item.price?.metadata?.productId;
+      const productIdFromProduct = (
+        item.price?.product as Stripe.Product | undefined
+      )?.metadata?.productId;
+      const finalProductIdStr = productIdStr || productIdFromProduct;
+
+      if (finalProductIdStr) {
+        const parsed = parseInt(finalProductIdStr, 10);
         if (!Number.isNaN(parsed)) {
           return parsed;
         }

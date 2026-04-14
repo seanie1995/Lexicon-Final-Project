@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/footer";
@@ -18,7 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
+        <template
+          id="theme-script"
           dangerouslySetInnerHTML={{
             __html: `(function(){var t=localStorage.getItem("theme");if(t)document.documentElement.classList.add(t)})();`,
           }}

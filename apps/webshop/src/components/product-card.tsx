@@ -16,7 +16,7 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
     >
       <div className="aspect-3/4 overflow-hidden bg-surface-container-low mb-6 relative">
         <Image
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover"
           alt={product.title}
           src={image}
           fill
@@ -24,7 +24,7 @@ const ProductCard = ({ product }: { product: ProductWithRelations }) => {
         />
         {!available && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-            <span className="bg-red-600 px-3 py-1 font-label text-xs text-white font-semibold tracking-widest">
+            <span className="bg-red-600 px-3 py-1 font-label text-xs text-white font-semibold tracking-widest opacity-60">
               SOLD
             </span>
           </div>

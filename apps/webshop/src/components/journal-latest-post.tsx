@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getLatestBlogpost } from "@/lib/actions/blogs";
 import { formatDate } from "@/lib/formatters";
+import LinkButton from "@/components/link-button";
 
 const JournalLatestPost = async () => {
   const post = await getLatestBlogpost();
@@ -42,13 +43,12 @@ const JournalLatestPost = async () => {
         <p className="font-body mb-8 leading-relaxed text-on-surface-variant">
           {post.body.length > 200 ? `${post.body.slice(0, 197)}...` : post.body}
         </p>
-        <Link
+        <LinkButton
           href={`/journal/${post.id}`}
-          aria-label={`Read full article: ${post.title}`}
-          className="bg-primary hover:bg-primary-container inline-block w-fit px-8 py-4 font-label text-xs uppercase tracking-widest text-on-primary transition-colors"
+          ariaLabel={`Read full article: ${post.title}`}
         >
           Read the Full Treatise
-        </Link>
+        </LinkButton>
       </div>
     </section>
   );

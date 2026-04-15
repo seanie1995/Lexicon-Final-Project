@@ -5,233 +5,242 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductById } from "@/lib/actions/products";
 import { formatPrice } from "@/lib/formatters";
+import AddToCartButton from "@/components/add-to-cart-button";
 
 interface PageProps {
-	params: Promise<{ id: string }>;
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({
-	params,
+  params,
 }: PageProps): Promise<Metadata> {
-	const { id } = await params;
-	const product = await getProductById(Number(id));
+  const { id } = await params;
+  const product = await getProductById(Number(id));
 
-	if (!product) {
-		return { title: "Product Not Found" };
-	}
+  if (!product) {
+    return { title: "Product Not Found" };
+  }
 
-	const images = Array.isArray(product.images)
-		? (product.images as string[])
-		: [];
-	const mainImage = images[0] || product.thumbnail;
+  const images = Array.isArray(product.images)
+    ? (product.images as string[])
+    : [];
 
-	return {
-		title: `${product.title} by ${product.author.name}`,
-		description: product.description,
-		openGraph: {
-			title: `${product.title} by ${product.author.name}`,
-			description: product.description,
-			images: [mainImage],
-		},
-	};
+  const mainImage = images[0] || product.thumbnail;
+
+  return {
+    title: `${product.title} by ${product.author.name}`,
+    description: product.description,
+    openGraph: {
+      title: `${product.title} by ${product.author.name}`,
+      description: product.description,
+      images: [mainImage],
+    },
+  };
 }
 
-import type { ProductWithRelations } from "@/app/types/prisma";
-import AddToCartButton from "@/components/add-to-cart-button";
-
 export default async function ProductPage({ params }: PageProps) {
-	const { id } = await params;
-	const product = await getProductById(Number(id));
+  const { id } = await params;
+  const product = await getProductById(Number(id));
 
-	// 404 if no product is found
-	if (!product) {
-		notFound();
-	}
+  if (!product) notFound();
 
-	const isAvailable = product.availabilityStatus === "Sold" ? false : true;
+  const isAvailable = product.availabilityStatus !== "Sold";
 
-	// I hate that we have the images as an array/jsonvalue in the db, but well, this works
-	const images = Array.isArray(product.images)
-		? (product.images as string[])
-		: [];
-	const mainImage = images[0] || product.thumbnail;
+  const images = Array.isArray(product.images)
+    ? (product.images as string[])
+    : [];
 
-	return (
-		<main className="max-w-screen-2xl mx-auto px-8 pt-32 pb-24 font-body">
-			{/* Breadcrumb & Navigation Back */}
-			<div className="mb-12">
-				<Link
-					href="/"
-					className="inline-flex items-center text-secondary font-label text-sm hover:text-primary transition-colors"
-				>
-					<ArrowLeft className="w-4 h-4 mr-2" />
-					Return to Catalog
-				</Link>
-			</div>
+  const mainImage = images[0] || product.thumbnail;
 
-			{/* Product Hero Section */}
-			<div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-32">
-				<div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div className="relative md:col-span-2 aspect-4/5 bg-surface-container-low overflow-hidden">
-						<Image
-							src={mainImage}
-							alt={product.title}
-							className="w-full h-full object-cover"
-							fill
-							priority
-							sizes="(max-width: 1024px) 100vw, 60vw"
-						/>
-					</div>
-				</div>
+  return (
+    <main className="min-h-screen bg-surface pt-24">
 
-				{/* Product Info: Editorial Layout */}
-				<div className="lg:col-span-5 flex flex-col justify-center">
-					<div className="space-y-8">
-						<div>
-							<p className="font-label text-sm uppercase tracking-[0.2em] text-secondary mb-4">
-								Ref. No: DA-{product.year.getFullYear()}-{product.id}
-							</p>
-							<h1 className="font-headline text-5xl md:text-6xl text-on-surface leading-tight mb-4">
-								{product.title}
-							</h1>
-							<p className="font-headline italic text-2xl text-secondary">
-								By {product.author.name}
-							</p>
-						</div>
+      {/* HEADER / HERO */}
+      <section className="mx-auto max-w-screen-2xl px-8 py-20 lg:px-12">
 
-						<div className="h-px w-24 bg-outline-variant/30" />
+        {/* Back navigation */}
+        <nav aria-label="Breadcrumb" className="mb-12">
+          <Link
+            href="/catalog"
+            aria-label="Return to catalog"
+            className="inline-flex items-center text-secondary font-label text-sm hover:text-primary transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
+            Return to Catalog
+          </Link>
+        </nav>
 
-						<div className="space-y-6">
-							<p className="font-body text-lg text-on-surface-variant leading-relaxed">
-								{product.description}
-							</p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
-							<div className="bg-surface-container-low p-8 space-y-4">
-								<div className="flex justify-between items-baseline">
-									<span className="font-label text-sm text-secondary">
-										Market Value
-									</span>
-									<span className="font-headline text-3xl text-primary">
-										{formatPrice(product.price)} SEK
-									</span>
-								</div>
-								<p className="font-label text-xs text-on-surface-variant italic">
-									Inclusive of certified archival assessment and provenance
-									ledger.
-								</p>
-							</div>
-						</div>
+          {/* IMAGE */}
+          <div className="lg:col-span-7">
+            <div className="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+              <Image
+                src={mainImage}
+                alt={`Cover of ${product.title} by ${product.author.name}`}
+                className="object-cover"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </div>
+          </div>
 
-						<div className="pt-6">
-							<AddToCartButton product={product} available={isAvailable} />
-						</div>
-					</div>
-				</div>
-			</div>
+          {/* PRODUCT INFO */}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            <div className="space-y-8">
 
-			{/* Detailed Content Grid */}
-			<div className="grid grid-cols-1 lg:grid-cols-12 gap-16 border-t border-outline-variant/15 pt-24">
-				{/* Left Column: Specs & Condition */}
-				<div className="lg:col-span-4 space-y-16">
-					{/* Specifications */}
-					<section>
-						<h2 className="font-headline text-2xl mb-8">Specifications</h2>
-						<ul className="space-y-6">
-							<SpecItem label="Publisher" value={product.publisher.name} />
-							<SpecItem
-								label="Year"
-								value={product.year.getFullYear().toString()}
-							/>
-							<SpecItem label="Format" value={product.format} />
-							<SpecItem label="Genre" value={product.genre} />
-							<SpecItem label="Binding" value={product.binding} />
-						</ul>
-					</section>
+              <header>
+                <p className="font-label text-sm uppercase tracking-[0.2em] text-secondary mb-4">
+                  Ref. No: DA-{product.year.getFullYear()}-{product.id}
+                </p>
 
-					{/* Shipping & Delivery */}
-					<section>
-						<h2 className="font-headline text-2xl mb-8">Shipping & Delivery</h2>
-						<ul className="space-y-6">
-							<SpecItem label="Method" value="Premium Insured Courier" />
-							<SpecItem label="Delivery" value={product.shippingInformation} />
-							<SpecItem label="Cost" value="Complimentary" />
-						</ul>
-					</section>
+                <h1 className="font-headline text-5xl md:text-6xl text-on-surface leading-tight mb-4">
+                  {product.title}
+                </h1>
 
-					{/* Margin Note Component */}
-					<aside className="p-8 border-l-2 border-primary bg-surface-container-lowest">
-						<p className="font-body italic text-on-surface-variant leading-relaxed">
-							"The Digital Archivist's seal on this volume confirms that the
-							binding remains untouched since its last documented restoration."
-						</p>
-					</aside>
-				</div>
+                <p className="font-headline italic text-2xl text-secondary">
+                  By {product.author.name}
+                </p>
+              </header>
 
-				{/* Right Column: Narrative Sections */}
-				<div className="lg:col-span-8 space-y-24">
-					{/* Condition Report */}
-					<section>
-						<div className="flex items-center gap-x-4 mb-8">
-							<h2 className="font-headline text-3xl">Condition Report</h2>
-							<span className="px-3 py-1 bg-surface-container-highest text-secondary font-label text-[10px] uppercase tracking-widest">
-								Grade: {product.condition.grade}
-							</span>
-						</div>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-							<div className="space-y-4">
-								<h3 className="font-label text-sm font-bold text-on-surface uppercase tracking-widest">
-									Exterior
-								</h3>
-								<p className="font-body text-on-surface-variant leading-relaxed">
-									{product.condition.exterior}
-								</p>
-							</div>
-							<div className="space-y-4">
-								<h3 className="font-label text-sm font-bold text-on-surface uppercase tracking-widest">
-									Interior
-								</h3>
-								<p className="font-body text-on-surface-variant leading-relaxed">
-									{product.condition.interior}
-								</p>
-							</div>
-						</div>
-					</section>
+              <div className="h-px w-24 bg-outline-variant/30" />
 
-					{/* History & Provenance */}
-					<section className="bg-surface-container-low p-12 relative overflow-hidden">
-						<div className="relative z-10">
-							<h2 className="font-headline text-3xl mb-8">
-								History & Provenance
-							</h2>
-							<div className="max-w-2xl space-y-6">
-								<p className="font-body text-on-surface-variant leading-relaxed">
-									{product.author.description}
-								</p>
-								<div className="pt-4">
-									<button
-										type="button"
-										className="inline-flex items-center text-primary font-label text-sm font-bold uppercase tracking-widest hover:opacity-70 transition-opacity"
-									>
-										Download Provenance Ledger (PDF)
-										<FileText className="w-4 h-4 ml-2" />
-									</button>
-								</div>
-							</div>
-						</div>
-					</section>
-				</div>
-			</div>
-		</main>
-	);
+              <p className="font-body text-lg text-on-surface-variant leading-relaxed">
+                {product.description}
+              </p>
+
+              {/* PRICE */}
+              <div className="bg-surface-container-low p-8 space-y-4">
+                <div className="flex justify-between items-baseline">
+                  <span className="font-label text-sm text-secondary">
+                    Market Value
+                  </span>
+                  <span className="font-headline text-3xl text-primary">
+                    {formatPrice(product.price)} SEK
+                  </span>
+                </div>
+                <p className="font-label text-xs text-on-surface-variant italic">
+                  Inclusive of certified archival assessment and provenance ledger.
+                </p>
+              </div>
+
+              {/* CTA */}
+              <div className="pt-4">
+                <AddToCartButton
+                  product={product}
+                  available={isAvailable}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DETAILS */}
+      <section className="bg-surface-container-low px-8 py-24 lg:px-12">
+        <div className="mx-auto max-w-screen-2xl grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+          {/* LEFT COLUMN */}
+          <div className="lg:col-span-4 space-y-16">
+
+            <section aria-labelledby="specs-heading">
+              <h2 id="specs-heading" className="font-headline text-2xl mb-8">
+                Specifications
+              </h2>
+              <ul className="space-y-6">
+                <SpecItem label="Publisher" value={product.publisher.name} />
+                <SpecItem label="Year" value={product.year.getFullYear().toString()} />
+                <SpecItem label="Format" value={product.format} />
+                <SpecItem label="Genre" value={product.genre} />
+                <SpecItem label="Binding" value={product.binding} />
+              </ul>
+            </section>
+
+            <section aria-labelledby="shipping-heading">
+              <h2 id="shipping-heading" className="font-headline text-2xl mb-8">
+                Shipping & Delivery
+              </h2>
+              <ul className="space-y-6">
+                <SpecItem label="Method" value="Premium Insured Courier" />
+                <SpecItem label="Delivery" value={product.shippingInformation} />
+                <SpecItem label="Cost" value="Complimentary" />
+              </ul>
+            </section>
+
+            <aside className="p-8 border-l-2 border-primary bg-surface-container-lowest">
+              <p className="font-body italic text-on-surface-variant leading-relaxed">
+                "The Digital Archivist's seal confirms this volume remains preserved in exceptional condition."
+              </p>
+            </aside>
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="lg:col-span-8 space-y-24">
+
+            {/* CONDITION */}
+            <section aria-labelledby="condition-heading">
+              <div className="flex items-center gap-x-4 mb-8">
+                <h2 id="condition-heading" className="font-headline text-3xl">
+                  Condition Report
+                </h2>
+                <span className="px-3 py-1 bg-surface-container-highest text-secondary font-label text-[10px] uppercase tracking-widest">
+                  Grade: {product.condition.grade}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                  <h3 className="font-label text-sm uppercase tracking-widest mb-2">
+                    Exterior
+                  </h3>
+                  <p className="text-on-surface-variant">
+                    {product.condition.exterior}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-label text-sm uppercase tracking-widest mb-2">
+                    Interior
+                  </h3>
+                  <p className="text-on-surface-variant">
+                    {product.condition.interior}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* PROVENANCE */}
+            <section
+              aria-labelledby="provenance-heading"
+              className="bg-surface-container-low p-12"
+            >
+              <h2 id="provenance-heading" className="font-headline text-3xl mb-8">
+                History & Provenance
+              </h2>
+
+              <p className="text-on-surface-variant mb-6">
+                {product.author.description}
+              </p>
+
+             <p className="font-label text-sm text-on-surface-variant italic leading-relaxed">
+  Provenance documentation available upon request.
+</p>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }
 
 function SpecItem({ label, value }: { label: string; value: string }) {
-	return (
-		<li className="flex justify-between items-end border-b border-outline-variant/10 pb-2">
-			<span className="font-label text-xs uppercase tracking-widest text-secondary">
-				{label}
-			</span>
-			<span className="font-body text-on-surface">{value}</span>
-		</li>
-	);
+  return (
+    <li className="flex justify-between border-b border-outline-variant/10 pb-2">
+      <span className="font-label text-xs uppercase tracking-widest text-secondary">
+        {label}
+      </span>
+      <span className="text-on-surface">{value}</span>
+    </li>
+  );
 }

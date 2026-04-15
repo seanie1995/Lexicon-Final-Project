@@ -1,16 +1,26 @@
 "use client";
 
-{/* Changed this to a client component so we can handle form state and submission.
+{
+  /* Changed this to a client component so we can handle form state and submission.
 // The original was a server component (no interactivity needed at the time).
 Now this being a client component, I had to create a separate layout.tsx file to hold the metadata
 as Next.js doesnt allow metadata in client components. 
-// The design is unchanged — just the form wired up to be functional.*/}
+// The design is unchanged — just the form wired up to be functional.*/
+}
 
-import { BookOpenText, Send, ShieldCheck, Loader2, CheckCircle } from "lucide-react";
+import {
+  BookOpenText,
+  Send,
+  ShieldCheck,
+  Loader2,
+  CheckCircle,
+} from "lucide-react";
 import { useState } from "react";
 
 export default function ContactPage() {
-  {/* Tracks what the user has typed */}
+  {
+    /* Tracks what the user has typed */
+  }
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,17 +28,21 @@ export default function ContactPage() {
     message: "",
   });
 
-  {/* UI states — loading while sending, success/error after */}
+  {
+    /* UI states — loading while sending, success/error after */
+  }
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    
-    {/*Clear any previous error as soon as user starts typing again */}
+
+    {
+      /*Clear any previous error as soon as user starts typing again */
+    }
     setError("");
   };
 
@@ -130,7 +144,6 @@ export default function ContactPage() {
 
       <section className="bg-surface-container-low px-8 py-24 md:py-32 lg:px-12">
         <div className="mx-auto max-w-4xl bg-surface-container-lowest p-10 shadow-sm md:p-16 lg:p-20">
-
           {/* Success message — shown after email sends successfully */}
           {success ? (
             <div className="flex flex-col items-center justify-center gap-6 py-16 text-center">
@@ -139,8 +152,8 @@ export default function ContactPage() {
                 Correspondence Received
               </h2>
               <p className="max-w-sm text-on-surface-variant leading-relaxed">
-                Thank you for reaching out. We will review your message with
-                the care it deserves and respond in due course.
+                Thank you for reaching out. We will review your message with the
+                care it deserves and respond in due course.
               </p>
               <button
                 type="button"
@@ -152,7 +165,6 @@ export default function ContactPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-12">
-
               {/* Error banner — only shows if something went wrong */}
               {error && (
                 <div className="p-4 bg-error-container text-on-error-container text-sm font-label">

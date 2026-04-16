@@ -41,7 +41,7 @@ export default function ShippingPage() {
           <span className="mb-4 block font-label text-[11px] uppercase tracking-[0.3em] text-secondary">
             Institutional Protocol
           </span>
-          <h1 className="mb-8 font-headline text-5xl font-light leading-[0.95] text-on-surface md:text-7xl">
+          <h1 className="font-headline text-5xl md:text-7xl text-primary mb-4 italic tracking-tight">
             Shipping &amp; Handling
           </h1>
           <p className="max-w-2xl text-xl leading-relaxed text-on-surface-variant italic">

@@ -224,6 +224,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                     type="button"
                     onClick={() => setActiveTab(tab.id)}
                     aria-current={activeTab === tab.id ? "page" : undefined}
+                    aria-label={tab.label} // aria-label on the button describes the tab to small screen readers e.g mobiles
                     className={`w-full flex items-center gap-2.5 px-4 py-3 text-sm font-label uppercase tracking-wider transition-colors duration-200 text-left
                       ${activeTab === tab.id
                         ? "bg-primary text-on-primary"
@@ -231,7 +232,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                       }`}
                   >
                     {tab.icon}
-                    <span className="hidden sm:inline">{tab.label}</span>
+                    <span className="sr-only">{tab.label}</span>
                     {tab.id === "orders" && orders.length > 0 && (
                       <span
                         className="ml-auto text-[10px] bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 font-label"

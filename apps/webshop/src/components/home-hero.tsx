@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LinkButton from "@/components/link-button";
 
 const HomeHero = () => {
   return (
@@ -32,12 +33,7 @@ const HomeHero = () => {
           </header>
 
           <nav className="flex flex-wrap gap-6 pt-4" aria-label="Hero actions">
-            <Link
-              href="/catalog"
-              className="bg-primary px-10 py-5 font-label text-xs uppercase tracking-widest text-on-primary transition-all hover:bg-primary-container"
-            >
-              Explore the Archive
-            </Link>
+            <LinkButton href="/catalog">Explore the Archive</LinkButton>
           </nav>
         </div>
 

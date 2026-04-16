@@ -147,7 +147,10 @@ export default function ContactPage() {
           {/* Success message — shown after email sends successfully */}
           {success ? (
             <div className="flex flex-col items-center justify-center gap-6 py-16 text-center">
-              <CheckCircle className="h-12 w-12 text-primary" />
+              <CheckCircle
+                className="h-12 w-12 text-primary"
+                aria-hidden="true"
+              />
               <h2 className="font-headline text-3xl italic text-primary">
                 Correspondence Received
               </h2>
@@ -158,16 +161,25 @@ export default function ContactPage() {
               <button
                 type="button"
                 onClick={() => setSuccess(false)}
+                aria-label="Send another message"
                 className="mt-2 font-label text-xs uppercase tracking-[0.24em] text-secondary hover:text-primary transition-colors"
               >
                 Send another message
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-12">
-              {/* Error banner — only shows if something went wrong */}
+            <form
+              onSubmit={handleSubmit}
+              aria-label="Contact form"
+              className="space-y-12"
+            >
+              {/* Error banner — now with accessibility attributes */}
               {error && (
-                <div className="p-4 bg-error-container text-on-error-container text-sm font-label">
+                <div
+                  role="alert"
+                  aria-live="polite"
+                  className="p-4 bg-error-container text-on-error-container text-sm font-label"
+                >
                   {error}
                 </div>
               )}
@@ -258,13 +270,19 @@ export default function ContactPage() {
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <Loader2
+                        className="h-4 w-4 animate-spin"
+                        aria-hidden="true"
+                      />
                       Sending…
                     </>
                   ) : (
                     <>
                       Send Correspondence
-                      <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <Send
+                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
                     </>
                   )}
                   <span className="pointer-events-none absolute inset-0 -m-1.5 border border-primary opacity-30 transition-all group-hover:m-0" />
@@ -281,13 +299,19 @@ export default function ContactPage() {
         </h2>
         <div className="flex justify-center gap-12">
           <div className="flex flex-col items-center">
-            <BookOpenText className="mb-2 h-5 w-5 text-primary" />
+            <BookOpenText
+              className="mb-2 h-5 w-5 text-primary"
+              aria-hidden="true"
+            />
             <span className="font-label text-[10px] uppercase tracking-[0.18em] text-secondary">
               Est. 1924
             </span>
           </div>
           <div className="flex flex-col items-center">
-            <ShieldCheck className="mb-2 h-5 w-5 text-primary" />
+            <ShieldCheck
+              className="mb-2 h-5 w-5 text-primary"
+              aria-hidden="true"
+            />
             <span className="font-label text-[10px] uppercase tracking-[0.18em] text-secondary">
               Verified Scholarly Source
             </span>

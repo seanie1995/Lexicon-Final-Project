@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LinkButton from "@/components/link-button";
 import NewArrivalCard from "@/components/new-arrival-card";
 import { getProducts } from "@/lib/actions/products";
 
@@ -38,12 +38,9 @@ const HomeNewArrivals = async () => {
 				</div>
 
 				<nav className="mt-24 text-center">
-					<Link
-						href="/catalog"
-						className="bg-secondary px-12 py-5 font-label text-xs uppercase tracking-widest text-on-secondary transition-colors hover:bg-on-secondary-fixed-variant inline-block"
-					>
+					<LinkButton href="/catalog" variant="secondary">
 						View All New Additions
-					</Link>
+					</LinkButton>
 				</nav>
 			</div>
 		</section>

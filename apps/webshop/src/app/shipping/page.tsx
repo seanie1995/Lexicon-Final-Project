@@ -56,25 +56,58 @@ export default function ShippingPage() {
             <div className="group relative mb-8 overflow-hidden bg-surface-container-low">
               {/* biome-ignore lint/performance/noImgElement: using the provided remote reference artwork to match the supplied design */}
               <img
-                alt="Wrapped rare book prepared for shipment"
+                alt=""
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKwAAhg3Gm9fos9N7kTnTZMonf23Ik5iWxLU8nvoLtAixHIwu4jkGHtggr7HazKbJkcCVyGKvUXbz09peG3V9nd0jsuA-IoQnyA9qC6Y81B_BtE-u9H_scGbl0dlpnuVuYl_JtBc0rN8oItOB_W5MDMbf-VykxgdbT-ybisX1jqx2AkYzBbvOyTJk_XeP6WlNWqVfR9bkStwLZ99QlX7m7scIEU3cwprNbcJW7Fnsa1hw6S8jVZPd_QRv2_pwBRDociUDWP9WtfXsX"
-                className="aspect-[3/4] h-full w-full object-cover grayscale-[0.15]"
+                className="aspect-3/4 h-full w-full object-cover grayscale-[0.15]"
               />
               <div className="pointer-events-none absolute inset-0 bg-primary/8" />
             </div>
 
             <div className="border-l-2 border-primary bg-surface-container-lowest px-6 py-7 md:px-8">
-              <p className="text-base leading-relaxed text-on-surface italic">
-                &quot;The preservation of a text is not merely in the reading,
-                but in the handling. We treat every dispatch as a transfer of
-                heritage.&quot;
-              </p>
-              <span className="mt-4 block font-label text-[10px] uppercase tracking-[0.22em] text-secondary">
+              <blockquote>
+                <p className="text-base leading-relaxed text-on-surface italic">
+                  &quot;The preservation of a text is not merely in the reading,
+                  but in the handling. We treat every dispatch as a transfer of
+                  heritage.&quot;
+                </p>
+              </blockquote>
+
+              <span className="mt-4 block font-label text-[12px] uppercase tracking-[0.22em] text-secondary">
                 Lead Archivist
               </span>
             </div>
           </div>
 
+          <div className="space-y-20 md:col-span-8 md:space-y-24">
+            <section>
+              <h2 className="mb-8 flex items-center gap-4 font-headline text-3xl text-on-surface">
+                <span
+                  aria-hidden="true"
+                  className="font-light text-primary-container"
+                >
+                  01.
+                </span>
+                Scholarly Dispatch
+              </h2>
+              <div className="grid gap-8 text-base leading-relaxed text-on-surface-variant lg:grid-cols-2 lg:gap-12">
+                <p>
+                  Rare volumes require more than standard logistics. Every
+                  acquisition is processed through our{" "}
+                  <span className="text-primary italic">
+                    White Glove Registry
+                  </span>
+                  . Items are shipped via specialized couriers who understand
+                  the thermal and kinetic sensitivities of vellum and aged
+                  paper.
+                </p>
+                <p>
+                  Upon dispatch, the collector receives a digitized tracking
+                  dossier. Standard transit times are secondary to safety; we
+                  utilize optimized routes that minimize handling transfers and
+                  environmental exposure.
+                </p>
+              </div>
+            </section>
           <div className="space-y-20 md:col-span-8 md:space-y-24">
             <section>
               <h2 className="mb-8 flex items-center gap-4 font-headline text-3xl text-on-surface">
@@ -103,7 +136,12 @@ export default function ShippingPage() {
 
             <section className="bg-surface-container-low px-8 py-10 md:px-12 md:py-12">
               <h2 className="mb-8 flex items-center gap-4 font-headline text-3xl text-on-surface">
-                <span className="font-light text-primary-container">02.</span>
+                <span
+                  aria-hidden="true"
+                  className="font-light text-primary-container"
+                >
+                  02.
+                </span>
                 Archival Packaging
               </h2>
               <div className="grid gap-10 text-on-surface sm:grid-cols-2 sm:gap-12">
@@ -114,7 +152,10 @@ export default function ShippingPage() {
                   <ul className="space-y-4 text-sm leading-relaxed">
                     {packagingDetails.map((detail) => (
                       <li key={detail} className="flex items-start gap-3">
-                        <span className="text-lg leading-none text-primary">
+                        <span
+                          aria-hidden="true"
+                          className="text-lg leading-none text-primary"
+                        >
                           •
                         </span>
                         <span>{detail}</span>
@@ -135,10 +176,27 @@ export default function ShippingPage() {
                 </div>
               </div>
             </section>
+                <div>
+                  <h3 className="mb-4 font-label text-[11px] uppercase tracking-[0.22em] text-secondary">
+                    Exterior Integrity
+                  </h3>
+                  <p className="text-sm leading-relaxed text-on-surface-variant">
+                    All out-bound parcels are disguised in non-descript,
+                    heavy-duty neutral containers to ensure security. Each box
+                    is sealed with tamper-evident archival tape.
+                  </p>
+                </div>
+              </div>
+            </section>
 
             <section>
               <h2 className="mb-8 flex items-center gap-4 font-headline text-3xl text-on-surface">
-                <span className="font-light text-primary-container">03.</span>
+                <span
+                  aria-hidden="true"
+                  className="font-light text-primary-container"
+                >
+                  03.
+                </span>
                 International Provenance
               </h2>
               <div className="max-w-2xl text-on-surface-variant">
@@ -152,7 +210,7 @@ export default function ShippingPage() {
                 <div className="flex flex-wrap gap-x-10 gap-y-6 border-y border-outline-variant/20 py-6">
                   {dispatchDetails.map((detail) => (
                     <div key={detail.label}>
-                      <span className="mb-1 block font-label text-[10px] uppercase tracking-[0.2em] text-secondary">
+                      <span className="mb-1 block font-label text-[12px] uppercase tracking-[0.2em] text-secondary">
                         {detail.label}
                       </span>
                       <span className="text-on-surface italic">
@@ -166,7 +224,12 @@ export default function ShippingPage() {
 
             <section>
               <h2 className="mb-8 flex items-center gap-4 font-headline text-3xl text-on-surface">
-                <span className="font-light text-primary-container">04.</span>
+                <span
+                  aria-hidden="true"
+                  className="font-light text-primary-container"
+                >
+                  04.
+                </span>
                 Curation Returns
               </h2>
               <div className="space-y-6 text-base leading-relaxed text-on-surface-variant">

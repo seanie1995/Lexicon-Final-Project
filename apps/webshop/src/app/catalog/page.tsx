@@ -8,9 +8,9 @@ import ProductCard from "@/components/product-card";
 import { getProducts } from "@/lib/actions/products";
 
 export const metadata: Metadata = {
-	title: "The General Catalog | The Digital Archivist",
-	description:
-		"Browse our curated collection of rare first editions, illuminated manuscripts and leather-bound treasures across the centuries.",
+  title: "The General Catalog | The Digital Archivist",
+  description:
+    "Browse our curated collection of rare first editions, illuminated manuscripts and leather-bound treasures across the centuries.",
 };
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -20,134 +20,134 @@ type SearchParams = Record<string, string | string[] | undefined>;
 export const dynamic = "force-dynamic";
 
 function toArray(value: string | string[] | undefined): string[] {
-	if (!value) return [];
-	return Array.isArray(value) ? value : [value];
+  if (!value) return [];
+  return Array.isArray(value) ? value : [value];
 }
 
 export default async function CatalogPage({
-	searchParams,
+  searchParams,
 }: {
-	searchParams: SearchParams | Promise<SearchParams>;
+  searchParams: SearchParams | Promise<SearchParams>;
 }) {
-	const sp = await searchParams;
-	const search = typeof sp.search === "string" ? sp.search : undefined;
-	const genres = toArray(sp.genre).filter(Boolean);
-	const conditionGrades = toArray(sp.condition).filter(Boolean);
-	const era = typeof sp.era === "string" ? sp.era : undefined;
+  const sp = await searchParams;
+  const search = typeof sp.search === "string" ? sp.search : undefined;
+  const genres = toArray(sp.genre).filter(Boolean);
+  const conditionGrades = toArray(sp.condition).filter(Boolean);
+  const era = typeof sp.era === "string" ? sp.era : undefined;
 
-	const sortParam = typeof sp.sort === "string" ? sp.sort : "title-asc";
-	const [sortByRaw, sortOrderRaw] = sortParam.split("-");
-	const validSorts = ["title", "price", "year", "author"] as const;
-	type ValidSort = (typeof validSorts)[number];
-	const sortBy: ValidSort = validSorts.includes(sortByRaw as ValidSort)
-		? (sortByRaw as ValidSort)
-		: "title";
-	const sortOrder = sortOrderRaw === "desc" ? "desc" : "asc";
+  const sortParam = typeof sp.sort === "string" ? sp.sort : "title-asc";
+  const [sortByRaw, sortOrderRaw] = sortParam.split("-");
+  const validSorts = ["title", "price", "year", "author"] as const;
+  type ValidSort = (typeof validSorts)[number];
+  const sortBy: ValidSort = validSorts.includes(sortByRaw as ValidSort)
+    ? (sortByRaw as ValidSort)
+    : "title";
+  const sortOrder = sortOrderRaw === "desc" ? "desc" : "asc";
 
-	const pageParam =
-		typeof sp.page === "string" ? Number.parseInt(sp.page, 10) : 1;
-	const currentPage = Number.isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
+  const pageParam =
+    typeof sp.page === "string" ? Number.parseInt(sp.page, 10) : 1;
+  const currentPage = Number.isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
 
-	const {
-		data: products,
-		total,
-		pageSize,
-		totalPages,
-	} = await getProducts({
-		search,
-		genres,
-		conditionGrades,
-		era,
-		sortBy,
-		sortOrder,
-		page: currentPage,
-	});
-	const uniqueValues = <T,>(values: T[]) => [...new Set(values)];
+  const {
+    data: products,
+    total,
+    pageSize,
+    totalPages,
+  } = await getProducts({
+    search,
+    genres,
+    conditionGrades,
+    era,
+    sortBy,
+    sortOrder,
+    page: currentPage,
+  });
+  const uniqueValues = <T,>(values: T[]) => [...new Set(values)];
 
-	const filterSections =
-		products.length > 0
-			? [
-					{
-						title: "Genre",
-						type: "checkbox" as const,
-						options: uniqueValues(
-							products.map((product) => product.genre),
-						).sort(),
-					},
-					{
-						title: "Era",
-						type: "radio" as const,
-						options: uniqueValues(
-							products.map((product) => product.era),
-						).sort(),
-					},
-					{
-						title: "Condition",
-						type: "checkbox" as const,
-						options: uniqueValues(
-							products.map((product) => product.condition.grade),
-						).sort(),
-					},
-				]
-			: [];
+  const filterSections =
+    products.length > 0
+      ? [
+          {
+            title: "Genre",
+            type: "checkbox" as const,
+            options: uniqueValues(
+              products.map((product) => product.genre),
+            ).sort(),
+          },
+          {
+            title: "Era",
+            type: "radio" as const,
+            options: uniqueValues(
+              products.map((product) => product.era),
+            ).sort(),
+          },
+          {
+            title: "Condition",
+            type: "checkbox" as const,
+            options: uniqueValues(
+              products.map((product) => product.condition.grade),
+            ).sort(),
+          },
+        ]
+      : [];
 
-	return (
-		<main className="mx-auto max-w-screen-2xl px-8 pb-24 pt-24">
-			<CatalogHero />
+  return (
+    <main className="mx-auto max-w-screen-2xl px-12 pb-24 pt-24">
+      <CatalogHero />
 
-			<div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
-				{products.length > 0 && (
-					<CatalogFilters
-						sections={filterSections}
-						selected={{
-							Genre: genres,
-							Era: era ? [era] : [],
-							Condition: conditionGrades,
-						}}
-					/>
-				)}
-				<div className="min-w-0 flex-1">
-					{products.length > 0 && (
-						<div className="mb-8 flex items-end justify-between">
-							{totalPages > 1 && (
-								<p className="mt-12 text-center font-label text-sm text-outline">
-									Showing {(currentPage - 1) * pageSize + 1}&ndash;
-									{Math.min(currentPage * pageSize, total)} of {total} results
-								</p>
-							)}
-							<CatalogSort />
-						</div>
-					)}
-					{products.length === 0 ? (
-						<div className="flex flex-col items-center justify-center py-24 text-center">
-							<div className="mb-6 p-6 bg-surface-container-low rounded-full">
-								<Search className="w-12 h-12 text-primary opacity-50" />
-							</div>
-							<h2 className="font-headline text-2xl text-on-surface mb-2">
-								No results found
-							</h2>
-							<p className="font-body text-secondary max-w-md">
-								{search
-									? `No volumes matching "${search}" were found in our archive. Try adjusting your search or filters.`
-									: "No volumes match your current filters. Try adjusting your selection."}
-							</p>
-						</div>
-					) : (
-						<div className="grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
-							{products.map((product) => (
-								<ProductCard key={product.id} product={product} />
-							))}
-						</div>
-					)}
+      <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
+        {products.length > 0 && (
+          <CatalogFilters
+            sections={filterSections}
+            selected={{
+              Genre: genres,
+              Era: era ? [era] : [],
+              Condition: conditionGrades,
+            }}
+          />
+        )}
+        <div className="min-w-0 flex-1">
+          {products.length > 0 && (
+            <div className="mb-8 flex items-end justify-between">
+              {totalPages > 1 && (
+                <p className="mt-12 text-center font-label text-sm text-outline">
+                  Showing {(currentPage - 1) * pageSize + 1}&ndash;
+                  {Math.min(currentPage * pageSize, total)} of {total} results
+                </p>
+              )}
+              <CatalogSort />
+            </div>
+          )}
+          {products.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-24 text-center">
+              <div className="mb-6 p-6 bg-surface-container-low rounded-full">
+                <Search className="w-12 h-12 text-primary opacity-50" />
+              </div>
+              <h2 className="font-headline text-2xl text-on-surface mb-2">
+                No results found
+              </h2>
+              <p className="font-body text-secondary max-w-md">
+                {search
+                  ? `No volumes matching "${search}" were found in our archive. Try adjusting your search or filters.`
+                  : "No volumes match your current filters. Try adjusting your selection."}
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
 
-					{products.length > 0 && (
-						<CatalogPagination
-							currentPage={currentPage}
-							totalPages={totalPages}
-						/>
-					)}
-				</div>
-			</div>
-		</main>
-	);
+          {products.length > 0 && (
+            <CatalogPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+            />
+          )}
+        </div>
+      </div>
+    </main>
+  );
 }

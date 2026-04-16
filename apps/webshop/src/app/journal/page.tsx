@@ -14,8 +14,8 @@ export default async function Journal() {
   const posts = await getBlogposts();
 
   return (
-    <main className="min-h-screen pt-24">
-      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
+    <main className="pt-24 pb-32">
+      <div className="mx-auto  px-6 lg:px-20">
         <JournalHero />
         <JournalLatestPost />
 

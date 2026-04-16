@@ -1,16 +1,26 @@
 "use client";
 
-{/* Changed this to a client component so we can handle form state and submission.
+{
+  /* Changed this to a client component so we can handle form state and submission.
 // The original was a server component (no interactivity needed at the time).
 Now this being a client component, I had to create a separate layout.tsx file to hold the metadata
 as Next.js doesnt allow metadata in client components. 
-// The design is unchanged — just the form wired up to be functional.*/}
+// The design is unchanged — just the form wired up to be functional.*/
+}
 
-import { BookOpenText, Send, ShieldCheck, Loader2, CheckCircle } from "lucide-react";
+import {
+  BookOpenText,
+  Send,
+  ShieldCheck,
+  Loader2,
+  CheckCircle,
+} from "lucide-react";
 import { useState } from "react";
 
 export default function ContactPage() {
-  {/* Tracks what the user has typed */}
+  {
+    /* Tracks what the user has typed */
+  }
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,17 +28,21 @@ export default function ContactPage() {
     message: "",
   });
 
-  {/* UI states — loading while sending, success/error after */}
+  {
+    /* UI states — loading while sending, success/error after */
+  }
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    
-    {/*Clear any previous error as soon as user starts typing again */}
+
+    {
+      /*Clear any previous error as soon as user starts typing again */
+    }
     setError("");
   };
 
@@ -130,33 +144,42 @@ export default function ContactPage() {
 
       <section className="bg-surface-container-low px-8 py-24 md:py-32 lg:px-12">
         <div className="mx-auto max-w-4xl bg-surface-container-lowest p-10 shadow-sm md:p-16 lg:p-20">
-
           {/* Success message — shown after email sends successfully */}
           {success ? (
             <div className="flex flex-col items-center justify-center gap-6 py-16 text-center">
-              <CheckCircle className="h-12 w-12 text-primary" aria-hidden="true" />
+              <CheckCircle
+                className="h-12 w-12 text-primary"
+                aria-hidden="true"
+              />
               <h2 className="font-headline text-3xl italic text-primary">
                 Correspondence Received
               </h2>
               <p className="max-w-sm text-on-surface-variant leading-relaxed">
-                Thank you for reaching out. We will review your message with
-                the care it deserves and respond in due course.
+                Thank you for reaching out. We will review your message with the
+                care it deserves and respond in due course.
               </p>
               <button
                 type="button"
                 onClick={() => setSuccess(false)}
-				aria-label="Send another message"
+                aria-label="Send another message"
                 className="mt-2 font-label text-xs uppercase tracking-[0.24em] text-secondary hover:text-primary transition-colors"
               >
                 Send another message
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} aria-label="Contact form" className="space-y-12">
-
+            <form
+              onSubmit={handleSubmit}
+              aria-label="Contact form"
+              className="space-y-12"
+            >
               {/* Error banner — now with accessibility attributes */}
               {error && (
-                <div role="alert" aria-live="polite"className="p-4 bg-error-container text-on-error-container text-sm font-label">
+                <div
+                  role="alert"
+                  aria-live="polite"
+                  className="p-4 bg-error-container text-on-error-container text-sm font-label"
+                >
                   {error}
                 </div>
               )}
@@ -247,13 +270,19 @@ export default function ContactPage() {
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                      <Loader2
+                        className="h-4 w-4 animate-spin"
+                        aria-hidden="true"
+                      />
                       Sending…
                     </>
                   ) : (
                     <>
                       Send Correspondence
-                      <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                      <Send
+                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
                     </>
                   )}
                   <span className="pointer-events-none absolute inset-0 -m-1.5 border border-primary opacity-30 transition-all group-hover:m-0" />
@@ -270,13 +299,19 @@ export default function ContactPage() {
         </h2>
         <div className="flex justify-center gap-12">
           <div className="flex flex-col items-center">
-            <BookOpenText className="mb-2 h-5 w-5 text-primary" aria-hidden="true" />
+            <BookOpenText
+              className="mb-2 h-5 w-5 text-primary"
+              aria-hidden="true"
+            />
             <span className="font-label text-[10px] uppercase tracking-[0.18em] text-secondary">
               Est. 1924
             </span>
           </div>
           <div className="flex flex-col items-center">
-            <ShieldCheck className="mb-2 h-5 w-5 text-primary" aria-hidden="true"/>
+            <ShieldCheck
+              className="mb-2 h-5 w-5 text-primary"
+              aria-hidden="true"
+            />
             <span className="font-label text-[10px] uppercase tracking-[0.18em] text-secondary">
               Verified Scholarly Source
             </span>

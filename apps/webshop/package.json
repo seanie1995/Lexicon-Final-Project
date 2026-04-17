@@ -6,19 +6,32 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "npx biome check src/"
+		"lint": "npx biome check src/",
+		"seed": "npx tsx prisma/seed.ts"
 	},
 	"dependencies": {
+		"@repo/db": "*",
+		"@stripe/stripe-js": "^9.0.0",
+		"@supabase/ssr": "^0.10.0",
+		"@supabase/supabase-js": "^2.100.0",
+		"dotenv": "^16.6.1",
+		"lucide-react": "^1.1.0",
 		"next": "^16.2.1",
+		"pg": "^8.20.0",
 		"react": "^19.2.4",
-		"react-dom": "^19.2.4"
+		"react-dom": "^19.2.4",
+		"resend": "^6.10.0",
+		"stripe": "^21.0.1"
 	},
 	"devDependencies": {
+		"@tailwindcss/postcss": "^4.2.2",
 		"@types/node": "^24.12.0",
+		"@types/pg": "^8.11.11",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
+		"@types/stripe": "^8.0.416",
 		"tailwindcss": "^4.2.2",
-		"@tailwindcss/postcss": "^4.2.2",
+		"tsx": "^4.21.0",
 		"typescript": "^5.9.3"
 	}
 }

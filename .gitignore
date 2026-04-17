@@ -5,4 +5,8 @@ dist/
 .env
 .env.local
 .env*.local
+.cursor/
+.vscode/
+.opencode/
 *.tsbuildinfo
+nul

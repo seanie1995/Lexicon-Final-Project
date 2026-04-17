@@ -1,18 +1,17 @@
-interface Product {
+export interface Product {
 	id: number;
 	title: string;
 	description: string;
 	price: number;
 	discountPercentage: number;
-	stock: number;
 	weight: number;
 	warrantyInformation: string;
 	shippingInformation: string;
 	availabilityStatus: string;
 	category: Category;
-	images: string[];
+	images: any;
 	thumbnail: string;
-	tags: string[];
+	tags: any;
 	condition: Condition;
 	era: string;
 	genre: string;
@@ -25,7 +24,7 @@ interface Product {
 
 interface Category {
 	id: number;
-	name?: string;
+	name: string;
 }
 
 interface Condition {
@@ -45,4 +44,61 @@ interface Publisher {
 	id: number;
 	name: string;
 	description: string;
+}
+
+export enum OrderStatus {
+	PENDING = "PENDING",
+	PAID = "PAID",
+	SHIPPED = "SHIPPED",
+	DELIVERED = "DELIVERED",
+	CANCELLED = "CANCELLED",
+}
+
+export interface Order {
+	id: string;
+	stripeSessionId: string;
+	customerEmail: string;
+	customerName?: string;
+	totalAmount: number;
+	currency: string;
+	status: OrderStatus;
+
+	shippingName: string;
+	shippingLine1: string;
+	shippingLine2?: string;
+	shippingCity: string;
+	shippingState?: string;
+	shippingPostal: string;
+	shippingCountry: string;
+
+	createdAt: Date;
+	updatedAt: Date;
+	paidAt?: Date;
+	shippedAt?: Date;
+	deliveredAt?: Date;
+
+	userId?: string;
+
+	items: OrderItem[];
+}
+
+export interface OrderItem {
+	id: string;
+	productId?: number;
+	title: string;
+	unitPrice: number;
+	totalPrice: number;
+	orderId: string;
+}
+
+export type OrderWithItems = Order & { items: OrderItem[] };
+
+export interface Blogpost {
+	id: number;
+	title: string;
+	body: string;
+	image: string;
+	author: string;
+	authorTitle: string;
+	createdAt: Date;
 }

@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[]
+}
+
+model Condition {
+  id        Int       @id @default(autoincrement())
+  exterior  String
+  interior  String
+  grade     String
+  products  Product[]
+}
+
+model Author {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  products    Product[]
+}
+
+model Publisher {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  products    Product[]
+}
+
+model Product {
+  id                  Int       @id @default(autoincrement())
+  title               String
+  description         String
+  price               Int
+  discountPercentage  Int
+  weight              Int
+  warrantyInformation String
+  shippingInformation String
+  availabilityStatus  String
+  images              Json
+  thumbnail           String
+  tags                Json
+  era                 String
+  genre               String
+  format              String
+  year                DateTime
+  binding             String
+
+  categoryId   Int
+  category     Category  @relation(fields: [categoryId], references: [id])
+  conditionId  Int
+  condition    Condition @relation(fields: [conditionId], references: [id])
+  authorId     Int
+  author       Author    @relation(fields: [authorId], references: [id])
+  publisherId  Int
+  publisher    Publisher @relation(fields: [publisherId], references: [id])
+
+  orderItems OrderItem[]
+}
+
+model Order {
+  id              String    @id @default(uuid())
+  stripeSessionId String    @unique
+  customerEmail   String
+  customerName    String?
+  totalAmount     Int
+  currency        String    @default("sek")
+  status          OrderStatus @default(PENDING)
+  
+  // Shipping information
+  shippingName     String
+  shippingLine1    String
+  shippingLine2    String?
+  shippingCity     String
+  shippingState    String?
+  shippingPostal   String
+  shippingCountry  String
+  
+  // Timestamps
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  paidAt          DateTime?
+  shippedAt       DateTime?
+  deliveredAt     DateTime?
+  
+  // Optional user reference (for authenticated users)
+  userId          String?
+  
+  items OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  productId Int?
+  title     String
+  unitPrice Int
+  totalPrice Int
+  
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  
+  product   Product? @relation(fields: [productId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}

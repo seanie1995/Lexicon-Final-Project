@@ -13,5 +13,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.8"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.100.0",
+    "stripe": "^22.0.1"
   }
 }

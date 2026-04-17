@@ -105,7 +105,7 @@ async function handleCheckoutSessionCompleted(
       <ul>${itemsHtml}</ul>
       <p><strong>Shipping Address:</strong></p>
       <p>${shipping.name}<br/>${shipping.address?.line1}${shipping.address?.line2 ? "<br/>" + shipping.address.line2 : ""}<br/>${shipping.address?.city}, ${shipping.address?.postal_code}<br/>${shipping.address?.country}</p>
-      <p><strong>Total:</strong> ${(totalAmount).toFixed(2)} ${currency.toUpperCase()}</p>
+      <p><strong>Total:</strong> ${(totalAmount / 100).toFixed(2)} ${currency.toUpperCase()}</p>
       `,
     });
   } catch (error) {

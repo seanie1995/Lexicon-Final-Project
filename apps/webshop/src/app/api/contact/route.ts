@@ -19,8 +19,7 @@ export async function POST(request: Request) {
   try {
     const { error } = await resend.emails.send({
       // Resend requires a verified domain in production.
-      // During development "onboarding@resend.dev" works fine.
-      from: "The Digital Archivist <onboarding@resend.dev>",
+      from: "The Digital Archivist <digital.archivist@lexicon.jine.se>",
 
       // Change this to your real inbox once domain is verified
       to: ["emelie.kedert@gmail.com",  

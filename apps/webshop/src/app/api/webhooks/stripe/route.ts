@@ -83,18 +83,30 @@ async function handleCheckoutSessionCompleted(
 
   // Here we should send email via resend with order confirmation towards the enduser
   try {
-    await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "The Digital Archivist <digital.archivist@lexicon.jine.se>",
-        to: customerEmail,
-        subject: "Order Confirmation",
-        html: `<h1>Thank you for your order!</h1><p>Order ID: ${expandedSession.id}</p><p>Total: ${totalAmount} ${currency.toUpperCase()}</p>`,
-      }),
+    const { Resend } = await import("resend");
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
+    const itemsHtml = expandedSession.line_items?.data
+      .map(
+      (item) =>
+        `<li>${item.description} - ${item.quantity}x ${(item.amount_total ?? 0) / 100} ${currency.toUpperCase()}</li>`
+      )
+      .join("") ?? "";
+
+    await resend.emails.send({
+      from: "The Digital Archivist <digital.archivist@lexicon.jine.se>",
+      to: customerEmail,
+      subject: "Order Confirmation",
+      html: `
+      <h1>Thank you for your order!</h1>
+      <p><strong>Order ID:</strong> ${expandedSession.id}</p>
+      <p><strong>Customer Name:</strong> ${customerName ?? "N/A"}</p>
+      <h2>Order Items:</h2>
+      <ul>${itemsHtml}</ul>
+      <p><strong>Shipping Address:</strong></p>
+      <p>${shipping.name}<br/>${shipping.address?.line1}${shipping.address?.line2 ? "<br/>" + shipping.address.line2 : ""}<br/>${shipping.address?.city}, ${shipping.address?.postal_code}<br/>${shipping.address?.country}</p>
+      <p><strong>Total:</strong> ${(totalAmount).toFixed(2)} ${currency.toUpperCase()}</p>
+      `,
     });
   } catch (error) {
     console.error("Failed to send confirmation email:", error);

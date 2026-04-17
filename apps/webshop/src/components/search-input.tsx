@@ -1,71 +1,75 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useTransition, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState, useTransition } from "react";
 
 const SearchInput = () => {
-    const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const [isPending, startTransition] = useTransition();
+	const router = useRouter();
+	const searchParams = useSearchParams();
+	const [isPending, startTransition] = useTransition();
 
-    // Local state tracks what user is typing
-    // We don't hit the URL on every keystroke
-    const [inputValue, setInputValue] = useState(
-        searchParams.get("search") ?? ""
-    );
+	const searchParamsRef = useRef(searchParams);
+	const initialized = useRef(false);
+	searchParamsRef.current = searchParams;
 
-    useEffect(() => {
+	// Local state tracks what user is typing
+	// We don't hit the URL on every keystroke
+	const [inputValue, setInputValue] = useState(
+		searchParams.get("search") ?? "",
+	);
 
-        const debounceTimer = setTimeout(() => {
-            const params = new URLSearchParams(searchParams.toString());
+	useEffect(() => {
+		if (!initialized.current) {
+			initialized.current = true;
+			return;
+		}
 
-            if (inputValue) {
-                params.set("search", inputValue);
-            } else {
-                params.delete("search");
-            }
+		const debounceTimer = setTimeout(() => {
+			if (!inputValue) return;
 
-            // Always reset to page 1 on new search
-            params.delete("page");
+			const params = new URLSearchParams();
+			params.set("search", inputValue);
+			params.delete("page");
 
-            startTransition(() => {
-                router.push(`${pathname}?${params.toString()}`);
-            });
-        }, 300);
+			startTransition(() => {
+				router.push(`/catalog?${params.toString()}`);
+			});
+		}, 300);
 
-        // Cleanup — cancel timer if user types again
-        return () => clearTimeout(debounceTimer);
-    }, [inputValue]);
+		return () => clearTimeout(debounceTimer);
+	}, [inputValue, router]);
 
-    return (
-        <div className={`
+	return (
+		<div
+			className={`
             hidden lg:flex items-center 
             bg-surface-container-low px-4 py-2 
             transition-opacity duration-200
             ${isPending ? "opacity-50" : "opacity-100"}
-        `}>
-            <Search className="w-4 h-4 mr-2 shrink-0 text-secondary" />
-            <input
-                className="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48"
-                placeholder="Search the archives..."
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-            />
-            {/* Show subtle spinner while results load */}
-            {isPending && (
-                <span className="ml-2 text-xs text-secondary animate-pulse">
-                    ...
-                </span>
-            )}
-        </div>
-    );
+        `}
+		>
+			<Search
+				className="w-4 h-4 mr-2 shrink-0 text-secondary"
+				aria-label="Search the archives"
+			/>
+			<input
+				aria-label="Search the archives"
+				className="bg-transparent border-none focus:ring-0 text-sm font-label italic placeholder:text-outline/50 w-48"
+				placeholder="Search the archives..."
+				type="text"
+				value={inputValue}
+				onChange={(e) => setInputValue(e.target.value)}
+			/>
+			{/* Show subtle spinner while results load */}
+			{isPending && (
+				<span className="ml-2 text-xs text-secondary animate-pulse">...</span>
+			)}
+		</div>
+	);
 };
 
 export default SearchInput;
-
 
 /*
     SearchInput — a client component that lives in the header.
@@ -84,7 +88,7 @@ export default SearchInput;
     stops constant rendering after every keystroke; in other words,constant database call!!
 */
 
- /*
+/*
             Debounce logic:
             Every time inputValue changes we set a timer.
             If user types again before 300ms — timer resets.

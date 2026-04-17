@@ -81,6 +81,28 @@ async function handleCheckoutSessionCompleted(
     expandedSession.payment_status === "no_payment_required";
   const orderStatus = isPaid ? OrderStatus.PAID : OrderStatus.PENDING;
 
+  // Here we should send email via resend with order confirmation towards the enduser
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "The Digital Archivist <digital.archivist@lexicon.jine.se>",
+        to: customerEmail,
+        subject: "Order Confirmation",
+        html: `<h1>Thank you for your order!</h1><p>Order ID: ${expandedSession.id}</p><p>Total: ${totalAmount} ${currency.toUpperCase()}</p>`,
+      }),
+    });
+  } catch (error) {
+    console.error("Failed to send confirmation email:", error);
+  }
+
+  
+
+
   // Create order with items
   await prisma.order.create({
     data: {

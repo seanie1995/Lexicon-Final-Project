@@ -232,7 +232,7 @@ export default function AccountForm({ user, orders }: AccountFormProps) {
                       }`}
                   >
                     {tab.icon}
-                    <span className="sr-only">{tab.label}</span>
+                    <span className="hidden sm:inline">{tab.label}</span>
                     {tab.id === "orders" && orders.length > 0 && (
                       <span
                         className="ml-auto text-[10px] bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 font-label"

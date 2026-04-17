@@ -9,4 +9,5 @@ dist/
 .vscode/
 .opencode/
 *.tsbuildinfo
-nul
+
+docs/superpowers

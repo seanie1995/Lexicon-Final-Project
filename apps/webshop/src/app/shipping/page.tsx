@@ -77,6 +77,8 @@ export default function ShippingPage() {
               </span>
             </div>
           </div>
+
+          <div className="space-y-20 md:col-span-8 md:space-y-24">
             <div className="space-y-20 md:col-span-8 md:space-y-24">
               <section>
                 <h2 className="mb-8 flex items-center gap-4 font-headline text-3xl text-on-surface">

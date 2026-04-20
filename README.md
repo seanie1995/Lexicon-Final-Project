@@ -1,6 +1,6 @@
 # The Digital Archivist - A full‑stack e‑commerce platform for vintage literature
 
-# 📚 Built as a Final Project for Lexicon Group 3
+## 📚 Built as a Final Project for Lexicon Group 3
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)

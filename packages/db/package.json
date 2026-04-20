@@ -13,7 +13,9 @@
 	},
 	"dependencies": {
 		"@prisma/adapter-pg": "^7.5.0",
-		"@prisma/client": "^7.5.0"
+		"@prisma/client": "^7.5.0",
+		"dotenv": "^16.6.1",
+		"pg": "^8.20.0"
 	},
 	"devDependencies": {
 		"prisma": "^7.5.0",
@@ -25,6 +27,7 @@
 		"db:push": "npx prisma db push",
 		"db:migrate": "npx prisma migrate dev",
 		"db:seed": "npx tsx prisma/seed.ts",
-		"db:studio": "npx prisma studio"
+		"db:studio": "npx prisma studio",
+		"db:seed-admin": "npx tsx prisma/seed-admin.ts"
 	}
 }

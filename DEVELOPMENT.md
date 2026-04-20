@@ -110,6 +110,51 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=[key]
 
 Create a .env.local file in the apps/webshop directory. You will find the keys in the Supabase project dasboard that you access via the browser. These keys are called Project URL and Publishable Key
 
+## Admin Authentication
+
+The admin panel requires authentication. All routes are protected — unauthenticated users are redirected to `/login`, and authenticated users without the admin role are redirected to `/access-denied`.
+
+### Granting Admin Access
+
+To give a user admin access, create an `AdminUser` record using the seed script:
+
+```bash
+# By Supabase user ID (find it in Supabase Dashboard → Authentication → Users)
+npm run db:seed-admin -w packages/db -- --user=<supabase_user_id>
+
+# Or by email address
+npm run db:seed-admin -w packages/db -- --email=<user_email>
+```
+
+The admin role is applied on the user's next login. To apply it immediately without requiring a re-login, run this in Supabase Dashboard → SQL Editor:
+
+```sql
+UPDATE auth.users SET updated_at = now() WHERE id = '<user_id>';
+```
+
+This fires a database trigger that syncs the admin claim to the user's session.
+
+### Revoking Admin Access
+
+Open Prisma Studio and delete or disable the `AdminUser` record:
+
+```bash
+npm run db:studio -w packages/db
+```
+
+Or programmatically:
+
+```typescript
+await prisma.adminUser.update({
+  where: { userId: "..." },
+  data: { isAdmin: false },
+});
+```
+
+### How It Works
+
+Admin status is controlled via a PostgreSQL trigger on Supabase's `auth.users` table. When a user logs in, the trigger checks the `admin_users` table and automatically sets the `role` claim in the user's session metadata. This is server-controlled — users cannot escalate themselves to admin.
+
 ## Stripe Webhooks
 
 For testing Stripe webhooks locally, use the official Stripe CLI to forward events to your development server. See the detailed guide in [`docs/STRIPE.md`](docs/STRIPE.md) for installation, authentication, and usage instructions.

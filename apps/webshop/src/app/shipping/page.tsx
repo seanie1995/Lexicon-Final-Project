@@ -35,8 +35,8 @@ const returnProtocol = [
 
 export default function ShippingPage() {
   return (
-    <main className="min-h-screen bg-surface pt-24">
-      <section className="mx-auto  px-6 py-16 md:px-12 md:py-24">
+    <main className="min-h-screen bg-surface pt-20">
+      <section className="mx-auto max-w-screen-2xl px-6 py-20 md:px-12 md:py-24">
         <header className="mb-20 max-w-3xl text-center md:mb-24 md:text-left">
           <span className="mb-4 block font-label text-[11px] uppercase tracking-[0.3em] text-secondary">
             Institutional Protocol

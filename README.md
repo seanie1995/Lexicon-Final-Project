@@ -1,5 +1,5 @@
 # The Digital Archivist 
-## A full‑stack e‑commerce platform for vintage literature
+### A full‑stack e‑commerce platform for vintage literature
 
 ## 📚 Built as a Final Project for Lexicon Group 3
 

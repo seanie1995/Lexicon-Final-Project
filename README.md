@@ -33,7 +33,7 @@
 | Database & Auth | Supabase                   |
 | ORM             | Prisma                     |
 | Payments        | Stripe (test mode)         |
-| Monorepo        | Turborepo + npm workspaces |
+| Monorepo        | npm workspaces             |
 
 ---
 
@@ -41,7 +41,7 @@
 
 - **🔐 Authentication** – Customer login via Supabase
 - **☁️ Database** – Supabase + Prisma ORM
-- **📦 Shopping Cart** – Persistent cart using cookies/database or Zustand / useContext
+- **📦 Shopping Cart** – Persistent cart using useContext
 - **💳 Payments** – Stripe integration (test mode)
 - **🎨 UI Library** – Tailwind CSS, wireframed with Stitch
 - **🌍 Deployment** – Vercel

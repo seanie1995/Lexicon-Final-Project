@@ -77,37 +77,6 @@ export default function ShippingPage() {
               </span>
             </div>
           </div>
-
-          <div className="space-y-20 md:col-span-8 md:space-y-24">
-            <section>
-              <h2 className="mb-8 flex items-center gap-4 font-headline text-3xl text-on-surface">
-                <span
-                  aria-hidden="true"
-                  className="font-light text-primary-container"
-                >
-                  01.
-                </span>
-                Scholarly Dispatch
-              </h2>
-              <div className="grid gap-8 text-base leading-relaxed text-on-surface-variant lg:grid-cols-2 lg:gap-12">
-                <p>
-                  Rare volumes require more than standard logistics. Every
-                  acquisition is processed through our{" "}
-                  <span className="text-primary italic">
-                    White Glove Registry
-                  </span>
-                  . Items are shipped via specialized couriers who understand
-                  the thermal and kinetic sensitivities of vellum and aged
-                  paper.
-                </p>
-                <p>
-                  Upon dispatch, the collector receives a digitized tracking
-                  dossier. Standard transit times are secondary to safety; we
-                  utilize optimized routes that minimize handling transfers and
-                  environmental exposure.
-                </p>
-              </div>
-            </section>
             <div className="space-y-20 md:col-span-8 md:space-y-24">
               <section>
                 <h2 className="mb-8 flex items-center gap-4 font-headline text-3xl text-on-surface">

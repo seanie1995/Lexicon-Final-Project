@@ -80,7 +80,7 @@ export default function ContactPage() {
       <section className="mx-auto flex max-w-screen-2xl flex-col items-start gap-14 px-8 py-20 md:flex-row md:gap-16 lg:px-12">
         <div className="w-full space-y-10 md:w-5/12 md:space-y-12">
           <div className="space-y-4">
-            <p className="font-label text-[11px] font-semibold uppercase tracking-[0.28em] text-secondary">
+            <p className="font-label text-[11px] uppercase tracking-[0.28em] text-secondary">
               Correspondence
             </p>
             <h1 className="max-w-sm font-headline text-5xl italic leading-[0.95] text-primary md:text-6xl lg:text-7xl">

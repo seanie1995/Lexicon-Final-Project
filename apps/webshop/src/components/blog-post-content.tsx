@@ -10,7 +10,7 @@ interface BlogPostContentProps {
 
 const BlogPostContent = ({ post }: BlogPostContentProps) => {
   return (
-    <main className="min-h-screen bg-background pt-24">
+    <main className="min-h-screen bg-background pt-20">
       {/* Hero Section */}
       <section className="relative w-full h-[45vh] md:h-150 overflow-hidden">
         <Image

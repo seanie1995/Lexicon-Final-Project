@@ -1,11 +1,11 @@
-# The Digital Archivist - A full‑stack e‑commerce platform for vintage literature
+# The Digital Archivist 
+### A full‑stack e‑commerce platform for vintage literature
 
-# 📚 Built as a Final Project for Lexicon Group 3
+## 📚 Built as a Final Project for Lexicon Group 3
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
-![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?style=flat&logo=turborepo&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?style=flat&logo=supabase&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=flat&logo=stripe&logoColor=white)
@@ -33,7 +33,7 @@
 | Database & Auth | Supabase                   |
 | ORM             | Prisma                     |
 | Payments        | Stripe (test mode)         |
-| Monorepo        | Turborepo + npm workspaces |
+| Monorepo        | npm workspaces             |
 
 ---
 
@@ -41,7 +41,7 @@
 
 - **🔐 Authentication** – Customer login via Supabase
 - **☁️ Database** – Supabase + Prisma ORM
-- **📦 Shopping Cart** – Persistent cart using cookies/database or Zustand / useContext
+- **📦 Shopping Cart** – Persistent cart using useContext
 - **💳 Payments** – Stripe integration (test mode)
 - **🎨 UI Library** – Tailwind CSS, wireframed with Stitch
 - **🌍 Deployment** – Vercel

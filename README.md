@@ -18,8 +18,8 @@
     <td><strong>Contact Page</strong></td>
   </tr>
   <tr>
-    <td><img src="./docs/frontpage_final.png" width="400"></td>
-    <td><img src="./docs/catalog-page.png" width="400"></td>
+    <td><img src="./docs/frontpage_final.png" width="400" height="600"></td>
+    <td><img src="./docs/catalog-page.png" width="400" height="600"></td>
   </tr>
 </table>
 

@@ -85,13 +85,14 @@ The palette combines aged parchment backgrounds with muted burgundy accents to c
 
 ## 📁 Project Structure
 
-This is a monorepo managed with Turborepo.
+This is a monorepo managed with npm.
 
+Below is the previous / mockup file structure we've based this project on, please not that this is not accurate or up to date with the current code base
 ```bash
 
 Lexicon-Final-Project/ (monorepo)
 ├── apps/
-│ ├── webshop/ ← din kund-facing Next.js app
+│ ├── webshop/ ← kund-facing Next.js app
 │ │ ├── src/ ← rekommenderat: allt källkod i src/
 │ │ │ ├── app/ ← App Router – definierar routes & API:er
 │ │ │ │ ├── api/ ← Route Handlers = API endpoints

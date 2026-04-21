@@ -25,6 +25,16 @@ Based upon design in Stitch: https://stitch.withgoogle.com/projects/182540470990
 </table>
 <table>
   <tr>
+    <td><strong>Account - Orders</strong></td>
+    <td><strong>Checkout</strong></td>
+  </tr>
+  <tr>
+    <td><img src="./docs/account-orders.png" height="800"></td>
+    <td><img src="./docs/checkout.png" height="800"></td>
+  </tr>
+</table>
+<table>
+  <tr>
     <td><strong>Admin - Products</strong></td>
     <td><strong>Admin - Orders</strong></td>
   </tr>

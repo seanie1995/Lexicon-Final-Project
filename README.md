@@ -23,6 +23,16 @@ Based upon design in Stitch: https://stitch.withgoogle.com/projects/182540470990
     <td><img src="./docs/catalog-page.png" height="800"></td>
   </tr>
 </table>
+<table>
+  <tr>
+    <td><strong>Admin - Products</strong></td>
+    <td><strong>Admin - Orders</strong></td>
+  </tr>
+  <tr>
+    <td><img src="./docs/admin-products.png" height="800"></td>
+    <td><img src="./docs/admin-order.png" height="800"></td>
+  </tr>
+</table>
 
 ## 🛠️ Tech Stack
 

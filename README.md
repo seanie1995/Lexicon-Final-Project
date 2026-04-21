@@ -19,8 +19,8 @@ Based upon design in Stitch: https://stitch.withgoogle.com/projects/182540470990
     <td><strong>Contact Page</strong></td>
   </tr>
   <tr>
-    <td><img src="./docs/frontpage_final.png" height="800"></td>
-    <td><img src="./docs/catalog-page.png" height="800"></td>
+    <td><img src="./docs/frontpage-final.png" height="800"></td>
+    <td><img src="./docs/catalog-final.png" height="800"></td>
   </tr>
 </table>
 <table>
